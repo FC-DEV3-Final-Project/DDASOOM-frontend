@@ -10,7 +10,9 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "fix": "npm run lint:fix && npm run format",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.6",
