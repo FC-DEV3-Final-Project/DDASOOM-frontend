@@ -21,6 +21,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.11.0",
+    "krds-uiux": "^1.0.5",
     "lucide-react": "^0.510.0",
     "postcss": "^8.5.3",
     "react": "^19.1.0",
