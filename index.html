@@ -5,9 +5,22 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React + TS</title>
+    <style>
+      @font-face {
+        font-family: 'PretendardGOV';
+        src: url('node_modules/krds-uiux/resources/fonts/PretendardGOV-Regular.subset.woff2')
+          format('woff2');
+        font-weight: 400;
+        font-style: normal;
+      }
+      body {
+        font-family: 'PretendardGOV', sans-serif;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script src="node_modules/krds-uiux/resources/js/component/ui-script.js"></script>
   </body>
 </html>
