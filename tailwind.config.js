@@ -1,11 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   //darkMode: ['class'],
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
       fontFamily: {
-        noto: ["var(--font-family)"],
+        noto: ['var(--font-family)'],
       },
     },
   },
@@ -13,6 +13,6 @@ module.exports = {
     preflight: true,
   },
   plugins: {
-    "@tailwindcss/postcss": {},
+    '@tailwindcss/postcss': {},
   },
-};
+}
