@@ -1,16 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   //darkMode: ['class'],
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       fontFamily: {
-        noto: ['var(--font-family)'],
+        noto: ["var(--font-family)"],
       },
     },
   },
   corePlugins: {
     preflight: true,
   },
-  plugins: [require('@tailwindcss/postcss')],
-}
+  plugins: {
+    "@tailwindcss/postcss": {},
+  },
+};
