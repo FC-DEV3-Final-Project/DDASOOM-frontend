@@ -45,7 +45,7 @@ export const Default = {
 }
 export const Secondary = {
   args: {
-    ...Default.args,
+    ...Default.args, // default args를 복사
     variant: 'secondary',
   },
 }
