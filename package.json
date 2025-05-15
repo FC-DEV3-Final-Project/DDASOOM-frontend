@@ -10,7 +10,9 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "fix": "npm run lint:fix && npm run format",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.6",
@@ -35,7 +37,10 @@
     "@eslint/js": "^9.25.0",
     "@storybook/addon-essentials": "^8.6.12",
     "@storybook/addon-interactions": "^8.6.12",
+    "@storybook/addon-links": "^8.6.12",
+    "@storybook/addon-a11y": "^8.6.12",
     "@storybook/react": "^8.6.12",
+    "@storybook/react-vite": "^8.6.12",
     "@storybook/testing-library": "^0.2.2",
     "@types/node": "^22.15.18",
     "@types/react": "^19.1.2",
