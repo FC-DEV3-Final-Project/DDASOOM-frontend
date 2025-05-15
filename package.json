@@ -7,9 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "npx lint-staged",
-    "fix": "npm run lint:fix && npm run format",
+    "format": "prettier --write .",
+    "fix": "npx lint-staged",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -61,6 +60,10 @@
     "vite": "^6.3.5"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,css,md}": "prettier --write"
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md}": "prettier --write"
   }
 }
