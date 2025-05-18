@@ -6,14 +6,14 @@ export const API_ERROR_NAME = 'ApiError' as const
  * 에러 객체를 통해 코드, 상태, 원인을 함께 전달할 수 있습니다.
  */
 export interface ApiErrorOptions {
-  code?: string
+  code?: string | number
   status?: number
   cause?: unknown
 }
 
 export class ApiError extends Error {
   readonly name = API_ERROR_NAME // 에러 이름 (Error.name override)
-  readonly code?: string // 서버가 내려준 비즈니스 에러 코드 (e.g. 'EMAIL_TAKEN')
+  readonly code?: string | number // 서버가 내려준 비즈니스 에러 코드 (e.g. 'EMAIL_TAKEN')
   readonly status?: number // HTTP 상태 코드 (e.g. 400, 401, 500)
   readonly cause?: unknown // 원본 응답 전체 or 내부 에러 (디버깅/Sentry 로그용)
 
