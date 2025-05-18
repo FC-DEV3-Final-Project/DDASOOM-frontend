@@ -1,3 +1,14 @@
+import { QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { RouterProvider } from 'react-router-dom'
+import { queryClient } from '@/shared/lib/queryClient'
+import router from '@/router/router'
+
 export default function App() {
-  return <div>프로젝트 환경설정</div>
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  )
 }
