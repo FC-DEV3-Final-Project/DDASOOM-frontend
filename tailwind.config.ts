@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import * as krdsPlugin from '@krds-ui/tailwindcss-plugin';
 
 export default {
   // darkMode: ['class'],
@@ -10,6 +11,7 @@ export default {
       },
     },
   },
+  plugins: [krdsPlugin],
   corePlugins: {
     preflight: false,
   },
