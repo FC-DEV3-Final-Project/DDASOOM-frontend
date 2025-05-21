@@ -11,7 +11,10 @@ export default function App() {
 
   return (
     <>
-      <h1 className='text-display-l'>KRDS UI 컴포넌트 테스트 입니다.</h1>
+      <h1 className="text-primary-50">KRDS UI 컴포넌트 테스트 입니다.</h1>
+      <h1 className="text-[#246BEB]">KRDS UI 컴포넌트 테스트 입니다.</h1>
+      <h1 className="text-secondary-50">KRDS UI 컴포넌트 테스트 입니다.</h1>
+      <h1 className="text-display-l">KRDS UI 컴포넌트 테스트 입니다.</h1>
       <Checkbox id="1" label="hello" onChange={handleChange} status={status}></Checkbox>
     </>
   )
