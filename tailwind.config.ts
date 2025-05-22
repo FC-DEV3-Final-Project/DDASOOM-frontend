@@ -1,15 +1,8 @@
 import type { Config } from 'tailwindcss'
 
 export default {
-  // darkMode: ['class'],
-  content: ['./src/**/*.{ts,tsx}'],
-  theme: {
-    extend: {
-      fontFamily: {
-        noto: ['var(--font-family)'],
-      },
-    },
-  },
+  darkMode: ['class', 'dark'],
+  files: ['./src/**/*.{ts,tsx}'],
   corePlugins: {
     preflight: false,
   },
