@@ -51,6 +51,7 @@
     "@vitejs/plugin-react-swc": "^3.9.0",
     "eslint": "^9.26.0",
     "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-fsd-lint": "^1.0.9",
     "eslint-plugin-prettier": "^5.4.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
