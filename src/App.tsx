@@ -1,21 +1,27 @@
-import { Checkbox } from '@krds-ui/core'
-import { useState } from 'react'
+import React from 'react'
+import Header from './shared/components/Header'
+import NavigationBar from './shared/components/NavigationBar'
+import Footer from './shared/components/Footer'
 
-export default function App() {
-  const [status, setStatus] = useState<'on' | 'off' | 'intermediate'>('off')
+import HomePage from './pages/home/index' // HomePage 컴포넌트 임포트
 
-  const handleChange = (newStatus: 'on' | 'off' | 'intermediate') => {
-    setStatus(newStatus)
-    console.log('Changed to:', newStatus)
-  }
-
+function App() {
   return (
-    <>
-      <h1 className="text-primary">KRDS UI 컴포넌트 테스트 입니다.</h1>
-      <h1 className="text-secondary-50">KRDS UI 컴포넌트 테스트 입니다.</h1>
-      <h1 className="text-display-l">KRDS UI 컴포넌트 테스트 입니다.</h1>
-      <div className="tablet:text-base desktop:text-lg bg-warning text-sm">반응형 텍스트</div>
-      <Checkbox id="1" label="hello" onChange={handleChange} status={status}></Checkbox>
-    </>
+    <div className="App flex w-full flex-col items-center">
+      {/* 모든 페이지에 공통으로 표시될 헤더 */}
+      <Header />
+      {/* 모든 페이지에 공통으로 표시될 네비게이션 바 */}
+      <NavigationBar />
+
+      {/* 페이지 콘텐츠가 로드될 영역 */}
+      {/* 현재는 HomePage만 렌더링합니다. 라우팅 설정 시 이 부분을 동적으로 변경 */}
+      <div className="flex w-full flex-col items-center">
+        <HomePage />
+      </div>
+
+      <Footer />
+    </div>
   )
 }
+
+export default App
