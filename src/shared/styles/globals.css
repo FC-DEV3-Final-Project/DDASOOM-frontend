@@ -3,7 +3,7 @@
 /* @import 'tw-animate-css'; */
 
 @theme {
-  --breakpoint-mobile: 360px;
+  --breakpoint-mobile: 375px;
   --breakpoint-tablet: 601px;
   --breakpoint-desktop: 1025px;
 

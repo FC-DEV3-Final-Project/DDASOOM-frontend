@@ -1,15 +1,4 @@
 import React from 'react'
-// KRDS Button 컴포넌트 사용 중단
-// import { Button } from '@krds-ui/core'
-
-// 라벨 배열 사용 중단
-// const quickLinks = [
-//   { label: '기증자 예우' },
-//   { label: '장기·조직기증 소개' },
-//   { label: '기증희망등록' },
-//   { label: '생명나눔 희망우체통' },
-// ]
-
 import { HandHeart } from 'lucide-react' // HandHeart 아이콘 임포트
 
 const QuickLinks: React.FC = () => {
@@ -18,7 +7,7 @@ const QuickLinks: React.FC = () => {
       <div className="flex w-full justify-between gap-[18px]">
         <button className="inline-flex items-center justify-between gap-[14px] rounded-[100px] border-[2.5px] border-[#EAEAEA] bg-white px-[32px] py-[20px] shadow-md hover:shadow-lg focus:outline-none">
           <div className="flex h-[30.4px] w-[33.378px] flex-shrink-0 items-center justify-center text-red-500">
-            <HandHeart size={40} />
+            <HandHeart size={40} strokeWidth={1.5} />
           </div>
           <span className="text-[24px] leading-[36px] font-bold whitespace-nowrap text-black">
             기증자 예우

@@ -18,7 +18,7 @@ const NavigationLink: React.FC<NavigationLinkProps> = ({
   // 호버되지 않은 링크는 옅은 색상, 호버된 링크는 원래 색상
   const textColorClass = isAnyLinkHovered && !isHovered ? 'text-gray-400' : 'text-black' // text-nav_active 대신 검은색으로 가정
   // 아이콘 회전: 기본(rotate-0) -> 호버 시 반시계 방향 720도 회전 (끝나면 다시 위를 향함)
-  const iconRotationClass = isHovered ? '-rotate-[720deg]' : 'rotate-0'
+  const iconRotationClass = isHovered ? '-rotate-[180deg]' : 'rotate-0'
 
   return (
     <div
@@ -30,7 +30,7 @@ const NavigationLink: React.FC<NavigationLinkProps> = ({
       {hasDropdown && (
         <ChevronDown
           size={24}
-          className={`transition-transform duration-[1500ms] ease-in-out ${iconRotationClass}`} // 회전 애니메이션 추가 및 속도 조정
+          className={`transition-transform duration-[500ms] ease-in-out ${iconRotationClass}`} // 회전 애니메이션 추가 및 속도 조정
         />
       )}
     </div>
