@@ -3,11 +3,11 @@ import Layout from '@/shared/components/Layout'
 
 function App() {
   return (
-    <div className="">
+    <>
       <Layout>
         <HomePage />
       </Layout>
-    </div>
+    </>
   )
 }
 

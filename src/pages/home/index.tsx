@@ -13,18 +13,24 @@ const HomePage: React.FC = () => {
   return (
     <>
       <main className="flex w-full flex-col items-center gap-[40px] self-stretch">
-        <HeroSection linkUrl="" /> {/* 클릭 시 이동할 링크를 여기에 지정하세요 */}
-        <QuickLinks />
-        <div className="mx-auto grid w-full max-w-[1300px] min-w-[1000px] grid-cols-2 gap-[40px] px-5">
-          <StatsSection />
-          <MemorialSection />
-          <EventSection />
-          <NoticeSection />
-          <StorySection />
-          <KodaStorySection />
+        <HeroSection linkUrl="" />
+        <div className="mx-auto flex w-full max-w-[1300px] min-w-[1000px] flex-col gap-[40px] px-5">
+          <QuickLinks />
+          <div className="my-[40px] grid grid-cols-2 gap-[80px]">
+            <StatsSection />
+            <MemorialSection />
+          </div>
+          <div className="my-[40px] grid grid-cols-2 gap-[80px]">
+            <EventSection />
+            <NoticeSection />
+          </div>
+          <div className="my-[40px] grid grid-cols-2 gap-[80px]">
+            <StorySection />
+            <KodaStorySection />
+          </div>
+          <PartnersSection />
         </div>
       </main>
-      <PartnersSection />
     </>
   )
 }
