@@ -76,6 +76,17 @@
   --color-point-90: #2e0507;
   --color-point-100: #000000;
 
+  /* Red */
+  --color-red-10: #fcdad9;
+  --color-red-20: #f8abaa;
+  --color-red-30: #f57c7b;
+  --color-red-40: #f14f4d;
+  --color-red-50: #ed1f1c;
+  --color-red-60: #c71210;
+  --color-red-70: #970e0c;
+  --color-red-80: #680908;
+  --color-red-90: #390504;
+
   /* Danger */
   --color-danger: #eb003b;
   --color-danger-5: #feecf0;
@@ -398,4 +409,11 @@
 @utility text-link-s-mobile {
   font-size: 15px;
   line-height: 150%;
+}
+
+.multi-line-ellipsis {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 줄 수 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

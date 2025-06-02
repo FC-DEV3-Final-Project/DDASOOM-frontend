@@ -11,10 +11,12 @@ const dummyData = [
 
 const MemorialSection: React.FC = () => {
   return (
-    <section className="bg-gray-5 grow-2 rounded-[40px] px-[40px] py-8">
-      <h2 className="text-gray-95 mb-[4px] inline text-2xl font-bold">기증자 추모관</h2>
-      <img src="/public/icon/Arrow.svg" alt="" width={24} height={24} className="inline" />
-      <p className="text-gray-60 mb-[28px] text-base">
+    <section className="bg-gray-5 grow-1 rounded-[40px] px-[40px] py-8">
+      <a className="inline-flex cursor-pointer items-center gap-3" href="/memorial">
+        <h2 className="text-gray-95 mb-[4px] inline text-2xl font-bold">기증자 추모관</h2>
+        <img src="/public/icon/Arrow.svg" alt="" width={24} height={24} className="mb-1" />
+      </a>
+      <p className="text-gray-60 mb-[28px] text-[19px] font-normal">
         생명나눔을 실천하신 분들의 고귀한 뜻, 잊지 않겠습니다.
       </p>
       <div className="grid grid-cols-5 gap-[18px]">

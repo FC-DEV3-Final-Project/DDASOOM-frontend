@@ -8,6 +8,7 @@ import NoticeSection from '@/pages/home/components/NoticeSection'
 import StorySection from '@/pages/home/components/StorySection'
 import KodaStorySection from '@/pages/home/components/KodaStorySection'
 import PartnersSection from '@/pages/home/components/PartnersSection'
+import HeavenLetter from '@/pages/home/components/HeavenLetter'
 
 const HomePage: React.FC = () => {
   return (
@@ -20,6 +21,7 @@ const HomePage: React.FC = () => {
             <StatsSection />
             <MemorialSection />
           </div>
+          <HeavenLetter />
           <div className="my-[40px] grid grid-cols-2 gap-[80px]">
             <EventSection />
             <NoticeSection />
