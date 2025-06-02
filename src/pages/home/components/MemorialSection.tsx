@@ -1,59 +1,26 @@
 import React from 'react'
+import MemorialBadge from '@/pages/home/components/MemorialBadge'
+
+const dummyData = [
+  { id: 1, name: '홍길동', date: '2023-01-01', message: '생명나눔에 동참해 주셔서 감사합니다.' },
+  { id: 2, name: '김영희', date: '2023-02-01', message: '고귀한 뜻을 잊지 않겠습니다.' },
+  { id: 3, name: '이철수', date: '2023-03-01', message: '생명나눔을 실천해 주셔서 감사합니다.' },
+  { id: 4, name: '박지민', date: '2023-04-01', message: '고귀한 뜻을 기억하겠습니다.' },
+  { id: 5, name: '최수영', date: '2023-05-01', message: '생명나눔에 감사드립니다.' },
+]
 
 const MemorialSection: React.FC = () => {
   return (
-    <section className="rounded-lg bg-white p-8 py-12">
-      <h2 className="mb-3 text-2xl font-bold text-[#212121]">기증자 추모관 &gt;</h2>
-      <p className="mb-8 text-base text-[#616161]">
+    <section className="bg-gray-5 grow-2 rounded-[40px] px-[40px] py-8">
+      <h2 className="text-gray-95 mb-[4px] inline text-2xl font-bold">기증자 추모관</h2>
+      <img src="/public/icon/Arrow.svg" alt="" width={24} height={24} className="inline" />
+      <p className="text-gray-60 mb-[28px] text-base">
         생명나눔을 실천하신 분들의 고귀한 뜻, 잊지 않겠습니다.
       </p>
-
       <div className="grid grid-cols-5 gap-[18px]">
-        <div className="flex flex-col items-center">
-          <div className="mb-2 flex h-[54px] w-[54px] items-center justify-center rounded-full bg-[#424242]">
-            <div className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-[#4CAF50] text-sm font-bold text-white">
-              R
-            </div>
-          </div>
-          <p className="text-sm font-semibold text-[#424242]">홍*동님</p>
-          <p className="text-xs text-[#616161]">장기+조직</p>
-        </div>
-        <div className="flex flex-col items-center">
-          <div className="mb-2 flex h-[54px] w-[54px] items-center justify-center rounded-full bg-[#424242]">
-            <div className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-[#4CAF50] text-sm font-bold text-white">
-              R
-            </div>
-          </div>
-          <p className="text-sm font-semibold text-[#424242]">홍*동님</p>
-          <p className="text-xs text-[#616161]">장기+조직</p>
-        </div>
-        <div className="flex flex-col items-center">
-          <div className="mb-2 flex h-[54px] w-[54px] items-center justify-center rounded-full bg-[#424242]">
-            <div className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-[#4CAF50] text-sm font-bold text-white">
-              R
-            </div>
-          </div>
-          <p className="text-sm font-semibold text-[#424242]">홍*동님</p>
-          <p className="text-xs text-[#616161]">장기+조직</p>
-        </div>
-        <div className="flex flex-col items-center">
-          <div className="mb-2 flex h-[54px] w-[54px] items-center justify-center rounded-full bg-[#424242]">
-            <div className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-[#4CAF50] text-sm font-bold text-white">
-              R
-            </div>
-          </div>
-          <p className="text-sm font-semibold text-[#424242]">홍*동님</p>
-          <p className="text-xs text-[#616161]">장기+조직</p>
-        </div>
-        <div className="flex flex-col items-center">
-          <div className="mb-2 flex h-[54px] w-[54px] items-center justify-center rounded-full bg-[#424242]">
-            <div className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-[#4CAF50] text-sm font-bold text-white">
-              R
-            </div>
-          </div>
-          <p className="text-sm font-semibold text-[#424242]">홍*동님</p>
-          <p className="text-xs text-[#616161]">장기+조직</p>
-        </div>
+        {dummyData.map((donor) => {
+          return <MemorialBadge key={donor.id} name={donor.name} />
+        })}
       </div>
     </section>
   )

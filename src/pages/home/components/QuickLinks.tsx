@@ -8,7 +8,7 @@ const mailIcon = '/public/icon/mail.svg'
 const QuickLinks: React.FC = () => {
   return (
     <section className="mx-auto flex w-full max-w-[1300px] flex-col items-start gap-[80px] self-stretch bg-white/80 px-[20px] backdrop-blur-lg">
-      <div className="flex flex-wrap gap-[18px]">
+      <div className="m-auto flex flex-wrap gap-[18px]">
         <button className="inline-flex items-center justify-between gap-[14px] rounded-[100px] border-[2.5px] border-[#EAEAEA] bg-white px-[28px] py-[20px] transition-all duration-300 ease-in-out hover:shadow-md focus:outline-none">
           <div className="flex h-[30px] w-[33px] flex-shrink-0 items-center justify-center text-red-500">
             <HandHeart size={40} strokeWidth={1.5} />
