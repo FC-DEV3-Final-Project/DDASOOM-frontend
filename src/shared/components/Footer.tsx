@@ -4,7 +4,6 @@ const Footer: React.FC = () => {
   return (
     <footer className="border-t-1 border-[#CDD1D5] pt-5 pb-10">
       <div className="mx-auto flex w-full max-w-[1300px] min-w-[1000px] flex-col items-center gap-5">
-        {/* Footer Links */}
         <div className="flex w-full justify-between">
           <div className="flex w-full items-center gap-8 text-[#616161]">
             <a href="#" className="font-bold text-[#F14F4D]">
@@ -17,7 +16,6 @@ const Footer: React.FC = () => {
             <a href="#">저작권정책</a>
           </div>
           <div className="flex gap-2">
-            {/* Replace with actual icons/links */}
             <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-gray-400 text-[#616161]">
               <img src="/icon/instagram.svg" alt="" />
             </div>
@@ -33,9 +31,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Social Media and Copyright */}
-        <div className="flex w-full items-start justify-between border-t border-[#F0F0F0] pt-5">
-          {/* Contact Info and Copyright */}
+        <div className="flex h-full w-full items-center justify-between border-t border-[#F0F0F0] pt-5">
           <div className="text-sm text-[#9E9E9E]">
             <p>서울시 서대문구 충정로 36 국민연금공단충정로사옥 5층 한국장기조직기증원 (우)03741</p>
             <p className="mt-1">
@@ -44,25 +40,18 @@ const Footer: React.FC = () => {
             <p className="mt-1">Copyright (c) 2015 All Rights Reserved.</p>
           </div>
 
-          {/* Social Media Icons and Government Logos */}
-          <div className="">
-            {/* Social Media Icons */}
-
-            {/* Government Logos */}
-            <div className="flex justify-end space-x-6">
-              {/* Replace with actual image tags */}
-              <div className="h-[32px] w-[85px]">
-                <img src="/logos/govLogo.png" alt="로고1" />
-              </div>
-              <div className="h-[32px] w-[85px]">
-                <img src="/logos/govLogo2.png" alt="로고2" />
-              </div>
-              <div className="h-[32px] w-[85px]">
-                <img src="/logos/govLogo3.png" alt="로고3" />
-              </div>
-              <div className="h-[32px] w-[85px]">
-                <img src="/logos/govLogo4.png" alt="로고4" />
-              </div>
+          <div className="flex h-full items-center justify-end space-x-6">
+            <div className="h-[32px] w-[85px]">
+              <img src="/logos/govLogo.png" alt="로고1" />
+            </div>
+            <div className="h-[32px] w-[85px]">
+              <img src="/logos/govLogo2.png" alt="로고2" />
+            </div>
+            <div className="h-[32px] w-[85px]">
+              <img src="/logos/govLogo3.png" alt="로고3" />
+            </div>
+            <div className="h-[32px] w-[85px]">
+              <img src="/logos/govLogo4.png" alt="로고4" />
             </div>
           </div>
         </div>

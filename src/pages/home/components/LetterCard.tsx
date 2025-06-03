@@ -4,7 +4,7 @@ const LetterCard = ({ isFocused }: { isFocused: boolean }) => {
   return (
     <div
       className={cn(
-        'border-gray-20 h-[244px] w-[354px] rounded-tl-[80px] rounded-tr-[20px] rounded-br-[80px] rounded-bl-[20px] border-2 p-[40px]',
+        'border-gray-20 h-[244px] w-[354px] cursor-pointer rounded-tl-[80px] rounded-tr-[20px] rounded-br-[80px] rounded-bl-[20px] border-2 p-[40px]',
         { 'border-red-40': isFocused },
       )}
     >
