@@ -12,7 +12,7 @@ const KodaStorySection: React.FC = () => {
           한국장기조직기증원의 새로운 소식을 만나보세요.
         </p>
       </section>
-      <div className="flex aspect-video w-full items-center justify-center rounded-[30px] bg-gray-300 text-gray-600">
+      <div className="flex aspect-video w-full items-center justify-center rounded-[30px] bg-gray-300 text-gray-600 shadow-[0_4px_8px_0px_rgba(0,0,0,0.12)]">
         <iframe
           width="100%"
           height="100%"

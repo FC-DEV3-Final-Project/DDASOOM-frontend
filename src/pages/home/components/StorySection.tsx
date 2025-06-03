@@ -13,7 +13,7 @@ const StorySection: React.FC = () => {
         </p>
       </section>
       <section className="flex w-full gap-6">
-        <div className="bg-red-10 h-[327px] w-[245px] shrink-0 overflow-hidden rounded-[20px]">
+        <div className="bg-red-10 h-[327px] w-[245px] shrink-0 overflow-hidden rounded-[20px] shadow-[0_16px_24px_0px_rgba(0,0,0,0.12)]">
           <img
             src="/story_image.png"
             alt="생명 나눔 이야기 이미지"
