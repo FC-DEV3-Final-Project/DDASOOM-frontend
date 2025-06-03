@@ -2,23 +2,39 @@ import React from 'react'
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#F8F8F8] py-12">
-      {/* Main content container matching header/nav width */}
-      <div className="mx-auto flex w-full max-w-[1300px] min-w-[1000px] flex-col items-center p-5">
+    <footer className="border-t-1 border-[#CDD1D5] pt-5 pb-10">
+      <div className="mx-auto flex w-full max-w-[1300px] min-w-[1000px] flex-col items-center gap-5">
         {/* Footer Links */}
-        <div className="mb-8 flex w-full justify-center space-x-8 text-sm text-[#616161]">
-          <a href="#" className="font-bold text-[#E57373]">
-            개인정보 처리방침
-          </a>
-          <a href="#">위치안내</a>
-          <a href="#">경영공시</a>
-          <a href="#">유관기관</a>
-          <a href="#">기증희망등록</a>
-          <a href="#">저작권정책</a>
+        <div className="flex w-full justify-between">
+          <div className="flex w-full items-center gap-8 text-[#616161]">
+            <a href="#" className="font-bold text-[#F14F4D]">
+              개인정보 처리방침
+            </a>
+            <a href="#">위치안내</a>
+            <a href="#">경영공시</a>
+            <a href="#">유관기관</a>
+            <a href="#">기증희망등록</a>
+            <a href="#">저작권정책</a>
+          </div>
+          <div className="flex gap-2">
+            {/* Replace with actual icons/links */}
+            <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-gray-400 text-[#616161]">
+              <img src="/icon/instagram.svg" alt="" />
+            </div>
+            <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-gray-400 text-[#616161]">
+              <img src="/icon/youtube.svg" alt="" />
+            </div>
+            <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-gray-400 text-[#616161]">
+              <img src="/icon/naver_blog.svg" alt="" />
+            </div>
+            <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-gray-400 text-[#616161]">
+              <img src="/icon/facebook.svg" alt="" />
+            </div>
+          </div>
         </div>
 
         {/* Social Media and Copyright */}
-        <div className="flex w-full items-start justify-between border-t border-gray-300 pt-8">
+        <div className="flex w-full items-start justify-between border-t border-[#F0F0F0] pt-5">
           {/* Contact Info and Copyright */}
           <div className="text-sm text-[#9E9E9E]">
             <p>서울시 서대문구 충정로 36 국민연금공단충정로사옥 5층 한국장기조직기증원 (우)03741</p>
@@ -29,31 +45,24 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Social Media Icons and Government Logos */}
-          <div className="flex flex-col items-end">
+          <div className="">
             {/* Social Media Icons */}
-            <div className="mb-6 flex space-x-4">
-              {/* Replace with actual icons/links */}
-              <div className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-400 text-[#616161]">
-                인스타
-              </div>
-              <div className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-400 text-[#616161]">
-                유튜브
-              </div>
-              <div className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-400 text-[#616161]">
-                블로그
-              </div>
-              <div className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-400 text-[#616161]">
-                페이스북
-              </div>
-            </div>
 
             {/* Government Logos */}
             <div className="flex justify-end space-x-6">
               {/* Replace with actual image tags */}
-              <img src="/logos/logo1.png" alt="로고1" className="h-10 w-auto" />
-              <img src="/logos/logo2.png" alt="로고2" className="h-10 w-auto" />
-              <img src="/logos/logo3.png" alt="로고3" className="h-10 w-auto" />
-              <img src="/logos/logo4.png" alt="로고4" className="h-10 w-auto" />
+              <div className="h-[32px] w-[85px]">
+                <img src="/logos/govLogo.png" alt="로고1" />
+              </div>
+              <div className="h-[32px] w-[85px]">
+                <img src="/logos/govLogo2.png" alt="로고2" />
+              </div>
+              <div className="h-[32px] w-[85px]">
+                <img src="/logos/govLogo3.png" alt="로고3" />
+              </div>
+              <div className="h-[32px] w-[85px]">
+                <img src="/logos/govLogo4.png" alt="로고4" />
+              </div>
             </div>
           </div>
         </div>

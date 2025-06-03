@@ -9,7 +9,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ linkUrl }) => {
   const imageUrl = '/public/image.png' // 첫 번째 이미지 경로
 
   return (
-    <section className="relative mx-auto max-h-[500px] w-full max-w-[2000px] overflow-hidden">
+    <section className="relative mx-auto max-h-[500px] w-full max-w-[2000px] min-w-[1000px] overflow-hidden">
       <a href={linkUrl} className="block w-full">
         <img
           src={imageUrl}

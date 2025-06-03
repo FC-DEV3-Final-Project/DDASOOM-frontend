@@ -2,7 +2,7 @@ import React from 'react'
 
 const StatsSection: React.FC = () => {
   return (
-    <section className="bg-gray-5 flex grow-3 flex-col justify-between gap-[40px] rounded-[40px] px-[40px] py-8">
+    <section className="bg-gray-5 flex min-w-[320px] grow-3 flex-col justify-between gap-[40px] rounded-[40px] px-[40px] py-8">
       <div>
         <h2 className="text-gray-95 mb-1 text-2xl font-bold">2025년</h2>
         <h2 className="mb-[4px] text-2xl font-bold text-green-50">누적 기증자 수</h2>
