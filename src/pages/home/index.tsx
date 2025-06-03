@@ -13,7 +13,7 @@ import HeavenLetter from '@/pages/home/components/HeavenLetter'
 const HomePage: React.FC = () => {
   return (
     <>
-      <main className="flex w-full flex-col items-center gap-[40px] self-stretch">
+      <main className="mb-25 flex w-full flex-col items-center gap-[40px] self-stretch">
         <HeroSection linkUrl="" />
         <div className="mx-auto flex w-full max-w-[1300px] min-w-[1000px] flex-col gap-[40px] px-5">
           <QuickLinks />
