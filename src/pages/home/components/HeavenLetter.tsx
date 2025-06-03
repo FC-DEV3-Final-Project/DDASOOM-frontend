@@ -6,7 +6,7 @@ const HeavenLetter = () => {
     <section>
       <a className="mb-1 inline-flex cursor-pointer items-center gap-3" href="/memorial">
         <h2 className="text-gray-95 inline text-2xl font-bold">하늘나라 편지</h2>
-        <img src="/public/icon/Arrow.svg" alt="" width={24} height={24} className="mb-1" />
+        <img src="/public/icon/Arrow.svg" alt="" width={24} height={24} />
       </a>
       <div className="flex justify-between">
         <p className="text-gray-60 mb-[28px] text-[19px] font-normal">

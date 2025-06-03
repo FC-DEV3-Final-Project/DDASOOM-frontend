@@ -3,39 +3,44 @@ import React from 'react'
 const StorySection: React.FC = () => {
   return (
     <div className="flex flex-col">
-      <h2 className="mb-6 text-2xl font-bold text-[#212121]">생명 나눔 이야기 &gt;</h2>
-      <p className="mb-8 text-base text-[#616161]">
-        한국장기조직기증원의 새로운 소식을 만나보세요.
-      </p>
-      <div className="flex gap-8">
-        <div className="flex w-1/2">
+      <section className="header">
+        <a className="mb-1 inline-flex cursor-pointer items-center gap-3" href="/event">
+          <h2 className="text-gray-95 inline text-2xl font-bold">생명나눔 페이지</h2>
+          <img src="/public/icon/Arrow.svg" alt="" width={24} height={24} />
+        </a>
+        <p className="text-gray-60 mb-[28px] text-[19px] font-normal">
+          그리움과 사랑을 담아 소중한 이들을 기억하는 공간입니다.
+        </p>
+      </section>
+      <section className="flex gap-8">
+        <div className="flex h-[327px] w-[245px] overflow-hidden rounded-[20px]">
           <img
-            src="/path/to/your/image.jpg"
+            src="/public/story_image.png"
             alt="생명 나눔 이야기 이미지"
             className="h-auto w-full"
           />
         </div>
-        <div className="flex w-1/2 flex-col gap-3">
-          <p className="text-base text-[#424242]">
+        <div className="flex w-[321px] flex-col gap-2">
+          <p className="text-gray-80 bg-gray-10 w-full cursor-pointer overflow-hidden rounded-[100px] px-[18px] py-[10px] text-[19px] font-bold overflow-ellipsis whitespace-nowrap">
             한 사람의 따뜻한 선택이, 누군가의 내일을 다시...
           </p>
-          <p className="text-base text-[#424242]">
+          <p className="w-full cursor-pointer overflow-hidden px-[18px] py-[10px] text-[19px] overflow-ellipsis whitespace-nowrap text-[#424242]">
             한 사람의 따뜻한 선택이, 누군가의 내일을 다시...
           </p>
-          <p className="text-base text-[#424242]">
+          <p className="w-full cursor-pointer overflow-hidden px-[18px] py-[10px] text-[19px] overflow-ellipsis whitespace-nowrap text-[#424242]">
             한 사람의 따뜻한 선택이, 누군가의 내일을 다시...
           </p>
-          <p className="text-base text-[#424242]">
+          <p className="w-full cursor-pointer overflow-hidden px-[18px] py-[10px] text-[19px] overflow-ellipsis whitespace-nowrap text-[#424242]">
             한 사람의 따뜻한 선택이, 누군가의 내일을 다시...
           </p>
-          <p className="text-base text-[#424242]">
+          <p className="w-full cursor-pointer overflow-hidden px-[18px] py-[10px] text-[19px] overflow-ellipsis whitespace-nowrap text-[#424242]">
             한 사람의 따뜻한 선택이, 누군가의 내일을 다시...
           </p>
-          <p className="text-base text-[#424242]">
+          <p className="w-full cursor-pointer overflow-hidden px-[18px] py-[10px] text-[19px] overflow-ellipsis whitespace-nowrap text-[#424242]">
             한 사람의 따뜻한 선택이, 누군가의 내일을 다시...
           </p>
         </div>
-      </div>
+      </section>
     </div>
   )
 }

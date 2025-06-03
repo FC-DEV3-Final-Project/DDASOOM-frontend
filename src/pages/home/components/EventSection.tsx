@@ -8,7 +8,7 @@ const EventSection: React.FC = () => {
     <div className="flex flex-col">
       <a className="mb-7 inline-flex cursor-pointer items-center gap-3" href="/event">
         <h2 className="text-gray-95 inline text-2xl font-bold">기관일정 페이지</h2>
-        <img src="/public/icon/Arrow.svg" alt="" width={24} height={24} className="mb-1" />
+        <img src="/public/icon/Arrow.svg" alt="" width={24} height={24} />
       </a>
       <div className="mb-3 flex gap-[19px] text-center">
         {day.map((day) => {
@@ -16,25 +16,29 @@ const EventSection: React.FC = () => {
         })}
       </div>
       <div className="border-gray-20 flex flex-col gap-3 border-t pt-5">
-        <p className="text-[19px] font-bold text-[#424242]">2025. 05. 19.</p>
-        <div className="flex items-center gap-2">
-          <span className="bg-red-40 h-2 w-2 rounded-full"></span>
-          <p className="text-[19px] text-[#424242]">
-            [기관장 참석] 보건복지부 방문(공공보건정책관 회의)
-          </p>
+        <div className="flex flex-col gap-1">
+          <p className="text-[19px] font-bold text-[#424242]">2025. 05. 19.</p>
+          <div className="flex items-center gap-2">
+            <span className="bg-red-40 h-2 w-2 rounded-full"></span>
+            <p className="text-[19px] text-[#424242]">
+              [기관장 참석] 보건복지부 방문(공공보건정책관 회의)
+            </p>
+          </div>
         </div>
-        <p className="text-[19px] font-bold text-[#424242]">2025. 05. 20.</p>
-        <div className="flex items-center gap-2">
-          <span className="bg-red-20 h-2 w-2 rounded-full"></span>
-          <p className="text-[19px] text-[#424242]">
-            [기관장 참석] 보건복지부 방문(공공보건정책관 회의)
-          </p>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="bg-red-20 h-2 w-2 rounded-full"></span>
-          <p className="text-[19px] text-[#424242]">
-            [기관장 참석] 보건복지부 방문(공공보건정책관 회의)
-          </p>
+        <div className="flex flex-col gap-1">
+          <p className="text-[19px] font-bold text-[#424242]">2025. 05. 20.</p>
+          <div className="flex items-center gap-2">
+            <span className="bg-red-20 h-2 w-2 rounded-full"></span>
+            <p className="text-[19px] text-[#424242]">
+              [기관장 참석] 보건복지부 방문(공공보건정책관 회의)
+            </p>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="bg-red-20 h-2 w-2 rounded-full"></span>
+            <p className="text-[19px] text-[#424242]">
+              [기관장 참석] 보건복지부 방문(공공보건정책관 회의)
+            </p>
+          </div>
         </div>
       </div>
     </div>

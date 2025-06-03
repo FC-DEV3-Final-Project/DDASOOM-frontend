@@ -5,7 +5,7 @@ const NoticeSection: React.FC = () => {
     <div className="flex flex-col">
       <a className="mb-7 inline-flex cursor-pointer items-center gap-3" href="/event">
         <h2 className="text-gray-95 inline text-2xl font-bold">공지사항</h2>
-        <img src="/public/icon/Arrow.svg" alt="" width={24} height={24} className="mb-1" />
+        <img src="/public/icon/Arrow.svg" alt="" width={24} height={24} />
       </a>
       <div className="flex flex-col gap-5 overflow-hidden text-[19px] overflow-ellipsis whitespace-nowrap">
         <div className="flex justify-between text-[#424242]">
