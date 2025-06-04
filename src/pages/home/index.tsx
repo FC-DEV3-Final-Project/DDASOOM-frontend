@@ -17,7 +17,7 @@ const HomePage: React.FC = () => {
         <HeroSection linkUrl="" />
         <div className="mx-auto flex w-full max-w-[1300px] flex-col px-5 sm:gap-[40px]">
           <QuickLinks />
-          <div className="my-[20px] flex flex-wrap gap-[40px] sm:my-[40px] sm:flex-nowrap">
+          <div className="my-[24px] flex flex-wrap gap-[14px] sm:my-[40px] sm:flex-nowrap sm:gap-[40px]">
             <StatsSection />
             <MemorialSection />
           </div>
