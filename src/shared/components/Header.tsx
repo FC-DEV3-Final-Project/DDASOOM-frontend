@@ -18,12 +18,12 @@ const Header: React.FC = () => {
         {/* 전화번호 섹션 */}
         <div>
           {/* 모바일 */}
-          <div className="flex gap-4 sm:hidden">
+          <div className="flex gap-3 sm:hidden">
             <div className="flex items-center gap-3 rounded-full border-1 border-[#EAEAEA] px-[14px] py-1">
               <img src="/icon/phone.svg" alt="phone" className="h-4 w-4" />
               <div className="flex gap-2">
-                <div className="text-[13px] text-black/80">의료진 전용</div>
-                <div className="border-l-1 pl-2 text-[13px] text-black/80">일반인 전용</div>
+                <div className="text-gray-80 text-[13px]">의료진 전용</div>
+                <div className="text-gray-80 border-l-1 pl-2 text-[13px]">일반인 전용</div>
               </div>
             </div>
             <div>
@@ -33,17 +33,17 @@ const Header: React.FC = () => {
           {/* 데스크탑 */}
           <div className="hidden items-center justify-end gap-10 sm:flex">
             <div className="inline-flex flex-col items-start gap-1">
-              <div className="text-xs text-black/80">의료진 전용 (뇌사시 통보)</div>
+              <div className="text-gray-80 text-xs">의료진 전용 (뇌사시 통보)</div>
               <div className="inline-flex items-center gap-1.5">
                 <img src="/icon/phone.svg" alt="phone" className="h-4 w-4" />
-                <div className="text-base font-bold text-black">1577-1458</div>
+                <div className="text-gray-60 text-base font-bold">1577-1458</div>
               </div>
             </div>
             <div className="inline-flex flex-col items-start gap-1">
-              <div className="text-xs text-black/80">일반인 전용 (기증희망등록)</div>
+              <div className="text-gray-80 text-xs">일반인 전용 (기증희망등록)</div>
               <div className="inline-flex items-center gap-1.5">
                 <img src="/icon/phone.svg" alt="phone" className="h-4 w-4" />
-                <div className="text-base font-bold text-black">1544-0606</div>
+                <div className="text-gray-60 text-base font-bold">1544-0606</div>
               </div>
             </div>
           </div>
