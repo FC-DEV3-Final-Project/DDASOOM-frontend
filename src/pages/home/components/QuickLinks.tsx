@@ -13,7 +13,7 @@ const QuickLinks: React.FC = () => {
           <div className="flex h-[30px] w-[33px] flex-shrink-0 items-center justify-center text-red-500">
             <HandHeart size={40} strokeWidth={1.5} />
           </div>
-          <span className="text-gray-80 mobile:text-[14px] desktop:text-[24px] text-[14px] leading-[36px] font-bold whitespace-nowrap">
+          <span className="text-gray-80 mobile:text-[14px] desktop:text-[24px] leading-[36px] font-bold whitespace-nowrap">
             기증자 예우
           </span>
           <span className="text-gray-80 text-lg">&gt;</span>
@@ -22,7 +22,7 @@ const QuickLinks: React.FC = () => {
           <div className="flex h-[30px] w-[33px] flex-shrink-0 items-center justify-center text-red-500">
             <img src={ecgHeartIcon} alt="" width={33} height={33} />
           </div>
-          <span className="text-gray-80 mobile:text-[14px] desktop:text-[24px] text-[14px] leading-[36px] font-bold whitespace-nowrap">
+          <span className="text-gray-80 mobile:text-[14px] desktop:text-[24px] leading-[36px] font-bold whitespace-nowrap">
             장기·조직기증 소개
           </span>
           <span className="text-gray-80 text-lg">&gt;</span>
@@ -31,7 +31,7 @@ const QuickLinks: React.FC = () => {
           <div className="flex h-[30px] w-[33px] flex-shrink-0 items-center justify-center text-red-500">
             <img src={identityIcon} alt="" width={33} height={33} />
           </div>
-          <span className="text-gray-80 mobile:text-[14px] desktop:text-[24px] text-[14px] leading-[36px] font-bold whitespace-nowrap">
+          <span className="text-gray-80 mobile:text-[14px] desktop:text-[24px] leading-[36px] font-bold whitespace-nowrap">
             기증희망등록
           </span>
           <span className="text-gray-80 text-lg">&gt;</span>
@@ -40,7 +40,7 @@ const QuickLinks: React.FC = () => {
           <div className="flex h-[30px] w-[33px] flex-shrink-0 items-center justify-center text-red-500">
             <img src={mailIcon} alt="" width={33} height={33} />
           </div>
-          <span className="text-gray-80 mobile:text-[14px] desktop:text-[24px] text-[14px] leading-[36px] font-bold whitespace-nowrap">
+          <span className="text-gray-80 mobile:text-[14px] desktop:text-[24px] leading-[36px] font-bold whitespace-nowrap">
             생명나눔 희망우체통
           </span>
           <span className="text-gray-80 text-lg">&gt;</span>

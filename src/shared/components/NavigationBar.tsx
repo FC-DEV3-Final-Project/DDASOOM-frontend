@@ -49,7 +49,7 @@ const NavigationBar: React.FC = () => {
   ]
 
   return (
-    <div className="flex w-full flex-col items-center bg-white/80 backdrop-blur-lg">
+    <div className="hidden w-full flex-col items-center bg-white/80 backdrop-blur-lg sm:flex">
       {/* 중앙 정렬 및 너비 제한 컨테이너 */}
       <div className="mx-auto flex w-full max-w-[1300px] min-w-[1000px] items-center justify-between px-5">
         {/* 네비게이션 링크 그룹: 왼쪽 정렬 */}
