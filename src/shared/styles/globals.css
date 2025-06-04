@@ -411,6 +411,9 @@
   line-height: 150%;
 }
 
+body {
+  overflow-x: hidden;
+}
 .multi-line-ellipsis {
   display: -webkit-box;
   -webkit-line-clamp: 2; /* 줄 수 */

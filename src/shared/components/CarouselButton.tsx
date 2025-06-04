@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils'
+import CarouselIndicator from '@/shared/components/CarouselIndicator'
 
 interface CarouselButtonProps {
   IndicatorLimit?: number
@@ -30,22 +31,13 @@ const CarouselButton = ({
         <img src="/icon/Arrow.svg" alt="이전" className="scale-x-[-1]" />
       </div>
 
-      {/* Indicator */}
+      {/* Indicator 필요하다면 추가됨 */}
       {IndicatorLimit > 1 && (
-        <div className="flex items-center gap-1">
-          {Array.from({ length: IndicatorLimit }, (_, i) => (
-            <div
-              key={i}
-              onClick={(e) => {
-                e.preventDefault()
-                onIndicatorClick?.(i)
-              }}
-              className={`h-[8px] w-[8px] cursor-pointer rounded-full transition-all duration-300 ${
-                index === i ? 'bg-red-40 w-[14px]' : 'bg-gray-40'
-              }`}
-            />
-          ))}
-        </div>
+        <CarouselIndicator
+          onIndicatorClick={onIndicatorClick}
+          index={index}
+          IndicatorLimit={IndicatorLimit}
+        />
       )}
 
       {/* Next */}

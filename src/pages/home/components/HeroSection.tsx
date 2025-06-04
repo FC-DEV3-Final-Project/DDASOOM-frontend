@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import CarouselButton from '@/shared/components/CarouselButton'
+import CarouselIndicator from '@/shared/components/CarouselIndicator'
+import { useCarousel } from '@/shared/hooks/useCarousel'
 
 interface HeroSectionProps {
   linkUrl: string
@@ -8,23 +10,21 @@ interface HeroSectionProps {
 const images = ['/banner.png', '/banner.png', '/banner.png', '/banner.png', '/banner.png']
 
 const HeroSection: React.FC<HeroSectionProps> = ({ linkUrl }) => {
-  const [index, setIndex] = useState(0)
-
-  const prevSlide = () => {
-    setIndex((prev) => (prev - 1 + images.length) % images.length)
-  }
-
-  const nextSlide = () => {
-    setIndex((prev) => (prev + 1) % images.length)
-  }
+  const { index, setIndex, prevSlide, nextSlide, onTouchStart, onTouchEnd } = useCarousel(
+    images.length,
+  )
 
   return (
     <section className="w-full">
-      <div className="relative aspect-[1300/340] min-h-[140px] w-full min-w-[375px] overflow-hidden">
+      <div
+        className="relative aspect-[1300/340] min-h-[140px] w-full min-w-[375px] overflow-hidden"
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+      >
         {/* 슬라이드 이미지 */}
         {images.map((src, i) => (
           <img
-            key={src}
+            key={`${src}-${i}`}
             src={src}
             alt={`슬라이드 ${i + 1}`}
             className={`absolute top-0 left-0 h-full w-full object-cover transition-opacity duration-700 ${
@@ -36,13 +36,21 @@ const HeroSection: React.FC<HeroSectionProps> = ({ linkUrl }) => {
         {/* 클릭 가능한 영역 */}
         <div className="relative z-20 mx-auto h-full w-full max-w-[1300px] min-w-[375px]">
           <a href={linkUrl} className="block h-full w-full">
+            {/* 데스크탑 */}
             <CarouselButton
               IndicatorLimit={images.length}
-              className="absolute right-5 bottom-5"
+              className="absolute right-5 bottom-5 hidden sm:flex"
               index={index}
               onPrev={prevSlide}
               onNext={nextSlide}
               onIndicatorClick={(i) => setIndex(i)}
+            />
+
+            {/* 모바일 */}
+            <CarouselIndicator
+              index={index}
+              IndicatorLimit={images.length}
+              className="absolute bottom-[10px] left-[50%] translate-x-[-50%] sm:hidden"
             />
           </a>
         </div>
