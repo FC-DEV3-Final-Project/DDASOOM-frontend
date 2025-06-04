@@ -17,7 +17,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ linkUrl }) => {
   return (
     <section className="w-full">
       <div
-        className="relative aspect-[1300/340] min-h-[140px] w-full min-w-[375px] overflow-hidden"
+        className="relative aspect-[1300/340] min-h-[140px] w-full overflow-hidden"
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
@@ -34,7 +34,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ linkUrl }) => {
         ))}
 
         {/* 클릭 가능한 영역 */}
-        <div className="relative z-20 mx-auto h-full w-full max-w-[1300px] min-w-[375px]">
+        <div className="relative z-10 mx-auto min-h-[140px] w-full max-w-[1300px] sm:h-full">
           <a href={linkUrl} className="block h-full w-full">
             {/* 데스크탑 */}
             <CarouselButton

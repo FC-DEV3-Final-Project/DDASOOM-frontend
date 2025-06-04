@@ -12,7 +12,7 @@ const HeavenLetter = () => {
         <p className="text-gray-60 mb-[28px] text-[19px] font-normal">
           그리움과 사랑을 담아 소중한 이들을 기억하는 공간입니다.
         </p>
-        <CarouselButton />
+        <CarouselButton index={1} />
       </div>
       <LetterCarousel />
     </section>

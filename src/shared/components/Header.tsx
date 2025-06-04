@@ -3,10 +3,10 @@ import React from 'react'
 
 const Header: React.FC = () => {
   return (
-    <header className="mx-auto flex w-full flex-col items-center bg-white/80 backdrop-blur-lg">
+    <header className="flex w-full flex-col items-center bg-white/80">
       {/* 헤더 레이아웃 속성 적용 */}
       {/* 내부 컨테이너 레이아웃 속성 적용 및 중앙 정렬 */}
-      <div className="mx-auto flex w-full max-w-[1300px] min-w-[375px] items-center justify-between px-5 pt-0 pb-[14px] sm:min-w-[1000px] sm:py-[14px]">
+      <div className="flex w-full max-w-[1300px] items-center justify-between px-5 pt-0 pb-[14px] sm:min-w-[1000px] sm:py-[14px]">
         {/* 내부 컨테이너 레이아웃 속성 유지 및 mx-auto 추가 */}
         {/* 로고 */}
         <div className="flex w-[58px] flex-col items-center sm:w-[247px] sm:flex-row">
