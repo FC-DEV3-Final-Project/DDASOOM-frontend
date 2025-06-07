@@ -3,20 +3,22 @@ import CarouselButton from '@/shared/components/CarouselButton'
 
 const PartnersSection: React.FC = () => {
   return (
-    <section className="py-5">
+    <section className="py-6">
       {/* Main content container matching header/nav width */}
-      <div className="mx-auto flex w-full max-w-[1300px] min-w-[1000px] flex-col rounded-4xl border-2 border-[#D0D0D0] bg-white px-10 py-8">
+      <div className="mx-auto flex w-full flex-col rounded-4xl border-2 border-[#D0D0D0] bg-white px-5 py-[22px] sm:max-w-[1300px] sm:min-w-[1000px] sm:px-10 sm:py-8">
         {/* Tab Navigation */}
         <div className="mb-8 flex items-center justify-between">
-          <div className="flex gap-10">
-            <button className="text-red-40 border-red-40 border-b-4 pb-1 text-2xl font-bold focus:outline-none">
-              뇌사자 관리업무 협약기관
+          <div className="gap-10 sm:flex">
+            <button className="sm:text-red-40 border-red-40 flex items-center gap-[14px] pb-1 text-[15px] font-bold focus:outline-none sm:border-b-4 sm:text-2xl">
+              <div className="bg-red-40 h-2 w-2 rounded-full sm:hidden"></div>뇌사자 관리업무
+              협약기관
             </button>
-            <button className="text-gray-40 border-b-2 border-transparent pb-1 text-2xl hover:border-[#E57373] focus:outline-none">
-              기증 활성화 프로그램 협약기관
+            <button className="sm:text-gray-40 flex items-center gap-[14px] border-transparent pb-1 text-[15px] hover:border-[#E57373] focus:outline-none sm:border-b-2 sm:text-2xl">
+              <div className="bg-gray-80 h-2 w-2 rounded-full sm:hidden"></div>기증 활성화 프로그램
+              협약기관
             </button>
           </div>
-          <CarouselButton />
+          <CarouselButton index={1} className="hidden sm:flex" />
         </div>
 
         <div className="flex items-center gap-10 overflow-x-auto py-4">
