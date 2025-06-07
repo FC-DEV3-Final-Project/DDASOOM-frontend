@@ -3,7 +3,7 @@ import { HandHeart } from 'lucide-react'
 
 const QuickLinks: React.FC = () => {
   return (
-    <section className="mx-auto flex w-full max-w-[1300px] bg-white/80 backdrop-blur-lg">
+    <section className="mx-auto flex w-full max-w-[1300px] bg-white/80 py-6 backdrop-blur-lg sm:py-0">
       <div className="flex w-full flex-wrap gap-[10px] sm:flex-nowrap sm:justify-between">
         <button className="flex min-w-[162.5px] flex-1 items-center justify-between rounded-[100px] border-1 border-[#EAEAEA] bg-white px-3 py-2 transition-all duration-300 ease-in-out hover:shadow-md focus:outline-none sm:flex-none sm:gap-[14px] sm:border-[2.5px] sm:px-[28px] sm:py-[20px]">
           <div className="flex items-center text-red-500">

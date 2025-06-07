@@ -3,7 +3,7 @@ import CarouselButton from '@/shared/components/CarouselButton'
 
 const HeavenLetter = () => {
   return (
-    <section>
+    <section className="pt-6 sm:pt-0">
       <a className="mb-1 flex cursor-pointer items-center gap-3" href="/memorial">
         <h2 className="text-gray-95 inline font-bold sm:text-2xl">하늘나라 편지</h2>
         <img
