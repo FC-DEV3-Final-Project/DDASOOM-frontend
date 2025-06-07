@@ -4,17 +4,22 @@ import CarouselButton from '@/shared/components/CarouselButton'
 const HeavenLetter = () => {
   return (
     <section>
-      <a className="mb-1 inline-flex cursor-pointer items-center gap-3" href="/memorial">
-        <h2 className="text-gray-95 inline text-2xl font-bold">하늘나라 편지</h2>
-        <img src="/public/icon/Arrow.svg" alt="" width={24} height={24} />
+      <a className="mb-1 flex cursor-pointer items-center gap-3" href="/memorial">
+        <h2 className="text-gray-95 inline font-bold sm:text-2xl">하늘나라 편지</h2>
+        <img
+          src="/public/icon/Arrow.svg"
+          alt=""
+          className="h-[14px] w-[14px] sm:h-[24px] sm:w-[24px]"
+        />
       </a>
       <div className="flex justify-between">
-        <p className="text-gray-60 mb-[28px] text-[19px] font-normal">
+        <p className="text-gray-60 mb-3 text-[13px] font-normal sm:mb-[28px] sm:text-[19px]">
           그리움과 사랑을 담아 소중한 이들을 기억하는 공간입니다.
         </p>
-        <CarouselButton index={1} />
+        <CarouselButton index={1} className="hidden sm:flex" />
       </div>
-      <LetterCarousel />
+      <LetterCarousel className="hidden sm:flex" />
+      <LetterCarousel className="sm:hidden" />
     </section>
   )
 }

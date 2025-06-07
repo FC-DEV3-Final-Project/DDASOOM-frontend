@@ -1,8 +1,13 @@
+import { cn } from '@/lib/utils'
 import LetterCard from '@/pages/home/components/LetterCard'
 
-const LetterCarousel = () => {
+interface Props {
+  className?: string
+}
+
+const LetterCarousel = ({ className }: Props) => {
   return (
-    <section className="relative w-full overflow-hidden">
+    <section className={cn('relative w-full overflow-hidden', className)}>
       <div className="flex w-[2300px] gap-8 pb-9 pl-5">
         <LetterCard isFocused={true} />
         <LetterCard isFocused={false} />
