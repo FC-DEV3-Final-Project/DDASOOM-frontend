@@ -8,7 +8,7 @@ const LetterCard = ({ isFocused }: Props) => {
     <div
       className={cn(
         'border-gray-20 h-[164px] w-[200px] cursor-pointer rounded-tl-[40px] rounded-tr-[10px] rounded-br-[40px] rounded-bl-[10px] border-2 px-[22px] py-5 shadow-[0_4px_8px_0px_rgba(0,0,0,0.12)] sm:h-[250px] sm:w-[354px] sm:rounded-tl-[80px] sm:rounded-tr-[20px] sm:rounded-br-[80px] sm:rounded-bl-[20px] sm:px-[40px] sm:py-[40px]',
-        isFocused && 'border-red-40 shadow-[0_16px_24px_0px_rgba(0,0,0,0.12)]',
+        isFocused && 'border-red-40 shadow-[0_16px_24px_0px_rgba(230,232,234,1)]',
       )}
     >
       <div className="mb-1 flex">

@@ -22,11 +22,11 @@ const HomePage: React.FC = () => {
             <MemorialSection />
           </div>
           <HeavenLetter />
-          <div className="my-[40px] grid grid-cols-2 gap-[80px]">
+          <div className="hidden gap-[80px] pt-[12px] sm:my-[40px] sm:grid sm:grid-cols-2 sm:pt-[0px]">
             <EventSection />
             <NoticeSection />
           </div>
-          <div className="my-[40px] grid grid-cols-2 gap-[80px]">
+          <div className="my-6 flex flex-col gap-[48px] sm:my-[40px] sm:grid sm:grid-cols-2 sm:gap-[80px]">
             <StorySection />
             <KodaStorySection />
           </div>

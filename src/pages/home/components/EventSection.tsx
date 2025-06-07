@@ -7,8 +7,12 @@ const EventSection: React.FC = () => {
   return (
     <div className="flex flex-col">
       <a className="mb-7 inline-flex cursor-pointer items-center gap-3" href="/event">
-        <h2 className="text-gray-95 inline text-2xl font-bold">기관일정 페이지</h2>
-        <img src="/public/icon/Arrow.svg" alt="" width={24} height={24} />
+        <h2 className="text-gray-95 inline text-[15px] font-bold sm:text-2xl">기관일정 페이지</h2>
+        <img
+          src="/public/icon/Arrow.svg"
+          alt=""
+          className="h-[15px] w-[15px] sm:h-[24px] sm:w-[24px]"
+        />
       </a>
       <div className="mb-3 flex gap-[19px] text-center">
         {day.map((day) => {
