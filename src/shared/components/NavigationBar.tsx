@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { ChevronDown, Menu } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-const links = [
+export const links = [
   {
     text: '장기·조직기증',
     hasDropdown: true,
@@ -114,7 +114,7 @@ interface NavigationLinkProps {
   isAnyLinkHovered: boolean
 }
 
-const NavigationLink: React.FC<NavigationLinkProps> = ({
+export const NavigationLink: React.FC<NavigationLinkProps> = ({
   text,
   hasDropdown = false,
   isHovered,
