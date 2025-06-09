@@ -28,13 +28,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({ linkUrl }) => {
             src={src}
             alt={`슬라이드 ${i + 1}`}
             className={`absolute top-0 left-0 h-full w-full object-cover transition-opacity duration-700 ${
-              i === index ? 'z-10 opacity-100' : 'z-0 opacity-0'
+              i === index ? 'z-1 opacity-100' : 'z-0 opacity-0'
             }`}
           />
         ))}
 
         {/* 클릭 가능한 영역 */}
-        <div className="relative z-10 mx-auto min-h-[140px] w-full max-w-[1300px] sm:h-full">
+        <div className="relative z-1 mx-auto min-h-[140px] w-full max-w-[1300px] sm:h-full">
           <a href={linkUrl} className="block h-full w-full">
             {/* 데스크탑 */}
             <CarouselButton
