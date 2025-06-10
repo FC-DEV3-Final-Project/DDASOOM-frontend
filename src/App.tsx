@@ -1,5 +1,6 @@
 import { Checkbox } from '@krds-ui/core'
 import { useState } from 'react'
+import MemorialBadge from '@/shared/components/MemorialBadge'
 
 export default function App() {
   const [status, setStatus] = useState<'on' | 'off' | 'intermediate'>('off')
@@ -11,6 +12,7 @@ export default function App() {
 
   return (
     <>
+      <MemorialBadge donor={{ name: '김김김', age: 23, gender: '남' }} />
       <h1 className="text-primary">KRDS UI 컴포넌트 테스트 입니다.</h1>
       <h1 className="text-secondary-50">KRDS UI 컴포넌트 테스트 입니다.</h1>
       <h1 className="text-display-l">KRDS UI 컴포넌트 테스트 입니다.</h1>
