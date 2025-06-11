@@ -32,7 +32,7 @@ navHome.addEventListener('click', () => {
 
 
 // 입력 처리
-const url="http://localhost:8080/chat";
+const url="http://localhost:8080/chat"; // TODO: 백엔드 spring 서버 주소로 반드시 변경
 const spinner=createSpinner();
 
 userInput.addEventListener('keyup', (event) => {
@@ -114,13 +114,13 @@ function hideSpinner() {
 
 function createSpinner() {
 // chatArea.innerHTML += `<div class="bot-response typing-indicator">
-//    <img src="img/main-character.png" alt="KODA_캐릭터" />
+//    <img src="./img/main-character.png" alt="KODA_캐릭터" />
 //    <p class="msg"><i class="fa fa-spinner fa-spin""></i></p></div>`
   const spinnerContainer=document.createElement('div');
   spinnerContainer.classList.add('bot-response', 'typing-indicator');
 
   const characterImg=document.createElement('img');
-  characterImg.src='img/main-character.png';
+  characterImg.src='./img/main-character.png';
   characterImg.alt='KODA_캐릭터';
   spinnerContainer.appendChild(characterImg);
 
@@ -145,13 +145,13 @@ function createUserMsg(msg) {
 
 function createBotMsg(msg) {
 // chatArea.innerHTML += `<div class="bot-response">
-//             <img src="img/main-character.png" alt="KODA_캐릭터"/>
+//             <img src="./img/main-character.png" alt="KODA_캐릭터"/>
 //             <p class="msg">` + msg + `</p></div>`;
   const msgContainer=document.createElement('div');
   msgContainer.classList.add('bot-response');
 
   const characterImg=document.createElement('img');
-  characterImg.src='img/main-character.png';
+  characterImg.src='./img/main-character.png';
   characterImg.alt='KODA_캐릭터';
 
   const msgP=document.createElement('p');
