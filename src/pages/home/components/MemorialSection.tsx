@@ -14,7 +14,6 @@ const MemorialSection: React.FC = () => {
     fetch('http://koda2.elementsoft.biz:8081/main')
       .then((res) => res.json())
       .then((data) => {
-        console.log('fetch data:', data.rememberanceMainDtoList)
         setDonors(data.rememberanceMainDtoList)
       })
       .catch((err) => {
