@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Day from '@/pages/home/components/Day'
 import { getCurrentWeekDates } from '@/pages/home/utils/timeUtils'
+import SectionHeader from '@/pages/home/components/SectionHeader'
 
 const dayKor = ['일', '월', '화', '수', '목', '금', '토']
 
@@ -75,10 +76,7 @@ const EventSection: React.FC = () => {
 
   return (
     <div className="flex flex-col">
-      <a className="mb-7 inline-flex cursor-pointer items-center gap-3" href="/event">
-        <h2 className="text-gray-95 inline text-[15px] font-bold sm:text-2xl">기관일정 페이지</h2>
-        <img src="/icon/Arrow.svg" alt="" className="h-[15px] w-[15px] sm:h-[24px] sm:w-[24px]" />
-      </a>
+      <SectionHeader link="" title="기관일정" />
 
       {/* 요일 표시 */}
       <div className="mb-3 flex gap-[1rem] text-center">

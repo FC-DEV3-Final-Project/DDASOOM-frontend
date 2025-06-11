@@ -1,4 +1,5 @@
 import React from 'react'
+import SectionHeader from '@/pages/home/components/SectionHeader'
 
 const dummyPosts = [
   {
@@ -49,10 +50,7 @@ const NoticeItem: React.FC<{ post: { date: string; title: string } }> = ({ post 
 const NoticeSection: React.FC = () => {
   return (
     <div className="flex flex-col">
-      <a className="mb-7 inline-flex cursor-pointer items-center gap-3" href="/event">
-        <h2 className="text-gray-95 inline text-2xl font-bold">공지사항</h2>
-        <img src="/public/icon/Arrow.svg" alt="" width={24} height={24} />
-      </a>
+      <SectionHeader title="공지사항" link="" />
       <div className="flex flex-col gap-5 overflow-hidden text-[19px] overflow-ellipsis whitespace-nowrap">
         {dummyPosts.slice(0, 6).map((post, i) => (
           <NoticeItem key={i} post={post} />

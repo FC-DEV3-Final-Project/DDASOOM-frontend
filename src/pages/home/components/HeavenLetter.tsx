@@ -37,6 +37,7 @@ const HeavenLetter = () => {
 
   return (
     <section className="pt-6 sm:pt-0">
+      {/* 설명에 버튼이 들어가야 하기 때문에 SectionHeader 컴포넌트 미사용 */}
       <a className="mb-1 flex cursor-pointer items-center gap-3" href="/memorial">
         <h2 className="text-gray-95 inline font-bold sm:text-2xl">하늘나라 편지</h2>
         <img

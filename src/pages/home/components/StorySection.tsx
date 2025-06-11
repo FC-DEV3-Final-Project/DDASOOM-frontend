@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import SectionHeader from '@/pages/home/components/SectionHeader'
 
 const dummyData = [
   {
@@ -46,15 +47,11 @@ const StorySection: React.FC = () => {
 
   return (
     <div>
-      <section className="header mb-[10px] sm:mb-7">
-        <a className="mb-1 inline-flex cursor-pointer items-center gap-3" href="/event">
-          <h2 className="text-gray-95 inline text-[15px] font-bold sm:text-2xl">생명나눔 이야기</h2>
-          <img src="/icon/Arrow.svg" alt="" className="h-[15px] w-[15px] sm:h-[24px] sm:w-[24px]" />
-        </a>
-        <p className="text-gray-60 text-[13px] font-normal sm:text-[19px]">
-          그리움과 사랑을 담아 소중한 이들을 기억하는 공간입니다.
-        </p>
-      </section>
+      <SectionHeader
+        title="생명나눔 이야기"
+        description="그리움과 사랑을 담아 소중한 이들을 기억하는 공간입니다."
+        link=""
+      />
 
       <section className="flex w-full gap-6">
         {/* 대표 이미지 */}
