@@ -1,15 +1,14 @@
-import React from 'react'
 import CarouselButton from '@/shared/components/CarouselButton'
-import CarouselIndicator from '@/shared/components/CarouselIndicator'
 import { useCarousel } from '@/shared/hooks/useCarousel'
+import CarouselIndicator from '@/shared/components/CarouselIndicator'
 
-interface HeroSectionProps {
-  linkUrl: string
-}
+const images = [
+  { src: '/banner.png', href: '/home' },
+  { src: '/banner.png', href: '/about' },
+  { src: '/banner.png', href: '/contact' },
+]
 
-const images = ['/banner.png', '/banner.png', '/banner.png', '/banner.png', '/banner.png']
-
-const HeroSection: React.FC<HeroSectionProps> = ({ linkUrl }) => {
+const HeroSection = () => {
   const { index, setIndex, prevSlide, nextSlide, onTouchStart, onTouchEnd } = useCarousel(
     images.length,
   )
@@ -22,10 +21,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ linkUrl }) => {
         onTouchEnd={onTouchEnd}
       >
         {/* 슬라이드 이미지 */}
-        {images.map((src, i) => (
+        {images.map((image, i) => (
           <img
-            key={`${src}-${i}`}
-            src={src}
+            key={`${image.src}-${i}`}
+            src={image.src}
             alt={`슬라이드 ${i + 1}`}
             className={`absolute top-0 left-0 h-full w-full object-cover transition-opacity duration-700 ${
               i === index ? 'z-1 opacity-100' : 'z-0 opacity-0'
@@ -35,7 +34,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ linkUrl }) => {
 
         {/* 클릭 가능한 영역 */}
         <div className="relative z-1 mx-auto min-h-[140px] w-full max-w-[1300px] sm:h-full">
-          <a href={linkUrl} className="block h-full w-full">
+          <a href={images[index].href} className="block h-full w-full">
             {/* 데스크탑 */}
             <CarouselButton
               IndicatorLimit={images.length}

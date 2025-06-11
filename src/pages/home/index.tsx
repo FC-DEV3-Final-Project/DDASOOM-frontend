@@ -14,7 +14,7 @@ const HomePage: React.FC = () => {
   return (
     <>
       <main className="mb-10 flex w-full flex-col items-center self-stretch sm:mb-25 sm:gap-[40px]">
-        <HeroSection linkUrl="" />
+        <HeroSection />
         <div className="mx-auto flex w-full max-w-[1300px] flex-col px-5 sm:gap-[40px]">
           <QuickLinks />
           <div className="my-[24px] flex flex-wrap gap-[14px] sm:my-[40px] sm:flex-nowrap sm:gap-[40px]">

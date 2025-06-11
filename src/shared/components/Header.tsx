@@ -131,7 +131,7 @@ const Header: React.FC = () => {
                               {Object.entries(value).map(([label, path], subIdx) => (
                                 <a
                                   key={subIdx}
-                                  href={path}
+                                  href={path as string | undefined}
                                   className="text-[15px] text-gray-700 hover:underline"
                                 >
                                   {label}

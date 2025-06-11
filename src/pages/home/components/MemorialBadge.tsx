@@ -44,7 +44,7 @@ const MemorialBadge = ({ donor, variant = 'medium' }: MemorialBadgeProps) => {
         )}
       ></div>
       {/* 오버레이 내용 */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
+      <div className="absolute inset-0 flex cursor-pointer flex-col items-center justify-center">
         <img
           src="/ribbon.png"
           alt="Memorial Ribbon"
