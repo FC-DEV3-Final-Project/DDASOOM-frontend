@@ -1,5 +1,5 @@
 import React from 'react'
-import HeroSection from '@/pages/home/components/HeroSection' // HeroSection 컴포넌트 임포트
+import HeroSection from '@/pages/home/components/HeroSection'
 import QuickLinks from '@/pages/home/components/QuickLinks'
 import StatsSection from '@/pages/home/components/StatsSection'
 import MemorialSection from '@/pages/home/components/MemorialSection'
