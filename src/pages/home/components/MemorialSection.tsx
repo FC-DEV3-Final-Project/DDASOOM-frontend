@@ -1,15 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import MemorialBadge from '@/pages/home/components/MemorialBadge'
 
-const dummyData = [
-  { id: 1, name: '홍길동', date: '2023-01-01', age: 30, gender: '남' },
-  { id: 2, name: '김영희', date: '2023-02-01', age: 20, gender: '여' },
-  { id: 3, name: '이철수', date: '2023-03-01', age: 30, gender: '남' },
-  { id: 4, name: '박지민', date: '2023-04-01', age: 24, gender: '여' },
-  { id: 5, name: '최수영', date: '2023-05-01', age: 32, gender: '남' },
-]
+interface Donor {
+  donateName: string
+  donateGender: string
+  donateAge: number
+}
 
 const MemorialSection: React.FC = () => {
+  const [donors, setDonors] = useState<Donor[]>([])
+
+  useEffect(() => {
+    fetch('http://koda2.elementsoft.biz:8081/main')
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('fetch data:', data.rememberanceMainDtoList)
+        setDonors(data.rememberanceMainDtoList)
+      })
+      .catch((err) => {
+        console.error('호출 에러:', err)
+      })
+  }, [])
+
   return (
     <section className="border-gray-20 grow-1 rounded-[20px] border-1 px-[16px] py-3 sm:min-w-[680px] sm:rounded-[40px] sm:px-[40px] sm:py-8">
       <a className="mb-1 inline-flex cursor-pointer items-center gap-3" href="/memorial">
@@ -20,13 +32,13 @@ const MemorialSection: React.FC = () => {
         생명나눔을 실천하신 분들의 고귀한 뜻, 잊지 않겠습니다.
       </p>
       <div className="grid grid-cols-4 justify-items-center sm:hidden">
-        {dummyData.slice(0, 4).map((donor) => {
-          return <MemorialBadge key={donor.id} donor={donor} variant="small" />
+        {donors.slice(0, 4).map((donor) => {
+          return <MemorialBadge key={donors.indexOf(donor)} donor={donor} variant="small" />
         })}
       </div>
       <div className="hidden grid-cols-5 justify-items-center gap-[18px] sm:grid">
-        {dummyData.map((donor) => {
-          return <MemorialBadge key={donor.id} donor={donor} variant="large" />
+        {donors.map((donor) => {
+          return <MemorialBadge key={donors.indexOf(donor)} donor={donor} variant="large" />
         })}
       </div>
     </section>

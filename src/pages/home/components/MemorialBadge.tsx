@@ -2,9 +2,9 @@ import { cn } from '@/lib/utils'
 
 interface MemorialBadgeProps {
   donor: {
-    name: string
-    age: number
-    gender: string
+    donateName: string
+    donateAge: number
+    donateGender: string
   }
   variant: 'small' | 'medium' | 'large'
 }
@@ -55,11 +55,11 @@ const MemorialBadge = ({ donor, variant = 'medium' }: MemorialBadgeProps) => {
           )}
         />
         <p className="text-[10px] font-semibold text-gray-800 sm:text-[17px]">
-          {donor.name}
+          {donor.donateName}
           <span className="ml-1 font-normal">님</span>
         </p>
         <p className="text-gray-60 mt-[-4px] hidden text-[10px] font-bold sm:flex sm:text-[13px]">
-          {donor.gender},{donor.age}
+          {donor.donateGender},{donor.donateAge}
         </p>
       </div>
     </div>

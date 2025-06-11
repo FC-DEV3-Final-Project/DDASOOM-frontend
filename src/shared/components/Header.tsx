@@ -22,7 +22,6 @@ const Header: React.FC = () => {
       document.body.style.overflow = ''
     }
 
-    // 컴포넌트 언마운트 시도 정리
     return () => {
       document.body.style.overflow = ''
     }

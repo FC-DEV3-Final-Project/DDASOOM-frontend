@@ -40,10 +40,10 @@ const LetterCard = ({ isFocused }: Props) => {
         )}
       >
         <div>
-          기증자<span className="font-bold">{'최*현'}</span>
+          기증자 <span className="font-bold">{'최*현'}</span>
         </div>
         <div>
-          추모자<span className="font-bold">{'최*현'}</span>
+          추모자 <span className="font-bold">{'최*현'}</span>
         </div>
       </div>
     </div>
