@@ -1,0 +1,203 @@
+#intro-name {
+  display: flex;
+  margin: 10px 10px 10px 20px;
+  align-items: center;
+  gap: 10px;
+}
+
+#intro-name img,
+.bot-response img,
+.sns-messenger img,
+.sendBtn img {
+  width: 30px;
+  height: 30px;
+}
+
+#intro-name img {
+  border: 1px solid whitesmoke;
+  border-radius: 50%;
+}
+
+#navbar {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 11%;
+  justify-content: space-around;
+  font-size: 17px;
+  text-align: center;
+  background-color: whitesmoke;
+}
+
+#navbar a {
+  display: block;
+  padding-top: 10px;
+  color: black;
+  text-decoration: none;
+}
+
+#navbar img {
+  width: 35px;
+  height: 35px;
+}
+
+#navbar p {
+  margin: 0;
+}
+
+#navbar a.active {
+  font-weight: bold;
+  background-color: rgb(146, 152, 163);
+}
+
+.home-nav,
+.chat-nav {
+  width: 50%;
+  height: 100%;
+}
+
+#home-body {
+  width: 100%;
+}
+
+.msg {
+  padding: 15px;
+  max-width: 300px;
+  overflow-wrap: break-word;
+  margin: 10px 10px 10px 20px;
+  background-color: rgb(242, 242, 242);
+  border: 1px solid rgb(242, 242, 242);
+  border-radius: 10px;
+}
+
+#inquiryBtn {
+  display: block;
+  width: 300px;
+  height: 35px;
+  font-size: 15px;
+  line-height: 35px;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  background-color: orange;
+  border: 1px solid orange;
+  border-radius: 5px;
+}
+
+.other {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgb(123, 123, 123);
+}
+
+.other p {
+  display: inline-block;
+  margin: 0;
+}
+
+.sns-messenger img {
+  border-radius: 10px;
+}
+
+#app-phone-call img {
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  background-color: rgb(206, 206, 206);
+}
+
+.sns-messenger img:hover {
+  transform: scale(1.1);
+}
+
+#chat-body {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+#chat-input {
+  display: flex;
+  position: fixed;
+  bottom: 12%;
+  width: 90%;
+  height: 6%;
+  margin-left: 20px;
+  padding: 5px;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: rgb(242, 242, 242);
+  border-radius: 10px;
+}
+
+input {
+  width: 80%;
+  font-size: large;
+  background-color: rgb(242, 242, 242);
+  border: none;
+  outline: none;
+}
+
+.sendBtn {
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+}
+
+.sendBtn:hover {
+  background-color: rgb(242, 242, 242);
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.sendBtn:active {
+  background-color: rgb(224, 223, 223);
+  cursor: pointer;
+}
+
+#main-chat-intro-name {
+  text-align: center;
+}
+
+#main-chat-intro-name img {
+  width: 7%;
+  height: 7%;
+  border: 1px solid whitesmoke;
+  border-radius: 50%;
+}
+
+#main-chat-intro-name h3 {
+  margin-bottom: 0;
+}
+
+#main-chat-intro-name h4 {
+  margin-top: 10px;
+}
+
+#main-chat-intro-name a {
+  color: rgb(143, 143, 143);
+  text-decoration: none;
+}
+
+#main-chat-intro-name a:hover {
+  text-decoration: underline;
+}
+
+.chatArea {
+  overflow-y: auto;
+  padding-bottom: calc(18%); /* (하단 메뉴 + 입력 창 높이 + 1)% 만큼  */
+  padding-left: 10px;
+}
+
+.usermsg {
+  justify-self: right;
+  background-color: orange;
+}
+
+.typing-indicator i {
+  margin-left: 30px;
+  color: rgb(123, 123, 123);
+}
