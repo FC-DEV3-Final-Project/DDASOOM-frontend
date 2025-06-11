@@ -32,7 +32,6 @@ navHome.addEventListener('click', () => {
 
 
 // 입력 처리
-const url="http://localhost:8080/chat"; // TODO: 백엔드 spring 서버 주소로 반드시 변경
 const spinner=createSpinner();
 
 userInput.addEventListener('keyup', (event) => {
@@ -67,7 +66,7 @@ async function fetchData(message) {
       scrollToLatest();
 
       // 비동기 요청 (fetch + await/async)
-      const response=await fetch(url, {
+      const response=await fetch(`${BASE_URL}/chat`, {
           method: 'POST',
           headers: { 'content-Type': 'application/json'},
           body: JSON.stringify({question: message})
