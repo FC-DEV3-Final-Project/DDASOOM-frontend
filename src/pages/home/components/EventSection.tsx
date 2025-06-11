@@ -1,20 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Day from '@/pages/home/components/Day'
+import { getCurrentWeekDates } from '@/pages/home/utils/timeUtils'
 
 const dayKor = ['일', '월', '화', '수', '목', '금', '토']
-
-const getCurrentWeekDates = () => {
-  const today = new Date()
-  const currentDay = today.getDay()
-  const sunday = new Date(today)
-  sunday.setDate(today.getDate() - currentDay)
-
-  return Array.from({ length: 7 }, (_, i) => {
-    const date = new Date(sunday)
-    date.setDate(sunday.getDate() + i)
-    return date
-  })
-}
 
 // 예시 fetch 함수 (실제 DB 호출로 교체)
 const fetchEvents = async (): Promise<EventItem[]> => {
@@ -33,10 +21,6 @@ const fetchEvents = async (): Promise<EventItem[]> => {
     },
     {
       date: '2025-06-13',
-      title: '장기기증자 추모식',
-    },
-    {
-      date: '2025-06-14',
       title: '장기기증자 추모식',
     },
     {

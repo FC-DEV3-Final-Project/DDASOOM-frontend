@@ -25,7 +25,7 @@ const HeavenLetter = () => {
   const [letters, setLetters] = useState<Letter[]>([])
 
   useEffect(() => {
-    fetch('http://koda2.elementsoft.biz:8081/main')
+    fetch('/api/main')
       .then((res) => res.json())
       .then((data) => {
         setLetters(data.heavenLetterMainDtoList)

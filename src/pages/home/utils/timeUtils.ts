@@ -12,4 +12,17 @@ const formatDateKorean = (date: Date) => {
   return `${year}년 ${month}월 ${day}일(주간) 기준`
 }
 
-export { getWeekMondayFrom, formatDateKorean }
+const getCurrentWeekDates = () => {
+  const today = new Date()
+  const currentDay = today.getDay()
+  const sunday = new Date(today)
+  sunday.setDate(today.getDate() - currentDay)
+
+  return Array.from({ length: 7 }, (_, i) => {
+    const date = new Date(sunday)
+    date.setDate(sunday.getDate() + i)
+    return date
+  })
+}
+
+export { getWeekMondayFrom, formatDateKorean, getCurrentWeekDates }

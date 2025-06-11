@@ -11,7 +11,7 @@ const MemorialSection: React.FC = () => {
   const [donors, setDonors] = useState<Donor[]>([])
 
   useEffect(() => {
-    fetch('http://koda2.elementsoft.biz:8081/main')
+    fetch('/api/main')
       .then((res) => res.json())
       .then((data) => {
         setDonors(data.rememberanceMainDtoList)
@@ -31,13 +31,13 @@ const MemorialSection: React.FC = () => {
         생명나눔을 실천하신 분들의 고귀한 뜻, 잊지 않겠습니다.
       </p>
       <div className="grid grid-cols-4 justify-items-center sm:hidden">
-        {donors.slice(0, 4).map((donor) => {
-          return <MemorialBadge key={donors.indexOf(donor)} donor={donor} variant="small" />
+        {donors.slice(0, 4).map((donor, i) => {
+          return <MemorialBadge key={i} donor={donor} variant="small" />
         })}
       </div>
       <div className="hidden grid-cols-5 justify-items-center gap-[18px] sm:grid">
-        {donors.map((donor) => {
-          return <MemorialBadge key={donors.indexOf(donor)} donor={donor} variant="large" />
+        {donors.map((donor, i) => {
+          return <MemorialBadge key={i} donor={donor} variant="large" />
         })}
       </div>
     </section>
