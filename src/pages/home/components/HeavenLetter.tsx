@@ -1,6 +1,13 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import LetterCarousel from '@/pages/home/components/LetterCarousel'
 import CarouselButton from '@/shared/components/CarouselButton'
+
+interface Letter {
+  donorName: string
+  letterSeq: number
+  letterTitle: string
+  letterWriter: string
+}
 
 const HeavenLetter = () => {
   const cardCount = 10
@@ -15,6 +22,18 @@ const HeavenLetter = () => {
   const onIndicatorClick = (index: number) => {
     setFocusedIndex(index)
   }
+  const [letters, setLetters] = useState<Letter[]>([])
+
+  useEffect(() => {
+    fetch('http://koda2.elementsoft.biz:8081/main')
+      .then((res) => res.json())
+      .then((data) => {
+        setLetters(data.heavenLetterMainDtoList)
+      })
+      .catch((err) => {
+        console.error('호출 에러:', err)
+      })
+  }, [])
 
   return (
     <section className="pt-6 sm:pt-0">
@@ -43,8 +62,14 @@ const HeavenLetter = () => {
         className="hidden sm:flex"
         focusedIndex={focusedIndex}
         cardCount={cardCount}
+        letters={letters}
       />
-      <LetterCarousel className="sm:hidden" focusedIndex={focusedIndex} cardCount={cardCount} />
+      <LetterCarousel
+        className="sm:hidden"
+        focusedIndex={focusedIndex}
+        cardCount={cardCount}
+        letters={letters}
+      />
     </section>
   )
 }

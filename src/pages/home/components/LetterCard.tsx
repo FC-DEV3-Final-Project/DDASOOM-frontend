@@ -1,9 +1,15 @@
 import { cn } from '@/lib/utils'
 interface Props {
   isFocused: boolean
+  letter: {
+    donorName: string
+    letterSeq: number
+    letterTitle: string
+    letterWriter: string
+  }
 }
 
-const LetterCard = ({ isFocused }: Props) => {
+const LetterCard = ({ isFocused, letter }: Props) => {
   return (
     <div
       className={cn(
@@ -18,11 +24,11 @@ const LetterCard = ({ isFocused }: Props) => {
           <img src="/public/icon/mail-g.svg" alt="" className="mr-2 inline w-3 sm:w-5" />
         )}
         <span className={cn('text-gray-40 text-[10px] sm:text-base', isFocused && 'text-red-40')}>
-          {'1231223'}번째 편지
+          {letter.letterSeq}번째 편지
         </span>
       </div>
       <p className="text-gray-80 multi-line-ellipsis mb-1 h-[40px] text-[14px] font-bold sm:mb-3 sm:h-[58px] sm:text-[19px]">
-        잘 지내는지 궁금하네. 하루하루가 참 낯설고 많이 허전해 어디 있든 잘 지내
+        {letter.letterTitle}
       </p>
       <a href="/detail/12331" className="text-gray-40 text-[12px] font-bold sm:text-[15px]">
         더보기
@@ -40,10 +46,10 @@ const LetterCard = ({ isFocused }: Props) => {
         )}
       >
         <div>
-          기증자 <span className="font-bold">{'최*현'}</span>
+          기증자 <span className="font-bold">{letter.donorName}</span>
         </div>
         <div>
-          추모자 <span className="font-bold">{'최*현'}</span>
+          추모자 <span className="font-bold">{letter.letterWriter}</span>
         </div>
       </div>
     </div>

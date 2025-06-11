@@ -6,11 +6,12 @@ interface Props {
   className?: string
   focusedIndex: number
   cardCount: number
+  letters: { donorName: string; letterSeq: number; letterTitle: string; letterWriter: string }[]
 }
 
 const cardWidth = 354 // 카드 하나의 가로 길이 (gap 포함해서 조정)
 
-const LetterCarousel = ({ className, focusedIndex, cardCount }: Props) => {
+const LetterCarousel = ({ className, focusedIndex, cardCount, letters }: Props) => {
   // 카드 리스트를 left로 얼마나 이동할지 계산
   const offsetX = useMemo(() => {
     return -focusedIndex * cardWidth
@@ -25,8 +26,8 @@ const LetterCarousel = ({ className, focusedIndex, cardCount }: Props) => {
           transform: `translateX(${offsetX}px)`,
         }}
       >
-        {[...Array(cardCount)].map((_, i) => (
-          <LetterCard key={i} isFocused={i === focusedIndex} />
+        {letters.map((letter, i) => (
+          <LetterCard key={i} isFocused={i === focusedIndex} letter={letter} />
         ))}
       </div>
 
