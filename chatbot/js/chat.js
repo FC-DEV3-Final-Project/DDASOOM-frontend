@@ -1,3 +1,6 @@
+const DEFAULT_ERR_MSG = '데이터를 불러오는 데 실패했습니다. 잠시 후 다시 이용해 주세요.'
+const NO_MSG = '메시지 없음'
+
 const navHome = document.querySelector('.home-nav')
 const navChat = document.querySelector('.chat-nav')
 const inquiryBtn = document.querySelector('#inquiryBtn')
@@ -54,45 +57,41 @@ function checkIfBlank(message) {
 }
 
 async function fetchData(message) {
-  const defaultMsg = '데이터를 불러오는 데 실패했습니다. 잠시 후 다시 이용해 주세요.'
+  let botMsg = ''
+
+  // 사용자 메시지 추가 및 입력 창 초기화
+  createUserMsg(message)
+  userInput.value = ''
+
+  // 스피너 표시
+  showSpinner()
+  scrollToLatest()
+
   try {
-    // 사용자 메시지 추가 및 입력 창 초기화
-    createUserMsg(message)
-    userInput.value = ''
-
-    // 스피너 표시
-    showSpinner()
-    scrollToLatest()
-
     // 비동기 요청 (fetch + await/async)
     const response = await fetch(`${BASE_URL}/chat`, {
+      // TODO: BASE_URL env 파일에서 꼭 반영해야 함
       method: 'POST',
-      headers: { 'content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ question: message }),
     })
+    const result = await response.json()
 
-    const result = await response.json() // 서버 응답 파싱
-    let botMsg = ''
-
-    // TODO: 응답 메시지 형식 변경으로 추후 변경
     if (!response.ok) {
+      console.error('챗봇 API 호출 중 내부 오류 발생: ', result.message)
       botMsg = result.message
     } else {
-      botMsg = result.data.message || defaultMsg
+      if (result.success) botMsg = result.data?.message
+      else console.error('챗봇 API 호출 중 비즈니스 로직 오류 발생: ', result.message || NO_MSG)
     }
-
+  } catch (error) {
+    console.error('챗봇 API 호출 중 예상치 못 한 오류 발생', error)
+  } finally {
     // 스피너 제거
     hideSpinner()
 
     // 응답 태그 추가
-    createBotMsg(botMsg)
-    scrollToLatest()
-  } catch (error) {
-    console.error('챗봇 API 호출 중 오류 발생: ', error)
-    hideSpinner()
-
-    // 응답 태그 추가
-    createBotMsg(defaultMsg)
+    createBotMsg(botMsg || DEFAULT_ERR_MSG)
     scrollToLatest()
   }
 }
@@ -110,9 +109,6 @@ function hideSpinner() {
 }
 
 function createSpinner() {
-  // chatArea.innerHTML += `<div class="bot-response typing-indicator">
-  //    <img src="./img/main-character.png" alt="KODA_캐릭터" />
-  //    <p class="msg"><i class="fa fa-spinner fa-spin""></i></p></div>`
   const spinnerContainer = document.createElement('div')
   spinnerContainer.classList.add('bot-response', 'typing-indicator')
 
@@ -133,7 +129,6 @@ function createSpinner() {
 }
 
 function createUserMsg(msg) {
-  // chatArea.innerHTML += `<p class="msg usermsg">` + message + `</p>`;
   const msgP = document.createElement('p')
   msgP.classList.add('msg', 'usermsg')
   msgP.textContent = msg
@@ -141,9 +136,6 @@ function createUserMsg(msg) {
 }
 
 function createBotMsg(msg) {
-  // chatArea.innerHTML += `<div class="bot-response">
-  //             <img src="./img/main-character.png" alt="KODA_캐릭터"/>
-  //             <p class="msg">` + msg + `</p></div>`;
   const msgContainer = document.createElement('div')
   msgContainer.classList.add('bot-response')
 
