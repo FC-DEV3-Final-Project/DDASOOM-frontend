@@ -85,7 +85,7 @@ async function fetchData(message) {
       else console.error('챗봇 API 호출 중 비즈니스 로직 오류 발생: ', result.message || NO_MSG)
     }
   } catch (error) {
-    console.error('챗봇 API 호출 중 예상치 못 한 오류 발생', error)
+    console.error('챗봇 네트워크 연결 실패 등 예상치 못한 오류 발생', error)
   } finally {
     // 스피너 제거
     hideSpinner()
