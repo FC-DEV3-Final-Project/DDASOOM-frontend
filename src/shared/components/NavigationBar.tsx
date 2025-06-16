@@ -8,7 +8,7 @@ interface MenuItem {
   dropdownItems: Record<string, Record<string, string> | string>
 }
 
-const links: MenuItem[] = [
+export const links: MenuItem[] = [
   {
     text: '장기·조직기증',
     hasDropdown: true,
