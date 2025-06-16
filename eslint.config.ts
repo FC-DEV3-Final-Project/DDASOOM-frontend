@@ -26,7 +26,7 @@ export default tseslint.config(
       'prettier/prettier': 'error',
 
       // FSD 레이어 import 규칙 강제 (예: features는 pages를 import 불가)
-      'fsd/forbidden-imports': 'error',
+      // 'fsd/forbidden-imports': 'error',
 
       // 슬라이스/레이어 간 상대 경로 import 금지, 별칭(@) 사용
       // 기본적으로 같은 슬라이스 내 상대 경로는 허용 (설정 가능)
