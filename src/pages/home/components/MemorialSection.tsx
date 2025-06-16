@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import MemorialBadge from '@/pages/home/components/MemorialBadge'
 import SectionHeader from '@/pages/home/components/SectionHeader'
+import MemorialBadge from '@/shared/components/MemorialBadge'
 
 interface Donor {
   donateName: string
