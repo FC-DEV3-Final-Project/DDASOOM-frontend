@@ -2,7 +2,13 @@ import React, { useState } from 'react'
 import { ChevronDown, Menu } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-export const links = [
+interface MenuItem {
+  text: string
+  hasDropdown: boolean
+  dropdownItems: Record<string, Record<string, string> | string>
+}
+
+const links: MenuItem[] = [
   {
     text: '장기·조직기증',
     hasDropdown: true,
