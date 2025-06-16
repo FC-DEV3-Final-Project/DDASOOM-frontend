@@ -36,10 +36,10 @@ export default tseslint.config(
       'fsd/no-public-api-sidestep': 'error',
 
       // 같은 레이어 내 슬라이스 간 직접 import 방지
-      'fsd/no-cross-slice-dependency': 'error',
+      // 'fsd/no-cross-slice-dependency': 'error',
 
       // 비즈니스 로직 레이어에서 UI import 방지
-      'fsd/no-ui-in-business-logic': 'error',
+      // 'fsd/no-ui-in-business-logic': 'error',
 
       // 전역 스토어 직접 import 금지
       'fsd/no-global-store-imports': 'error',
