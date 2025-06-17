@@ -14,6 +14,8 @@ const LettersContainer = () => {
   const [letters, setLetters] = useState<Letter[]>([])
   const [currentPage, setCurrentPage] = useState(1)
 
+  const itemsPerPage = 16
+  const totalPages = Math.ceil(letters.length / itemsPerPage)
   const handlePageChange = (page: number) => {
     setCurrentPage(page)
   }
@@ -29,11 +31,20 @@ const LettersContainer = () => {
       })
   }, [])
 
+  const paginatedLetters = letters.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage,
+  )
+
   return (
     <article className="flex flex-col gap-20">
-      <ContainerHeader items={letters} />
-      <ContainerContent items={letters} />
-      <Pagination totalPages={20} currentPage={currentPage} onPageChange={handlePageChange} />
+      <ContainerHeader items={paginatedLetters} />
+      <ContainerContent items={paginatedLetters} />
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
     </article>
   )
 }
