@@ -1,9 +1,9 @@
 const WarningBanner = () => {
   return (
-    <article className="flex w-full items-start gap-[14px] rounded-[20px] bg-red-100 p-5 sm:gap-5 sm:p-6">
+    <article className="bg-red-5 flex w-full items-start gap-[14px] rounded-[20px] p-5 sm:gap-5 sm:p-6">
       <img src="icon/emergency.svg"></img>
       <div>
-        <p className="text-bold text-[15px] text-[#222] sm:mb-3 sm:text-[17px]">
+        <p className="text-[15px] font-bold text-[#222] sm:mb-3 sm:text-[17px]">
           기증자에 대한 그리움과 사랑을 담은 <b className="text-red-40">‘하늘나라 편지'</b>는 언제
           어디서나 시간과 장소에 제약을 받지 않고 추모를 할 수 있는 온라인 공간으로 익명 작성이
           가능합니다
@@ -17,8 +17,8 @@ const WarningBanner = () => {
             개인정보 노출의 우려가 있으니 게시글 작성 시 개인정보 등록은 자제하여 주시기 바랍니다.
           </li>
           <li>
-            하늘나라편지에 쓰신 글은 기증활성화를 위해 한국장기조직기증원 뉴스레터 및 타 매체에 익명
-            표기와 뜻을 훼손하지 않는 범위의 수정을 통해 게재될 수 있습니다.
+            하늘나라편지에 쓰신 글은 <b>기증활성화를 위해 한국장기조직기증원 뉴스레터 및 타 매체</b>
+            에 익명 표기와 뜻을 훼손하지 않는 범위의 수정을 통해 게재될 수 있습니다.
           </li>
           <li>
             [기증자 가족 안내]한국장기조직기증원에서는 기증자 가족, 수혜자, 한국장기조직기증원
@@ -26,8 +26,8 @@ const WarningBanner = () => {
             출간하였습니다.
           </li>
           <li>
-            도서를 직접 받아보고 싶으신 분은 대외협력팀(02-765-8736)으로 연락주시거나 신청서(링크)를
-            작성하여 주세요.
+            도서를 직접 받아보고 싶으신 분은 대외협력팀(02-765-8736)으로 연락주시거나{' '}
+            <a href="">신청서</a>를 작성하여 주세요.
           </li>
         </ul>
       </div>
