@@ -10,12 +10,14 @@ interface Letter {
   letterWriter: string
 }
 
+const itemsPerPage = 16
+
 const LettersContainer = () => {
   const [letters, setLetters] = useState<Letter[]>([])
   const [currentPage, setCurrentPage] = useState(1)
 
-  const itemsPerPage = 16
   const totalPages = Math.ceil(letters.length / itemsPerPage)
+
   const handlePageChange = (page: number) => {
     setCurrentPage(page)
   }
@@ -37,8 +39,8 @@ const LettersContainer = () => {
   )
 
   return (
-    <article className="flex flex-col gap-20">
-      <ContainerHeader items={paginatedLetters} />
+    <article className="flex flex-col gap-2 sm:gap-20">
+      <ContainerHeader items={letters} />
       <ContainerContent items={paginatedLetters} />
       <Pagination
         totalPages={totalPages}

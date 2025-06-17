@@ -1,7 +1,7 @@
 const SearchBar = () => {
   return (
     <div className="flex w-full items-center justify-between gap-2">
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 text-[15px] font-bold">
         전체 <img src="/icon/Arrow.svg" alt="" className="h-[11px] w-[11px] rotate-450" />
       </div>
       <div className="flex h-full gap-2">

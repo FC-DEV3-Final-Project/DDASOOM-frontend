@@ -7,7 +7,7 @@ interface Props<T> {
 const ContainerHeader = <T,>({ items }: Props<T>) => {
   const totalLetters = items.length
   return (
-    <section className="h-10 justify-between px-5 sm:flex">
+    <section className="flex flex-col justify-between gap-6 sm:flex sm:h-10 sm:flex-row sm:gap-0 sm:px-5">
       <p className="text-gray-80 hidden text-[19px] font-bold sm:block">
         총 <b className="text-red-40">{totalLetters}</b> 건
       </p>
