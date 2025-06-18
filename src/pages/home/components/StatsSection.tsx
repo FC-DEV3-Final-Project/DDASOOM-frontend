@@ -1,4 +1,4 @@
-import { formatDateKorean, getWeekMondayFrom } from '@/pages/home/utils/timeUtils'
+import { formatDateKorean, getWeekMondayFrom } from '@/shared/utils/timeUtils'
 
 const response = {
   baseDate: '2025-06-29T08:00:00.000Z', // UTC 기준

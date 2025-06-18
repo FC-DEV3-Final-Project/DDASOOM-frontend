@@ -1,8 +1,8 @@
-import WriteLetter from '@/pages/heaven_letter/components/WriteLetter'
+import LetterForm from '@/pages/heaven_letter/components/LetterForm'
 import WarningBanner from '@/shared/components/WarningBanner'
 import BackToListButton from '@/shared/components/BackToListButton'
 
-const LetterDetail = () => {
+const LetterWrite = () => {
   return (
     <>
       <BackToListButton to="/heaven-letter" label="하늘나라 편지" />
@@ -30,9 +30,9 @@ const LetterDetail = () => {
             </>,
           ]}
         />
-        <WriteLetter />
+        <LetterForm />
       </section>
     </>
   )
 }
-export default LetterDetail
+export default LetterWrite

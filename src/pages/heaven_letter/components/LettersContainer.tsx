@@ -8,6 +8,8 @@ interface Letter {
   letterSeq: number
   letterTitle: string
   letterWriter: string
+  readCount: number
+  writeTime: string
 }
 
 const itemsPerPage = 16
@@ -19,10 +21,10 @@ const LettersContainer = () => {
   const [searchField, setSearchField] = useState<'all' | 'title' | 'content'>('all')
 
   useEffect(() => {
-    fetch('/api/main')
+    fetch('/api/heavenLetters')
       .then((res) => res.json())
       .then((data) => {
-        setLetters(data.heavenLetterMainDtoList)
+        setLetters(data.content)
       })
       .catch((err) => {
         console.error('호출 에러:', err)

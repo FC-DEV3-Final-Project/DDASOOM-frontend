@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Day from '@/pages/home/components/Day'
-import { getCurrentWeekDates } from '@/pages/home/utils/timeUtils'
+import { getCurrentWeekDates } from '@/shared/utils/timeUtils'
 import SectionHeader from '@/pages/home/components/SectionHeader'
 
 const dayKor = ['일', '월', '화', '수', '목', '금', '토']

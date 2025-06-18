@@ -1,17 +1,8 @@
-// import HomePage from '@/pages/home/index' // HomePage 컴포넌트 임포트
-import LetterDetail from '@/pages/heaven_letter/LetterDetail'
-import Layout from '@/shared/components/Layout'
-// import HeavenLetter from './pages/heaven_letter'
-// import HomePage from './pages/home'
+import { RouterProvider } from 'react-router-dom'
+import router from '@/router/router'
 
 function App() {
-  return (
-    <>
-      <Layout>
-        <LetterDetail />
-      </Layout>
-    </>
-  )
+  return <RouterProvider router={router} />
 }
 
 export default App

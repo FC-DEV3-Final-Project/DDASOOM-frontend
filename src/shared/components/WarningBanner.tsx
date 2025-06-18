@@ -11,7 +11,7 @@ const WarningBanner = ({ title, listItems, className = '' }: WarningBannerProps)
     <article
       className={`bg-red-5 flex w-full items-start gap-[14px] rounded-[20px] p-5 sm:gap-5 sm:p-6 ${className}`}
     >
-      <img src="icon/emergency.svg" alt="경고" />
+      <img src="/icon/emergency.svg" alt="경고" />
       <div>
         {title && (
           <p className="text-[15px] font-bold text-[#222] sm:mb-3 sm:text-[17px]">{title}</p>

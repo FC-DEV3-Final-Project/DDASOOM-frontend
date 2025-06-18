@@ -1,16 +1,16 @@
-import type { ReactNode } from 'react'
-import Header from '@/shared/components/Header'
+import { Outlet } from 'react-router-dom'
 import NavigationBar from '@/shared/components/NavigationBar'
 import Footer from '@/shared/components/Footer'
+import Header from '@/shared/components/Header'
 
-const Layout = ({ children }: { children: ReactNode }) => {
+const Layout = () => {
   return (
     <>
       <Header />
       <NavigationBar />
 
       <main className="mb-10 flex w-full flex-col items-center self-stretch sm:mb-25">
-        {children}
+        <Outlet />
       </main>
       <Footer />
     </>

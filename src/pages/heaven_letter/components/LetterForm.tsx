@@ -1,13 +1,15 @@
 import { useState } from 'react'
 
-const WriteLetter = () => {
+const LetterForm = () => {
   const options = ['1권역(수도권, 강원, 제주)', '2권역(충청, 전라)', '3권역(영남)']
   const [selected, setSelected] = useState('')
   const [isAnonymous, setAnonymous] = useState(false)
 
   return (
     <form>
+      {/* 상단 인풋 구성 */}
       <div className="mb-[60px] flex flex-col gap-3">
+        {/* 권역 선택 */}
         <h3 className="text-gray-95 text-[19px] font-bold">권역선택</h3>
         <div className="flex gap-6">
           {options.map((option) => (
@@ -43,6 +45,7 @@ const WriteLetter = () => {
         </div>
       </div>
       <div className="flex justify-between">
+        {/* 기증자 */}
         <div className="flex flex-col gap-3">
           <h3 className="text-gray-95 text-[19px] font-bold">기증자</h3>
           <div className="h-10 max-w-[270px]">
@@ -64,6 +67,7 @@ const WriteLetter = () => {
           </div>
         </div>
         <div className="flex flex-col gap-3">
+          {/* 추모자 */}
           <div className="flex justify-between">
             <h3 className="text-gray-95 text-[19px] font-bold">추모자</h3>
             <label className="flex cursor-pointer items-center gap-2">
@@ -106,6 +110,8 @@ const WriteLetter = () => {
             </span>
           </div>
         </div>
+
+        {/* 비밀번호 */}
         <div className="flex flex-col gap-3">
           <h3 className="text-gray-95 text-[19px] font-bold">비밀번호</h3>
           <div className="flex flex-col gap-1">
@@ -122,8 +128,42 @@ const WriteLetter = () => {
           </div>
         </div>
       </div>
+
+      {/* 편지 영역 전체 */}
+      <div className="relative mt-30 h-[800px] w-[960px] bg-[url(/letter-paper/letter-paper1.png)] bg-contain bg-bottom bg-no-repeat">
+        <img src="/letter-paper/clip.svg" alt="" className="absolute top-[-60px] right-16" />
+
+        <div className="h-full px-20 py-25">
+          {/* 제목 영역 */}
+          <div className="mb-[40px]">
+            <input
+              type="text"
+              placeholder="제목을 입력하세요"
+              className="text-gray-90 w-[280px] border-b border-dashed border-gray-300 bg-transparent pb-2 text-[24px] leading-[36px] outline-none placeholder:text-gray-50"
+              style={{ height: '36px' }}
+            />
+            <p className="text-red-40 mt-[6px] text-[13px]">(한글/영문/숫자 최대 50글자)</p>
+          </div>
+
+          {/* 본문 영역 */}
+          <div className="relative h-[500px] w-full">
+            {/* 줄 배경 */}
+            <div className="absolute inset-0">
+              {Array.from({ length: 12 }).map((_, i) => (
+                <div key={i} className="h-[28px] border-b border-dashed border-gray-300" />
+              ))}
+            </div>
+
+            {/* 편지 내용 입력 */}
+            <textarea
+              className="text-gray-90 relative z-10 h-[328px] w-full resize-none bg-transparent text-[16px] leading-[28px] outline-none placeholder:text-gray-50"
+              placeholder="편지를 작성해보세요"
+            />
+          </div>
+        </div>
+      </div>
     </form>
   )
 }
 
-export default WriteLetter
+export default LetterForm

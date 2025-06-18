@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import SearchBar from '@/shared/components/SearchBar'
 
 interface Props<T> {
@@ -6,6 +7,10 @@ interface Props<T> {
 }
 
 const ContainerHeader = <T,>({ items, handleSearch }: Props<T>) => {
+  const navigate = useNavigate()
+  const handleNavigate = () => {
+    navigate('/remember/heavenletter/write')
+  }
   const totalLetters = items.length
   return (
     <>
@@ -15,8 +20,11 @@ const ContainerHeader = <T,>({ items, handleSearch }: Props<T>) => {
         </p>
         <div className="flex h-10 justify-between gap-8">
           <SearchBar onSearch={(value, field) => handleSearch(value, field)} />
-          <button className="bg-red-40 hidden min-w-[112px] items-center justify-between gap-2 rounded-[100px] px-[18px] text-white sm:flex">
-            <img src="icon/pencil.svg" alt="" />
+          <button
+            onClick={handleNavigate}
+            className="bg-red-40 hidden min-w-[112px] items-center justify-between gap-2 rounded-[100px] px-[18px] text-white sm:flex"
+          >
+            <img src="/icon/pencil.svg" alt="" />
             <span className="text-[15px] font-bold whitespace-nowrap">편지쓰기</span>
           </button>
         </div>
@@ -25,7 +33,7 @@ const ContainerHeader = <T,>({ items, handleSearch }: Props<T>) => {
         </p>
       </section>
       <button className="bg-red-40 fixed right-5 bottom-6 z-10 h-15 w-15 rounded-full shadow-lg sm:hidden">
-        <img src="icon/pencil.svg" alt="" className="mx-auto h-6 w-6" />
+        <img src="/icon/pencil.svg" alt="" className="mx-auto h-6 w-6" />
       </button>
     </>
   )

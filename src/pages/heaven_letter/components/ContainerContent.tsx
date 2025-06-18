@@ -5,6 +5,8 @@ interface LetterCardItem {
   letterTitle: string
   letterWriter: string
   donorName: string
+  readCount: number
+  writeTime: string
 }
 
 interface Props<T extends LetterCardItem> {
