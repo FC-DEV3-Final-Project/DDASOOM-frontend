@@ -59,15 +59,14 @@ const LettersContainer = () => {
     setCurrentPage(page)
   }
 
-  const handleSearchChange = (query: string, field: 'all' | 'title' | 'content') => {
+  const handleSearchChange = (query: string, field?: 'all' | 'title' | 'content') => {
     setSearchQuery(query)
-    setSearchField(field)
+    setSearchField(field ?? 'all')
     setCurrentPage(1)
   }
 
   return (
     <article className="flex flex-col gap-2 sm:gap-20">
-      {/* 검색창 추가 */}
       <ContainerHeader items={filteredLetters} handleSearch={handleSearchChange} />
       <ContainerContent items={paginatedLetters} />
       {totalPages > 1 && (

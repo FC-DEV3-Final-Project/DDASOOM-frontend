@@ -9,7 +9,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
       <Header />
       <NavigationBar />
 
-      <main className="mb-10 flex w-full flex-col items-center self-stretch sm:mb-25 sm:gap-[40px]">
+      <main className="mb-10 flex w-full flex-col items-center self-stretch sm:mb-25">
         {children}
       </main>
       <Footer />
