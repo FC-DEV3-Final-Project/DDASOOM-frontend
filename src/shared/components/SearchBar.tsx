@@ -38,7 +38,7 @@ const SearchBar = ({
   }
 
   return (
-    <div className="flex w-full items-center justify-between gap-2">
+    <div className="flex h-10 w-full items-center justify-between gap-2">
       {showFieldSelector && (
         <div className="flex items-center gap-1 text-[15px] font-bold whitespace-nowrap">
           <select
