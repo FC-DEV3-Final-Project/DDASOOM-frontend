@@ -71,13 +71,11 @@ const LettersContainer = () => {
     <article className="flex flex-col gap-2 sm:gap-20">
       <ContainerHeader items={filteredLetters} handleSearch={handleSearchChange} />
       <ContainerContent items={paginatedLetters} />
-      {totalPages > 1 && (
-        <Pagination
-          totalPages={totalPages}
-          currentPage={currentPage}
-          onPageChange={handlePageChange}
-        />
-      )}
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
     </article>
   )
 }

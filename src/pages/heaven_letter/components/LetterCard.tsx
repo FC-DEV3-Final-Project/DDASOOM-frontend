@@ -1,6 +1,6 @@
 import { formatDate } from '@/shared/utils/timeUtils'
 
-interface LetterCardProps {
+interface Props {
   item: {
     donorName: string
     letterSeq: number
@@ -9,13 +9,24 @@ interface LetterCardProps {
     readCount: number
     writeTime: string
   }
+  onClick?: () => void // onClick 선택적 프로퍼티 추가
 }
 
-const LetterCard = ({ item }: LetterCardProps) => {
+const LetterCard = ({ item, onClick }: Props) => {
   const writeTime = formatDate(item.writeTime)
 
   return (
-    <div className="border-red-20 flex flex-col gap-[16px] rounded-[20px] border p-8">
+    <div
+      className="border-red-20 flex cursor-pointer flex-col gap-[16px] rounded-[20px] border p-8"
+      onClick={onClick} // 클릭 시 onClick 호출
+      role="button"
+      tabIndex={0}
+      onKeyPress={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          onClick?.()
+        }
+      }}
+    >
       <div>
         <div className="mb-[6px] flex items-center gap-[6px]">
           <img src="/icon/mail.svg" alt="" className="h-[20px] w-[20px]" />

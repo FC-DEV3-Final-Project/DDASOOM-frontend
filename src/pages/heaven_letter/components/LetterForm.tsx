@@ -1,19 +1,26 @@
-import { useState } from 'react'
-import CaptchaUI from '@/shared/components/CaptchaUI'
+import { useNavigate } from 'react-router-dom'
+import Turnstile from 'react-cloudflare-turnstile'
+import { useRef, useState } from 'react'
+
+const FONT_OPTIONS = [
+  { label: 'Cafe24 고운밤', value: 'Cafe24Oneprettynight' },
+  { label: 'Cafe24 동동', value: 'Cafe24Dongdong' },
+  { label: '학교안심 그림일기', value: 'HakgyoansimGeurimilgiTTF-R' },
+] as const
 
 const LetterForm = () => {
-  const options = ['1권역(수도권, 강원, 제주)', '2권역(충청, 전라)', '3권역(영남)']
+  const AREA_CODES = ['1권역(수도권, 강원, 제주)', '2권역(충청, 전라)', '3권역(영남)']
   const paperOptions = ['기본', '우체통', '새', '종이비행기']
   const paperImages: Record<string, string> = {
-    기본: '',
-    우체통: 'letter-paper1.png',
-    새: 'letter-paper3.png',
-    종이비행기: 'letter-paper2.png',
+    0: '',
+    1: 'letter-paper1.png',
+    2: 'letter-paper3.png',
+    3: 'letter-paper2.png',
   }
-
   const [title, setTitle] = useState('')
   const [contents, setContents] = useState('')
   const [passcode, setPasscode] = useState('')
+  const [writer, setWriter] = useState('')
   const [selected, setSelected] = useState('')
   const [selectedPaper, setSelectedPaper] = useState('기본')
   const [isAnonymous, setAnonymous] = useState(false)
@@ -21,27 +28,60 @@ const LetterForm = () => {
     'Cafe24Oneprettynight' | 'Cafe24Dongdong' | 'HakgyoansimGeurimilgiTTF-R'
   >('Cafe24Oneprettynight')
   const [captchaToken, setCaptchaToken] = useState('')
-  const FONT_OPTIONS = [
-    { label: 'Cafe24 고운밤', value: 'Cafe24Oneprettynight' },
-    { label: 'Cafe24 동동', value: 'Cafe24Dongdong' },
-    { label: '학교안심 그림일기', value: 'HakgyoansimGeurimilgiTTF-R' },
-  ] as const
+
+  const turnstileRef = useRef<{ execute: () => void } | null>(null)
+
+  const navigate = useNavigate()
+
+  const validateForm = () => {
+    const errors: string[] = []
+
+    if (!title.trim()) {
+      errors.push('제목을 입력해주세요.')
+    } else if (title.length > 50) {
+      errors.push('제목은 최대 50자까지 입력할 수 있습니다.')
+    }
+
+    if (!writer.trim()) {
+      errors.push('추모자 이름을 입력해주세요.')
+    } else if (!/^[가-힣a-zA-Z]{1,10}$/.test(writer)) {
+      errors.push('추모자 이름은 한글 또는 영문 10자 이내로 입력해주세요.')
+    }
+
+    if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(passcode)) {
+      errors.push('비밀번호는 영문+숫자 조합으로 8자 이상이어야 합니다.')
+    }
+
+    return errors
+  }
 
   interface DonationLetterPayload {
-    title: string
-    contents: string
-    passcode: string
+    letterWriter: string
+    letterTitle: string
+    letterContents: string
     captchaToken: string
+    anonymityFlag: boolean
+    letterPasscode: string
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
+    const errors = validateForm()
+    if (errors.length > 0) {
+      alert(errors.join('\n'))
+      return
+    }
+
+    turnstileRef.current?.execute()
+
     const payload: DonationLetterPayload = {
-      title: title,
-      contents: contents,
-      passcode: passcode,
+      letterWriter: writer,
+      letterTitle: title,
+      letterContents: contents,
+      letterPasscode: passcode,
       captchaToken: captchaToken,
+      anonymityFlag: isAnonymous,
     }
 
     fetch('/api/heavenletter', {
@@ -57,7 +97,7 @@ const LetterForm = () => {
       <div className="mb-[60px] flex flex-col gap-3">
         <h3 className="text-gray-95 text-[19px] font-bold">권역선택</h3>
         <div className="flex gap-6">
-          {options.map((option) => (
+          {AREA_CODES.map((option) => (
             <label key={option} className="flex cursor-pointer items-center gap-2">
               <input
                 type="radio"
@@ -150,6 +190,10 @@ const LetterForm = () => {
               <input
                 type="text"
                 placeholder="성함을 입력해주세요"
+                value={writer}
+                onChange={(e) => {
+                  setWriter(e.target.value)
+                }}
                 className="border-gray-20 h-10 w-[240px] rounded-[100px] border p-2 pl-[14px] focus:ring-2 focus:ring-red-500 focus:outline-none"
               />
             </label>
@@ -167,7 +211,10 @@ const LetterForm = () => {
               <input
                 type="password"
                 value={passcode}
-                onChange={(e) => setPasscode(e.target.value)}
+                onChange={(e) => {
+                  const value = e.target.value
+                  setPasscode(value)
+                }}
                 placeholder="새 비밀번호를 입력해주세요"
                 className="border-gray-20 h-10 w-[240px] rounded-[100px] border p-2 pl-[14px] focus:ring-2 focus:ring-red-500 focus:outline-none"
               />
@@ -221,7 +268,7 @@ const LetterForm = () => {
       </div>
 
       {/* 편지지 선택 */}
-      <div className="flex flex-col gap-8">
+      <div className="flex justify-between">
         <div className="flex flex-col gap-3">
           <h3 className="text-gray-95 text-[19px] font-bold">편지지 선택</h3>
           <div className="flex flex-wrap gap-4">
@@ -280,8 +327,30 @@ const LetterForm = () => {
               </button>
             ))}
           </div>
-          <CaptchaUI setCaptchaToken={setCaptchaToken} />
         </div>
+      </div>
+      <div className="pointer-none opacity-0">
+        <Turnstile
+          turnstileSiteKey="1x00000000000000000000AA"
+          callback={(token: string) => setCaptchaToken(token)}
+        />
+      </div>
+      <div className="flex justify-end gap-3 font-bold">
+        <button
+          onClick={() => {
+            navigate('/remember/heavenletter')
+          }}
+          className="border-gray-40 text-gray-80 rounded-[100px] border-2 px-[18px] py-2"
+        >
+          취소
+        </button>
+        <button
+          type="submit"
+          className="bg-red-40 flex items-center gap-2 rounded-[100px] px-[18px] py-2 text-white hover:bg-red-50"
+        >
+          <img src="/icon/document-check.svg" alt="" className="h-5 w-5" />
+          편지 보내기
+        </button>
       </div>
     </form>
   )

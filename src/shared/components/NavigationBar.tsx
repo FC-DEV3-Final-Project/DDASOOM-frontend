@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { ChevronDown, Menu } from 'lucide-react'
 import { cn } from '@/lib/utils'
-
+import { Link } from 'react-router-dom'
 interface MenuItem {
   text: string
   hasDropdown: boolean
@@ -44,7 +44,7 @@ export const links: MenuItem[] = [
     hasDropdown: true,
     dropdownItems: {
       '기증자 추모관': '/home',
-      '하늘나라 편지': 'remember/heavenletter',
+      '하늘나라 편지': '/remember/heavenletter',
       '수혜자 편지': '/home',
       '기증 後 스토리': '/home',
     },
@@ -233,13 +233,13 @@ const NavigationBar: React.FC = () => {
                           </div>
                           <div className="bg-gray-5 rounded-[20px] px-5 py-[14px]">
                             {Object.entries(value).map(([label, path], linkIdx) => (
-                              <a
+                              <Link
                                 key={linkIdx}
-                                href={path}
+                                to={path}
                                 className="text-gray-60 mb-1 block text-[15px] hover:underline"
                               >
                                 {label}
-                              </a>
+                              </Link>
                             ))}
                           </div>
                         </>
