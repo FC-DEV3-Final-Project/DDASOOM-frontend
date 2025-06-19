@@ -51,6 +51,7 @@ const CommentContainer = ({ comments, letterSeq, onAddComment }: Props) => {
       commentWriter: name,
       commentPasscode: passcode,
       contents: commentText,
+      letterSeq: letterSeq,
     }
 
     try {
