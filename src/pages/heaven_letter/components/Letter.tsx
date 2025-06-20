@@ -1,6 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { formatDate } from '@/shared/utils/timeUtils'
 import CommentContainer from '@/pages/heaven_letter/components/CommentContainer'
+import { areaCodesConvertKR } from '@/shared/utils/areaCodesConvertKR'
+
+const FONT_OPTIONS = [
+  { index: 0, label: 'Cafe24 고운밤', value: 'Cafe24Oneprettynight' },
+  { index: 1, label: 'Cafe24 동동', value: 'Cafe24Dongdong' },
+  { index: 2, label: '학교안심 그림일기', value: 'HakgyoansimGeurimilgiTTF-R' },
+] as const
 
 const paperImages: Record<string, string> = {
   0: '',
@@ -19,6 +26,8 @@ interface Props {
     readCount: number
     letterWriter: string
     letterSeq: number
+    letterFont: number
+    letterPaper: number
     comments: {
       commentWriter: string
       commentPasscode: string
@@ -27,16 +36,6 @@ interface Props {
     }[]
   }
   onReload: () => void
-}
-
-const areaCodesConvertKR = (code: string): string => {
-  const areaMap: Record<string, string> = {
-    AREA100: '1권역(수도권, 강원, 제주)',
-    AREA200: '2권역(충청, 전라)',
-    AREA300: '3권역(영남)',
-  }
-
-  return areaMap[code] || '알 수 없음'
 }
 
 const Letter = ({ item, onReload }: Props) => {
@@ -60,7 +59,7 @@ const Letter = ({ item, onReload }: Props) => {
         <div
           className="relative w-[960px] bg-contain bg-bottom bg-no-repeat shadow-md"
           style={{
-            backgroundImage: `url(/letter-paper/${paperImages[0]})`,
+            backgroundImage: `url(/letter-paper/${paperImages[item.letterPaper | 0]})`,
             backgroundSize: '100% auto',
             minHeight,
           }}
@@ -87,7 +86,10 @@ const Letter = ({ item, onReload }: Props) => {
 
             {/* 제목 */}
             <div className="mb-[40px]">
-              <div className="text-gray-90 w-[280px] border-b border-dashed border-gray-300 bg-transparent pb-2 text-[24px] leading-[36px]">
+              <div
+                style={{ fontFamily: FONT_OPTIONS[item.letterFont | 0].value }}
+                className="text-gray-90 w-[280px] border-b border-dashed border-gray-300 bg-transparent pb-2 text-[24px] leading-[36px]"
+              >
                 {item.letterTitle}
               </div>
             </div>
@@ -102,7 +104,7 @@ const Letter = ({ item, onReload }: Props) => {
               <div
                 ref={textRef}
                 className="text-gray-90 relative z-10 w-full bg-transparent text-[17px] leading-[40px] whitespace-pre-wrap"
-                style={{ fontFamily: 'inherit' }}
+                style={{ fontFamily: FONT_OPTIONS[item.letterFont | 0].value }}
               >
                 {item.letterContents}
               </div>

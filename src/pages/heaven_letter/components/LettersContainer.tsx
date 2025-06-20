@@ -10,6 +10,12 @@ interface Letter {
   letterWriter: string
   readCount: number
   writeTime: string
+  comments: {
+    id: number
+    writer: string
+    contents: string
+    writeTime: string
+  }[]
 }
 
 const itemsPerPage = 16
@@ -17,45 +23,44 @@ const itemsPerPage = 16
 const LettersContainer = () => {
   const [letters, setLetters] = useState<Letter[]>([])
   const [currentPage, setCurrentPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(0)
   const [searchQuery, setSearchQuery] = useState('')
   const [searchField, setSearchField] = useState<'all' | 'title' | 'content'>('all')
+  const [totalLetters, setTotalLetters] = useState(0)
 
   useEffect(() => {
-    fetch('/api/heavenLetters')
+    const params = new URLSearchParams()
+    params.append('page', String(currentPage - 1))
+    params.append('size', String(itemsPerPage))
+    if (searchQuery) params.append('query', searchQuery)
+    if (searchField !== 'all') params.append('field', searchField)
+
+    fetch(`/api/heavenLetters?${params.toString()}`)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data)
         setLetters(data.content)
+        setTotalLetters(data.totalElements)
+        setTotalPages(data.totalPages)
       })
-      .catch((err) => {
-        console.error('호출 에러:', err)
-      })
-  }, [])
+  }, [currentPage, searchQuery, searchField])
 
   // 🔍 검색어 기반 필터링
   const filteredLetters = letters.filter((letter) => {
     const query = searchQuery.toLowerCase()
     const title = letter.letterTitle.toLowerCase()
-    const content = '' // 만약 내용 필드가 letter에 없다면, 이 부분 나중에 추가
+    const content = ''
 
     switch (searchField) {
       case 'title':
         return title.includes(query)
       case 'content':
-        return content.includes(query) // letter.letterContent 등 실제 필드명으로 변경
+        return content.includes(query)
       case 'all':
       default:
         return title.includes(query) || content.includes(query)
     }
   })
-
-  // 📄 페이지 개수 계산
-  const totalPages = Math.ceil(filteredLetters.length / itemsPerPage)
-
-  // 📄 현재 페이지에 해당하는 항목만 잘라내기
-  const paginatedLetters = filteredLetters.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage,
-  )
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page)
@@ -69,8 +74,8 @@ const LettersContainer = () => {
 
   return (
     <article className="flex flex-col gap-2 sm:gap-20">
-      <ContainerHeader items={filteredLetters} handleSearch={handleSearchChange} />
-      <ContainerContent items={paginatedLetters} />
+      <ContainerHeader totalLetters={totalLetters} handleSearch={handleSearchChange} />
+      <ContainerContent items={filteredLetters} />
       <Pagination
         totalPages={totalPages}
         currentPage={currentPage}

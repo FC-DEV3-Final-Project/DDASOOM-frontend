@@ -8,20 +8,25 @@ interface Props {
     letterWriter: string
     readCount: number
     writeTime: string
+    comments: {
+      id: number
+      writer: string
+      contents: string
+      writeTime: string
+    }[]
   }
   onClick?: () => void // onClick 선택적 프로퍼티 추가
 }
 
 const LetterCard = ({ item, onClick }: Props) => {
   const writeTime = formatDate(item.writeTime)
-
   return (
     <div
       className="border-red-20 flex cursor-pointer flex-col gap-[16px] rounded-[20px] border p-8"
-      onClick={onClick} // 클릭 시 onClick 호출
+      onClick={onClick}
       role="button"
       tabIndex={0}
-      onKeyPress={(e) => {
+      onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           onClick?.()
         }
@@ -53,7 +58,7 @@ const LetterCard = ({ item, onClick }: Props) => {
           </div>
           <div className="flex items-center gap-[6px]">
             <img src="/icon/majesticons_chat-line.svg" alt="" />
-            456
+            {/* {Object.keys(item.comment).length} */}
           </div>
         </div>
       </div>

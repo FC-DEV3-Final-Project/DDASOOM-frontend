@@ -1,17 +1,16 @@
 import { useNavigate } from 'react-router-dom'
 import SearchBar from '@/shared/components/SearchBar'
 
-interface Props<T> {
-  items: T[]
+interface Props {
   handleSearch: (query: string, field?: 'all' | 'title' | 'content') => void
+  totalLetters: number
 }
 
-const ContainerHeader = <T,>({ items, handleSearch }: Props<T>) => {
+const ContainerHeader = ({ handleSearch, totalLetters }: Props) => {
   const navigate = useNavigate()
   const handleNavigate = () => {
     navigate('/remember/heavenletter/write')
   }
-  const totalLetters = items.length
   return (
     <>
       <section className="flex flex-col justify-between gap-6 sm:flex sm:h-10 sm:flex-row sm:gap-0 sm:px-5">

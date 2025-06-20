@@ -1,33 +1,38 @@
 import { useNavigate } from 'react-router-dom'
 import Turnstile from 'react-cloudflare-turnstile'
 import { useRef, useState } from 'react'
+import DonorSearchModal from '@/pages/heaven_letter/components/DonorSearchModal'
 
 const FONT_OPTIONS = [
-  { label: 'Cafe24 고운밤', value: 'Cafe24Oneprettynight' },
-  { label: 'Cafe24 동동', value: 'Cafe24Dongdong' },
-  { label: '학교안심 그림일기', value: 'HakgyoansimGeurimilgiTTF-R' },
+  { index: 0, label: 'Cafe24 고운밤', value: 'Cafe24Oneprettynight' },
+  { index: 1, label: 'Cafe24 동동', value: 'Cafe24Dongdong' },
+  { index: 2, label: '학교안심 그림일기', value: 'HakgyoansimGeurimilgiTTF-R' },
 ] as const
+const AREA_CODES = {
+  AREA100: '1권역(수도권, 강원, 제주)',
+  AREA200: '2권역(충청, 전라)',
+  AREA300: '3권역(영남)',
+}
+const paperOptions = [0, 1, 2, 3]
+const paperImages: Record<string, string> = {
+  0: '',
+  1: 'letter-paper1.png',
+  2: 'letter-paper3.png',
+  3: 'letter-paper2.png',
+}
 
 const LetterForm = () => {
-  const AREA_CODES = ['1권역(수도권, 강원, 제주)', '2권역(충청, 전라)', '3권역(영남)']
-  const paperOptions = ['기본', '우체통', '새', '종이비행기']
-  const paperImages: Record<string, string> = {
-    0: '',
-    1: 'letter-paper1.png',
-    2: 'letter-paper3.png',
-    3: 'letter-paper2.png',
-  }
   const [title, setTitle] = useState('')
   const [contents, setContents] = useState('')
   const [passcode, setPasscode] = useState('')
   const [writer, setWriter] = useState('')
-  const [selected, setSelected] = useState('')
-  const [selectedPaper, setSelectedPaper] = useState('기본')
+  const [areaCode, setAreaCode] = useState('AREA100')
+  const [selectedPaper, setSelectedPaper] = useState(0)
   const [isAnonymous, setAnonymous] = useState(false)
-  const [selectedFont, setSelectedFont] = useState<
-    'Cafe24Oneprettynight' | 'Cafe24Dongdong' | 'HakgyoansimGeurimilgiTTF-R'
-  >('Cafe24Oneprettynight')
+  const [selectedFont, setSelectedFont] = useState<0 | 1 | 2>(0)
   const [captchaToken, setCaptchaToken] = useState('')
+  const [isModalOpen, setModalOpen] = useState(false)
+  const [donorName, setDonorName] = useState('')
 
   const turnstileRef = useRef<{ execute: () => void } | null>(null)
 
@@ -62,6 +67,7 @@ const LetterForm = () => {
     captchaToken: string
     anonymityFlag: boolean
     letterPasscode: string
+    donorName: string
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -82,6 +88,7 @@ const LetterForm = () => {
       letterPasscode: passcode,
       captchaToken: captchaToken,
       anonymityFlag: isAnonymous,
+      donorName: donorName,
     }
 
     fetch('/api/heavenletter', {
@@ -90,29 +97,32 @@ const LetterForm = () => {
       body: JSON.stringify(payload),
     })
   }
-
+  const handleDonorSelect = (donor: { id: number; name: string }) => {
+    setDonorName(donor.name)
+    setModalOpen(false)
+  }
   return (
     <form onSubmit={handleSubmit}>
       {/* 권역 선택 */}
       <div className="mb-[60px] flex flex-col gap-3">
         <h3 className="text-gray-95 text-[19px] font-bold">권역선택</h3>
         <div className="flex gap-6">
-          {AREA_CODES.map((option) => (
-            <label key={option} className="flex cursor-pointer items-center gap-2">
+          {Object.entries(AREA_CODES).map(([code, label]) => (
+            <label key={code} className="flex cursor-pointer items-center gap-2">
               <input
                 type="radio"
                 name="letterOption"
-                value={option}
-                checked={selected === option}
-                onChange={() => setSelected(option)}
+                value={code}
+                checked={areaCode === code}
+                onChange={() => setAreaCode(code)}
                 className="hidden"
               />
               <div
                 className={`flex h-5 w-5 items-center justify-center rounded border transition ${
-                  selected === option ? 'border-red-40 bg-red-40' : 'border-gray-300 bg-white'
+                  areaCode === code ? 'border-red-40 bg-red-40' : 'border-gray-300 bg-white'
                 }`}
               >
-                {selected === option && (
+                {areaCode === code && (
                   <svg
                     className="h-3 w-3 text-white"
                     fill="none"
@@ -124,7 +134,7 @@ const LetterForm = () => {
                   </svg>
                 )}
               </div>
-              <span className="text-[15px] text-[#444]">{option}</span>
+              <span className="text-[15px] text-[#444]">{label}</span>
             </label>
           ))}
         </div>
@@ -141,15 +151,20 @@ const LetterForm = () => {
                 readOnly
                 placeholder="성함을 입력해주세요"
                 className="border-gray-20 mr-2 h-10 rounded-[100px] border p-2 pl-[14px] focus:ring-2 focus:ring-red-500 focus:outline-none"
-                onClick={() => alert('검색 기능은 아직 구현되지 않았습니다.')}
+                onClick={() => setModalOpen(true)}
               />
               <button
                 type="button"
-                onClick={() => alert('검색 기능은 아직 구현되지 않았습니다.')}
+                onClick={() => setModalOpen(true)}
                 className="border-red-30 hover:bg-gray-10 text-red-40 h-full rounded-[100px] border-2 px-[18px] text-[15px] whitespace-nowrap"
               >
                 검색
               </button>
+              <DonorSearchModal
+                isOpen={isModalOpen}
+                onClose={() => setModalOpen(false)}
+                onSelect={handleDonorSelect}
+              />
             </label>
           </div>
         </div>
@@ -241,7 +256,7 @@ const LetterForm = () => {
             <input
               type="text"
               placeholder="제목을 입력하세요"
-              style={{ fontFamily: selectedFont }}
+              style={{ fontFamily: FONT_OPTIONS[selectedFont].value }}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               className="text-gray-90 w-[280px] border-b border-dashed border-gray-300 bg-transparent pb-2 text-[24px] leading-[36px] outline-none placeholder:text-gray-50"
@@ -258,7 +273,7 @@ const LetterForm = () => {
             </div>
             <textarea
               placeholder="편지를 작성해보세요"
-              style={{ fontFamily: selectedFont }}
+              style={{ fontFamily: FONT_OPTIONS[selectedFont].value }}
               value={contents}
               onChange={(e) => setContents(e.target.value)}
               className="text-gray-90 relative z-10 h-full w-full resize-none bg-transparent text-[17px] leading-[40px] outline-none placeholder:text-gray-50"
@@ -315,10 +330,10 @@ const LetterForm = () => {
               <button
                 key={font.value}
                 type="button"
-                onClick={() => setSelectedFont(font.value)}
+                onClick={() => setSelectedFont(font.index)}
                 style={{ fontFamily: font.value }}
                 className={`rounded-full px-5 py-2 ${
-                  selectedFont === font.value
+                  selectedFont === font.index
                     ? 'text-red-40 border-2 border-red-50'
                     : 'text-gray-95 border-gray-20 border-1'
                 }`}
