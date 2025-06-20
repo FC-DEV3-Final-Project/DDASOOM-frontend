@@ -20,30 +20,45 @@ const LettersContainer = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
   const [searchQuery, setSearchQuery] = useState('')
-  const [searchField, setSearchField] = useState<'all' | 'title' | 'content'>('all')
+  const [searchField, setSearchField] = useState<'all' | 'title' | 'contents'>('all')
   const [totalLetters, setTotalLetters] = useState(0)
 
   useEffect(() => {
-    const params = new URLSearchParams()
-    params.append('page', String(currentPage - 1))
-    params.append('size', String(itemsPerPage))
-    if (searchQuery) params.append('query', searchQuery)
-    if (searchField !== 'all') params.append('field', searchField)
+    const fetchLetters = async () => {
+      const params = new URLSearchParams()
+      params.append('page', String(currentPage - 1))
+      params.append('size', String(itemsPerPage))
 
-    fetch(`/api/heavenLetters?${params.toString()}`)
-      .then((res) => res.json())
-      .then((data) => {
+      let url = ''
+
+      if (searchQuery.trim()) {
+        const typeParam = searchField === 'contents' ? 'contents' : searchField
+        params.append('type', typeParam)
+        params.append('keyword', searchQuery)
+        url = `/api/heavenLetters/search?${params.toString()}`
+      } else {
+        url = `/api/heavenLetters?${params.toString()}`
+      }
+
+      try {
+        const res = await fetch(url)
+        const data = await res.json()
         setLetters(data.content)
-        setTotalLetters(data.totalElements) // ← 서버에서 필터링된 전체 개수
-        setTotalPages(data.totalPages) // ← 필터링된 전체 페이지 수
-      })
+        setTotalLetters(data.totalElements)
+        setTotalPages(data.totalPages)
+      } catch (error) {
+        console.error('편지 목록 불러오기 실패:', error)
+      }
+    }
+
+    fetchLetters()
   }, [currentPage, searchQuery, searchField])
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page)
   }
 
-  const handleSearchChange = (query: string, field?: 'all' | 'title' | 'content') => {
+  const handleSearchChange = (query: string, field?: 'all' | 'title' | 'contents') => {
     setSearchQuery(query)
     setSearchField(field ?? 'all')
     setCurrentPage(1)

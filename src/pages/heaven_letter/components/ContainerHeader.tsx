@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import SearchBar from '@/shared/components/SearchBar'
 
 interface Props {
-  handleSearch: (query: string, field?: 'all' | 'title' | 'content') => void
+  handleSearch: (query: string, field?: 'all' | 'title' | 'contents') => void
   totalLetters: number
 }
 

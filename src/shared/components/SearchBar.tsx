@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 interface SearchBarProps {
-  onSearch: (value: string, field?: 'all' | 'title' | 'content') => void
+  onSearch: (value: string, field?: 'all' | 'title' | 'contents') => void
   showFieldSelector?: boolean
   placeholder?: string
 }
@@ -12,14 +12,14 @@ const SearchBar = ({
   placeholder = '검색어를 입력하세요',
 }: SearchBarProps) => {
   const [inputValue, setInputValue] = useState('')
-  const [searchField, setSearchField] = useState<'all' | 'title' | 'content'>('all')
+  const [searchField, setSearchField] = useState<'all' | 'title' | 'contents'>('all')
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value)
   }
 
   const handleFieldChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSearchField(e.target.value as 'all' | 'title' | 'content')
+    setSearchField(e.target.value as 'all' | 'title' | 'contents')
   }
 
   const handleSearchClick = () => {
