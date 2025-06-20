@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { formatDate } from '@/shared/utils/timeUtils'
 import EditCommentModal from '@/pages/heaven_letter/components/EditCommentModal'
+import DeleteConfirmModal from './DeleteConfirmModal'
 
 interface Comment {
   commentWriter: string
@@ -17,6 +18,10 @@ interface Props {
 }
 
 const CommentContainer = ({ comments, letterSeq, onAddComment }: Props) => {
+  const [deleteTarget, setDeleteTarget] = useState<Comment | null>(null)
+  const [deletePassword, setDeletePassword] = useState('')
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
+
   const [editTarget, setEditTarget] = useState<Comment | null>(null)
   const [editText, setEditText] = useState('')
   const [editPassword, setEditPassword] = useState('')
@@ -171,10 +176,9 @@ const CommentContainer = ({ comments, letterSeq, onAddComment }: Props) => {
               </span>
               <span
                 onClick={() => {
-                  setEditTarget(comment)
-                  setEditText(comment.contents)
-                  setEditPassword('')
-                  setShowEditModal(true)
+                  setDeleteTarget(comment)
+                  setDeletePassword('')
+                  setShowDeleteModal(true)
                 }}
                 className="border-gray-20 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border"
               >
@@ -184,6 +188,35 @@ const CommentContainer = ({ comments, letterSeq, onAddComment }: Props) => {
           </li>
         ))}
       </ul>
+      {showDeleteModal && deleteTarget && (
+        <DeleteConfirmModal
+          password={deletePassword}
+          setPassword={setDeletePassword}
+          onCancel={() => setShowDeleteModal(false)}
+          onConfirm={async () => {
+            const res = await fetch(
+              `/api/heavenLetters/${letterSeq}/comments/${deleteTarget.commentSeq}`,
+              {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  commentPasscode: deletePassword,
+                  letterSeq: letterSeq,
+                  commentSeq: deleteTarget.commentSeq,
+                }),
+              },
+            )
+
+            if (res.ok) {
+              alert('삭제되었습니다.')
+              setShowDeleteModal(false)
+              onAddComment?.()
+            } else {
+              alert('비밀번호가 틀렸습니다.')
+            }
+          }}
+        />
+      )}
 
       {/* 수정 모달 */}
       {showEditModal && editTarget && (
