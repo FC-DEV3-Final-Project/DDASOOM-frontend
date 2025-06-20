@@ -8,12 +8,7 @@ interface Props {
     letterWriter: string
     readCount: number
     writeTime: string
-    comments: {
-      id: number
-      writer: string
-      contents: string
-      writeTime: string
-    }[]
+    commentCount: number
   }
   onClick?: () => void // onClick 선택적 프로퍼티 추가
 }
@@ -58,7 +53,7 @@ const LetterCard = ({ item, onClick }: Props) => {
           </div>
           <div className="flex items-center gap-[6px]">
             <img src="/icon/majesticons_chat-line.svg" alt="" />
-            {/* {Object.keys(item.comment).length} */}
+            {item.commentCount}
           </div>
         </div>
       </div>

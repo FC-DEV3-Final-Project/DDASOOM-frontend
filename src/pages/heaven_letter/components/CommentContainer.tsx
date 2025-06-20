@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { formatDate } from '@/shared/utils/timeUtils'
 import EditCommentModal from '@/pages/heaven_letter/components/EditCommentModal'
-import DeleteConfirmModal from './DeleteConfirmModal'
+import DeleteConfirmModal from '@/pages/heaven_letter/components/DeleteConfirmModal'
 
 interface Comment {
   commentWriter: string
-  commentPasscode: string // 안 써도 되지만 타입 유지
+  commentPasscode: string
   contents: string
   writeTime: string
   commentSeq: number
