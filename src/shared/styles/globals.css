@@ -420,3 +420,26 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* ===== [추가] input[type="date"]의 기본 캘린더 아이콘 숨김 ===== */
+/* 크롬, 사파리, 엣지 등 Webkit 기반 브라우저에서 동작 */
+input[type='date']::-webkit-calendar-picker-indicator {
+  opacity: 0; /* 아이콘을 투명하게 처리 */
+  position: absolute; /* 위치 보정 (레이아웃 영향 최소화) */
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer; /* 클릭 영역은 유지 (달력 picker는 정상 동작) */
+}
+
+/* ===== [추가] 파이어폭스에서 기본 date 아이콘 숨기기 ===== */
+input[type='date'] {
+  -moz-appearance: textfield; /* 파이어폭스에서 기본 아이콘 제거 */
+  background: transparent;
+  position: relative;
+  z-index: 2;
+}
+
+* {
+  box-sizing: border-box;
+}
