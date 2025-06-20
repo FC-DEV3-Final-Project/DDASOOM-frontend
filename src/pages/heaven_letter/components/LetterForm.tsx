@@ -160,12 +160,12 @@ const LetterForm = () => {
               >
                 검색
               </button>
-              <DonorSearchModal
-                isOpen={isModalOpen}
-                onClose={() => setModalOpen(false)}
-                onSelect={handleDonorSelect}
-              />
             </label>
+            <DonorSearchModal
+              isOpen={isModalOpen}
+              onClose={() => setModalOpen(false)}
+              onSelect={handleDonorSelect}
+            />
           </div>
         </div>
 
