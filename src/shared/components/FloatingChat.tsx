@@ -36,11 +36,9 @@ const FloatingChat = () => {
 
       {/* 챗봇 패널 */}
       <div
-        className={`fixed right-10 bottom-28 z-40 w-[360px] max-w-full rounded-2xl bg-white shadow-xl transition-all duration-500 ease-in-out ${isOpen ? 'scale-100 opacity-100' : 'pointer-events-none scale-0 opacity-0'} origin-bottom-right`}
+        className={`bg-gray-5 fixed right-10 bottom-28 z-40 max-w-full rounded-2xl shadow-xl transition-all duration-500 ease-in-out ${isOpen ? 'scale-100 opacity-100' : 'pointer-events-none scale-0 opacity-0'} origin-bottom-right`}
       >
-        <div className="h-[675px] overflow-hidden rounded-[12px]">
-          <ChatBot />
-        </div>
+        <ChatBot />
       </div>
     </>
   )
