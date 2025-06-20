@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import { formatDate } from '@/shared/utils/timeUtils'
-import CommentContainer from '@/pages/heaven_letter/components/CommentContainer'
 import { areaCodesConvertKR } from '@/shared/utils/areaCodesConvertKR'
 
 const FONT_OPTIONS = [
@@ -35,10 +34,9 @@ interface Props {
       writeTime: string
     }[]
   }
-  onReload: () => void
 }
 
-const Letter = ({ item, onReload }: Props) => {
+const Letter = ({ item }: Props) => {
   const textRef = useRef<HTMLDivElement>(null)
   const [lineCount, setLineCount] = useState(12)
   const lineHeight = 40
@@ -134,11 +132,6 @@ const Letter = ({ item, onReload }: Props) => {
           </button>
         </div>
       </div>
-      <CommentContainer
-        letterSeq={item.letterSeq}
-        comments={item.comments}
-        onAddComment={onReload}
-      />
     </>
   )
 }

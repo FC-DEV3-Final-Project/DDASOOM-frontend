@@ -3,10 +3,31 @@ import { useParams } from 'react-router-dom'
 import WarningBanner from '@/shared/components/WarningBanner'
 import Letter from '@/pages/heaven_letter/components/Letter'
 import BackToListButton from '@/shared/components/BackToListButton'
+import CommentContainer from '@/pages/heaven_letter/components/CommentContainer'
+
+interface Letter {
+  letterTitle: string
+  letterContents: string
+  writeTime: string
+  areaCode: string
+  donorName: string
+  readCount: number
+  letterWriter: string
+  letterSeq: number
+  letterFont: number
+  letterPaper: number
+  comments: {
+    commentWriter: string
+    commentPasscode: string
+    contents: string
+    writeTime: string
+    commentSeq: number
+  }[]
+}
 
 const LetterDetail = () => {
   const { letterSeq } = useParams<{ letterSeq: string }>()
-  const [letterInfo, setLetterInfo] = useState()
+  const [letterInfo, setLetterInfo] = useState<Letter | null>(null)
 
   const fetchLetter = async () => {
     const res = await fetch(`/api/heavenLetters/${letterSeq}`)
@@ -45,7 +66,14 @@ const LetterDetail = () => {
             </>,
           ]}
         />
-        {letterInfo && <Letter item={letterInfo} onReload={fetchLetter} />}
+        {letterInfo && <Letter item={letterInfo} />}
+        {letterInfo && (
+          <CommentContainer
+            letterSeq={letterInfo.letterSeq}
+            comments={letterInfo.comments}
+            onAddComment={fetchLetter}
+          />
+        )}
       </section>
     </>
   )
