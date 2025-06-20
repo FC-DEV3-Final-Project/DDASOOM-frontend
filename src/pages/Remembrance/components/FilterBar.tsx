@@ -24,7 +24,8 @@ const FilterBar = ({
   const [isYearDropdownOpen, setIsYearDropdownOpen] = useState(false)
   const [dateRange, setDateRange] = useState(searchDateRange)
   const [tempKeyword, setTempKeyword] = useState(searchKeyword)
-  const [isDateFocus, setIsDateFocus] = useState(false)
+  const [isFromDateFocused, setIsFromDateFocused] = useState(false)
+  const [isToDateFocused, setIsToDateFocused] = useState(false)
   const fromInputRef = useRef<HTMLInputElement>(null)
   const toInputRef = useRef<HTMLInputElement>(null)
   const [isSearchPanelOpen, setIsSearchPanelOpen] = useState(false)
@@ -165,19 +166,19 @@ const FilterBar = ({
               <div className="relative w-full lg:w-auto">
                 <input
                   ref={fromInputRef}
-                  type="text"
-                  onFocus={() => setIsDateFocus(true)}
-                  onBlur={(e) => !e.target.value && setIsDateFocus(false)}
+                  type={isFromDateFocused || dateRange.from ? 'date' : 'text'}
+                  onFocus={() => setIsFromDateFocused(true)}
+                  onBlur={() => setIsFromDateFocused(false)}
                   id="donate-date-from"
                   aria-label="기증일 검색 시작일"
                   max={dateRange.to || undefined}
                   className="w-full rounded-full border border-[#CDD1D5] py-2 pr-[8px] pl-[14px] text-[13px] outline-none focus:border-[#F14F4D] lg:w-[160px] lg:text-[15px]"
-                  value={isDateFocus ? dateRange.from : dateRange.from || 'YYYY-MM-DD'}
+                  value={isFromDateFocused || dateRange.from ? dateRange.from : 'YYYY-MM-DD'}
                   onChange={(e) => setDateRange({ ...dateRange, from: e.target.value })}
                 />
                 <div
                   className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer"
-                  onClick={() => fromInputRef.current?.showPicker()}
+                  onClick={() => fromInputRef.current?.focus()}
                 >
                   <CalendarDays size={20} />
                 </div>
@@ -186,19 +187,19 @@ const FilterBar = ({
               <div className="relative w-full lg:w-auto">
                 <input
                   ref={toInputRef}
-                  type="text"
-                  onFocus={() => setIsDateFocus(true)}
-                  onBlur={(e) => !e.target.value && setIsDateFocus(false)}
+                  type={isToDateFocused || dateRange.to ? 'date' : 'text'}
+                  onFocus={() => setIsToDateFocused(true)}
+                  onBlur={() => setIsToDateFocused(false)}
                   id="donate-date-to"
                   aria-label="기증일 검색 종료일"
                   min={dateRange.from || undefined}
                   className="w-full rounded-full border border-[#CDD1D5] py-2 pr-[8px] pl-[14px] text-[13px] outline-none focus:border-[#F14F4D] lg:w-[160px] lg:text-[15px]"
-                  value={isDateFocus ? dateRange.to : dateRange.to || 'YYYY-MM-DD'}
+                  value={isToDateFocused || dateRange.to ? dateRange.to : 'YYYY-MM-DD'}
                   onChange={(e) => setDateRange({ ...dateRange, to: e.target.value })}
                 />
                 <div
                   className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer"
-                  onClick={() => toInputRef.current?.showPicker()}
+                  onClick={() => toInputRef.current?.focus()}
                 >
                   <CalendarDays size={20} />
                 </div>

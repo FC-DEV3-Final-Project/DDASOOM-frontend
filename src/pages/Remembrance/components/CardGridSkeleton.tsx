@@ -8,9 +8,9 @@ const SkeletonCard = () => (
 
 /**
  * CardGrid의 로딩 상태를 표시하기 위한 스켈레톤 UI 컴포넌트
- * @param count - 표시할 스켈레톤 카드의 개수 (기본값: 12)
+ * @param count - 표시할 스켈레톤 카드의 개수 (기본값: 18)
  */
-const CardGridSkeleton = ({ count = 12 }: { count?: number }) => {
+const CardGridSkeleton = ({ count = 18 }: { count?: number }) => {
   return (
     <div className="grid w-full grid-cols-2 gap-y-8 py-8 md:grid-cols-4 md:py-16 lg:grid-cols-6">
       {Array.from({ length: count }).map((_, index) => (

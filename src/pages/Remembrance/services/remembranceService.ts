@@ -1,5 +1,5 @@
 import { safeAxios } from '@/shared/lib/safeAxios'
-import { getMockDonors } from './remembranceMock'
+import { getMockDonors } from '@/pages/Remembrance/services/remembranceMock'
 
 /**
  * API 응답에 포함된 개별 기증자 데이터 타입 (최신 스펙)
@@ -27,6 +27,7 @@ export interface GetDonorsParams {
   searchStart?: string
   searchEnd?: string
   hasBirthdate?: boolean
+  year?: string
 }
 
 /**
