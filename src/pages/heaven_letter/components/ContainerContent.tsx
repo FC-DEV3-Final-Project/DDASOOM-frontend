@@ -8,12 +8,7 @@ interface LetterCardItem {
   donorName: string
   readCount: number
   writeTime: string
-  comments: {
-    id: number
-    writer: string
-    contents: string
-    writeTime: string
-  }[]
+  commentCount: number
 }
 
 interface Props<T extends LetterCardItem> {

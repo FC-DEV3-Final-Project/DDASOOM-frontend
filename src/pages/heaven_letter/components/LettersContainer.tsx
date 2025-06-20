@@ -10,12 +10,7 @@ interface Letter {
   letterWriter: string
   readCount: number
   writeTime: string
-  comments: {
-    id: number
-    writer: string
-    contents: string
-    writeTime: string
-  }[]
+  commentCount: number
 }
 
 const itemsPerPage = 16
@@ -38,29 +33,11 @@ const LettersContainer = () => {
     fetch(`/api/heavenLetters?${params.toString()}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
         setLetters(data.content)
-        setTotalLetters(data.totalElements)
-        setTotalPages(data.totalPages)
+        setTotalLetters(data.totalElements) // ← 서버에서 필터링된 전체 개수
+        setTotalPages(data.totalPages) // ← 필터링된 전체 페이지 수
       })
   }, [currentPage, searchQuery, searchField])
-
-  // 🔍 검색어 기반 필터링
-  const filteredLetters = letters.filter((letter) => {
-    const query = searchQuery.toLowerCase()
-    const title = letter.letterTitle.toLowerCase()
-    const content = ''
-
-    switch (searchField) {
-      case 'title':
-        return title.includes(query)
-      case 'content':
-        return content.includes(query)
-      case 'all':
-      default:
-        return title.includes(query) || content.includes(query)
-    }
-  })
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page)
@@ -75,7 +52,7 @@ const LettersContainer = () => {
   return (
     <article className="flex flex-col gap-2 sm:gap-20">
       <ContainerHeader totalLetters={totalLetters} handleSearch={handleSearchChange} />
-      <ContainerContent items={filteredLetters} />
+      <ContainerContent items={letters} />
       <Pagination
         totalPages={totalPages}
         currentPage={currentPage}
