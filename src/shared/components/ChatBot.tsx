@@ -13,6 +13,31 @@ const ChatBot = () => {
       message:
         '안녕하세요, 한국장기조직기증원입니다. 우리 기관이 하는 일과 관련하여 궁금한 점이 있다면 편하게 채팅으로 문의해 주세요!🥰',
     },
+    {
+      sender: 'bot',
+      message:
+        '안녕하세요, 한국장기조직기증원입니다. 우리 기관이 하는 일과 관련하여 궁금한 점이 있다면 편하게 채팅으로 문의해 주세요!🥰',
+    },
+    {
+      sender: 'bot',
+      message:
+        '안녕하세요, 한국장기조직기증원입니다. 우리 기관이 하는 일과 관련하여 궁금한 점이 있다면 편하게 채팅으로 문의해 주세요!🥰',
+    },
+    {
+      sender: 'bot',
+      message:
+        '안녕하세요, 한국장기조직기증원입니다. 우리 기관이 하는 일과 관련하여 궁금한 점이 있다면 편하게 채팅으로 문의해 주세요!🥰',
+    },
+    {
+      sender: 'bot',
+      message:
+        '안녕하세요, 한국장기조직기증원입니다. 우리 기관이 하는 일과 관련하여 궁금한 점이 있다면 편하게 채팅으로 문의해 주세요!🥰',
+    },
+    {
+      sender: 'bot',
+      message:
+        '안녕하세요, 한국장기조직기증원입니다. 우리 기관이 하는 일과 관련하여 궁금한 점이 있다면 편하게 채팅으로 문의해 주세요!🥰',
+    },
   ])
   const [loading, setLoading] = useState(false)
   const chatRef = useRef<HTMLDivElement | null>(null)
@@ -64,30 +89,21 @@ const ChatBot = () => {
 
   return (
     <div className="h-full w-full">
-      <header className="m-4 flex items-center gap-2">
-        <img
-          src="/img/main-character.png"
-          alt="KODA 캐릭터"
-          className="h-8 w-8 rounded-full border"
-        />
-        <h4 className="text-lg font-semibold">KODA 한국장기조직기증원</h4>
+      <header className="border-gray-10 flex items-center gap-2 border-b p-5">
+        <h4 className="text-[17px] font-semibold">KODA 한국장기조직기증원</h4>
       </header>
 
-      <section className="flex flex-col p-4 pb-24">
-        <div className="mb-4 text-center">
-          <img
-            src="/img/chat-character.png"
-            alt="KODA 캐릭터"
-            className="mx-auto h-12 w-12 rounded-full border"
-          />
-          <h3 className="text-lg font-bold">KODA 한국장기조직기증원 조직 안내 챗봇</h3>
-          <h4 className="mt-2 text-sm">
+      <section className="bg-gray-5 flex flex-col p-4 pb-24">
+        <div className="mb-4 flex flex-col gap-2 text-center">
+          <img src="/KODA_logo.svg" alt="KODA 캐릭터" className="mx-auto" />
+          <h3 className="text-[15px] font-bold">KODA 한국장기조직기증원 조직 안내 챗봇</h3>
+          <h4 className="text-sm">
             <a
               href="https://www.koda1458.kr/newKoda/groupInfo.do"
               target="_blank"
-              className="text-gray-500 hover:underline"
+              className="text-gray-80 border-gray-20 rounded-[100px] border-1 bg-white px-[14px] py-1 text-[13px] hover:underline"
             >
-              전체 조직도 확인하기 &gt;
+              전체 조직도 확인하기
             </a>
           </h4>
         </div>
