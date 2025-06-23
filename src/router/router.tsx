@@ -7,6 +7,8 @@ import NotFoundPage from '@/pages/NotFoundPage/NotFoundPage'
 import HomePage from '@/pages/home/index'
 import RemembrancePage from '@/pages/Remembrance/index'
 import HeavenLetter from '@/pages/heaven_letter'
+import LetterDetail from '@/pages/heaven_letter/LetterDetail'
+import LetterWrite from '@/pages/heaven_letter/LetterWrite'
 
 const routes = [
   {
@@ -22,7 +24,14 @@ const routes = [
         children: [
           { index: true, element: <Navigate to="member" replace /> },
           { path: 'member', element: <RemembrancePage /> },
-          { path: 'letter', element: <HeavenLetter /> },
+          {
+            path: 'letter',
+            children: [
+              { index: true, element: <HeavenLetter /> },
+              { path: ':letterId', element: <LetterDetail /> },
+              { path: 'write', element: <LetterWrite /> },
+            ],
+          },
           { path: 'recipient', element: <TempPage title="수혜자 편지" /> },
           { path: 'story', element: <TempPage title="기증 후 스토리" /> },
         ],

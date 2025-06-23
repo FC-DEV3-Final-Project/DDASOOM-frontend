@@ -44,7 +44,7 @@ export const links: MenuItem[] = [
     hasDropdown: true,
     dropdownItems: {
       '기증자 추모관': '/home',
-      '하늘나라 편지': '/remember/heavenletter',
+      '하늘나라 편지': '/remembrance/letter',
       '수혜자 편지': '/home',
       '기증 後 스토리': '/home',
     },
