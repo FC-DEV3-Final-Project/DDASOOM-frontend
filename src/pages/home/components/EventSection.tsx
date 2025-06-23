@@ -9,24 +9,24 @@ const dayKor = ['일', '월', '화', '수', '목', '금', '토']
 const fetchEvents = async (): Promise<EventItem[]> => {
   return [
     {
-      date: '2025-06-09',
+      date: '2025-06-27',
       title: '[기관장 참석] 생명나눔 캠페인',
     },
     {
-      date: '2025-06-11',
+      date: '2025-06-29',
       title: '장기기증자 추모식',
     },
     {
-      date: '2025-06-13',
+      date: '2025-06-23',
       title: '장기기증자 추모식',
     },
     {
-      date: '2025-06-13',
+      date: '2025-06-22',
       title: '장기기증자 추모식',
     },
     {
-      date: '2025-06-01',
-      title: '과거 일정 (보이면 안됨)',
+      date: '2025-06-26',
+      title: 'dlfwjd',
     },
   ]
 }

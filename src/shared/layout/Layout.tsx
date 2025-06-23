@@ -6,9 +6,11 @@ import NavigationBar from '@/shared/components/NavigationBar'
 export default function Layout() {
   return (
     <>
-      <Header />
-      <NavigationBar />
-      <main className="mb-10 flex w-full flex-col items-center self-stretch sm:mb-25 sm:gap-[40px]">
+      <div className="fixed top-0 z-100 w-full">
+        <Header />
+        <NavigationBar />
+      </div>
+      <main className="mt-10 mb-10 flex w-full flex-col items-center self-stretch sm:mt-33 sm:mb-25">
         <Outlet />
       </main>
       <Footer />

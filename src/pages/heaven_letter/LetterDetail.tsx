@@ -41,7 +41,7 @@ const LetterDetail = () => {
 
   return (
     <>
-      <BackToListButton to="/remember/heavenletter" label="하늘나라 편지" />
+      <BackToListButton to="/remembrance/letter" label="하늘나라 편지" />
       <section className="mx-auto flex w-full max-w-[1000px] flex-col gap-6 p-5 sm:gap-[80px]">
         <WarningBanner
           title={

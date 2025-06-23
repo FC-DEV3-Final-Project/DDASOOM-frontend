@@ -1,9 +1,18 @@
 import LettersContainer from '@/pages/heaven_letter/components/LettersContainer'
 import WarningBanner from '@/shared/components/WarningBanner'
+import SectionHeader from '@/shared/components/SectionHeader'
 
 const HeavenLetter = () => {
   return (
     <>
+      <div className="w-full bg-[#F4F5F6]">
+        <header className="mx-auto w-full max-w-[1300px] px-[20px]">
+          <SectionHeader
+            title="하늘나라 편지"
+            description={`하늘에 있는 그리운 당신에게 편지를 보냅니다. 당신이 보고 싶습니다.`}
+          />
+        </header>
+      </div>
       <section className="mx-auto flex w-full max-w-[1300px] flex-col gap-6 p-5 sm:gap-[80px]">
         <WarningBanner
           title={

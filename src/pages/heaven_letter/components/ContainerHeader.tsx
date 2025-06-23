@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import SearchBar from '@/shared/components/SearchBar'
-import type { Field } from './LettersContainer'
+import type { Field } from '@/pages/heaven_letter/components/LettersContainer'
 
 interface Props {
   handleSearch: (query: string, field?: Field) => void
