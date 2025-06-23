@@ -3,6 +3,8 @@ import ContainerHeader from '@/pages/heaven_letter/components/ContainerHeader'
 import ContainerContent from '@/pages/heaven_letter/components/ContainerContent'
 import Pagination from '@/shared/components/Pagination'
 
+export type Field = '전체' | '제목' | '내용'
+
 interface Letter {
   donorName: string
   letterSeq: number
@@ -20,7 +22,7 @@ const LettersContainer = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
   const [searchQuery, setSearchQuery] = useState('')
-  const [searchField, setSearchField] = useState<'all' | 'title' | 'contents'>('all')
+  const [searchField, setSearchField] = useState<Field>('전체')
   const [totalLetters, setTotalLetters] = useState(0)
 
   useEffect(() => {
@@ -32,7 +34,7 @@ const LettersContainer = () => {
       let url = ''
 
       if (searchQuery.trim()) {
-        const typeParam = searchField === 'contents' ? 'contents' : searchField
+        const typeParam = searchField === '내용' ? '내용' : searchField
         params.append('type', typeParam)
         params.append('keyword', searchQuery)
         url = `/api/heavenLetters/search?${params.toString()}`
@@ -58,9 +60,9 @@ const LettersContainer = () => {
     setCurrentPage(page)
   }
 
-  const handleSearchChange = (query: string, field?: 'all' | 'title' | 'contents') => {
+  const handleSearchChange = (query: string, field?: Field) => {
     setSearchQuery(query)
-    setSearchField(field ?? 'all')
+    setSearchField(field ?? '전체')
     setCurrentPage(1)
   }
 

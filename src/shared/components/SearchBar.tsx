@@ -1,7 +1,8 @@
+import type { Field } from '@/pages/heaven_letter/components/LettersContainer'
 import { useState } from 'react'
 
 interface SearchBarProps {
-  onSearch: (value: string, field?: 'all' | 'title' | 'contents') => void
+  onSearch: (value: string, field?: Field) => void
   showFieldSelector?: boolean
   placeholder?: string
 }
@@ -12,14 +13,14 @@ const SearchBar = ({
   placeholder = '검색어를 입력하세요',
 }: SearchBarProps) => {
   const [inputValue, setInputValue] = useState('')
-  const [searchField, setSearchField] = useState<'all' | 'title' | 'contents'>('all')
+  const [searchField, setSearchField] = useState<Field>('전체')
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value)
   }
 
   const handleFieldChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSearchField(e.target.value as 'all' | 'title' | 'contents')
+    setSearchField(e.target.value as Field)
   }
 
   const handleSearchClick = () => {
