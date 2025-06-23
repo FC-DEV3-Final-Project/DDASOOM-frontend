@@ -1,14 +1,16 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { Navigate } from 'react-router-dom'
-
 import Layout from '@/shared/layout/Layout'
 import TempPage from '@/pages/TempPage/TempPage'
 import NotFoundPage from '@/pages/NotFoundPage/NotFoundPage'
 import HomePage from '@/pages/home/index'
 import RemembrancePage from '@/pages/Remembrance/index'
 import HeavenLetter from '@/pages/heaven_letter'
-import LetterDetail from '@/pages/heaven_letter/LetterDetail'
-import LetterWrite from '@/pages/heaven_letter/LetterWrite'
+import RecipientLetter from '@/pages/recipient_letter'
+import HeavenLetterDetail from '@/pages/heaven_letter/HeavenLetterDetail'
+import HeavenLetterWrite from '@/pages/heaven_letter/HeavenLetterWrite'
+import RecipientLetterDetail from '@/pages/recipient_letter/RecipientLetterDetail'
+import RecipientLetterWrite from '@/pages/recipient_letter/RecipientLetterWrite'
 
 const routes = [
   {
@@ -28,11 +30,18 @@ const routes = [
             path: 'letter',
             children: [
               { index: true, element: <HeavenLetter /> },
-              { path: ':letterId', element: <LetterDetail /> },
-              { path: 'write', element: <LetterWrite /> },
+              { path: ':letterId', element: <HeavenLetterDetail /> },
+              { path: 'write', element: <HeavenLetterWrite /> },
             ],
           },
-          { path: 'recipient', element: <TempPage title="수혜자 편지" /> },
+          {
+            path: 'recipient',
+            children: [
+              { index: true, element: <RecipientLetter /> },
+              { path: ':letterId', element: <RecipientLetterDetail /> },
+              { path: 'write', element: <RecipientLetterWrite /> },
+            ],
+          },
           { path: 'story', element: <TempPage title="기증 후 스토리" /> },
         ],
       },

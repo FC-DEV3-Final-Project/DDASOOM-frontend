@@ -2,7 +2,7 @@ import LetterForm from '@/pages/heaven_letter/components/LetterForm'
 import WarningBanner from '@/shared/components/WarningBanner'
 import BackToListButton from '@/shared/components/BackToListButton'
 
-const LetterWrite = () => {
+const HeavenLetterWrite = () => {
   return (
     <>
       <BackToListButton to="/remembrance/letter" label="하늘나라 편지" />
@@ -35,4 +35,4 @@ const LetterWrite = () => {
     </>
   )
 }
-export default LetterWrite
+export default HeavenLetterWrite

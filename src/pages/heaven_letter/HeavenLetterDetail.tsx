@@ -25,7 +25,7 @@ interface Letter {
   }[]
 }
 
-const LetterDetail = () => {
+const HeavenLetterDetail = () => {
   const { letterSeq } = useParams<{ letterSeq: string }>()
   const [letterInfo, setLetterInfo] = useState<Letter | null>(null)
 
@@ -78,4 +78,4 @@ const LetterDetail = () => {
     </>
   )
 }
-export default LetterDetail
+export default HeavenLetterDetail
