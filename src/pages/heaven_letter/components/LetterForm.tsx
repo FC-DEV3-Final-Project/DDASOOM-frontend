@@ -33,6 +33,7 @@ const LetterForm = () => {
   const [captchaToken, setCaptchaToken] = useState('')
   const [isModalOpen, setModalOpen] = useState(false)
   const [donorName, setDonorName] = useState('')
+  const [donorSeq, setDonorSeq] = useState<number>(0)
 
   const turnstileRef = useRef<{ execute: () => void } | null>(null)
 
@@ -68,6 +69,7 @@ const LetterForm = () => {
     anonymityFlag: boolean
     letterPasscode: string
     donorName: string
+    donorSeq: number
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -89,6 +91,7 @@ const LetterForm = () => {
       captchaToken: captchaToken,
       anonymityFlag: isAnonymous,
       donorName: donorName,
+      donorSeq: donorSeq,
     }
 
     fetch('/api/heavenletter', {
@@ -97,8 +100,9 @@ const LetterForm = () => {
       body: JSON.stringify(payload),
     })
   }
-  const handleDonorSelect = (donor: { id: number; name: string }) => {
+  const handleDonorSelect = (donor: { id: number; name: string; donorSeq: number }) => {
     setDonorName(donor.name)
+    setDonorSeq(donor.donorSeq)
     setModalOpen(false)
   }
   return (
@@ -152,6 +156,7 @@ const LetterForm = () => {
                 placeholder="성함을 입력해주세요"
                 className="border-gray-20 mr-2 h-10 w-full rounded-[100px] border p-2 pl-[14px] focus:ring-2 focus:ring-red-500 focus:outline-none"
                 onClick={() => setModalOpen(true)}
+                value={donorName}
               />
               <button
                 type="button"
