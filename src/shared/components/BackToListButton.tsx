@@ -13,7 +13,7 @@ const BackToListButton = ({ to, label }: Props) => {
   }
 
   return (
-    <div className="w-full max-w-[1000px] px-5 pt-10 pb-5">
+    <div className="w-full max-w-[1000px] px-5 py-[14px] sm:px-5 sm:pt-10 sm:pb-5">
       <button onClick={handleClick} className="text-gray-60 flex items-center gap-2 text-[15px]">
         <img src="/icon/expand_more.svg" alt="" />
         {label}

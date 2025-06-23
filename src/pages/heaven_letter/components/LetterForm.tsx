@@ -105,8 +105,8 @@ const LetterForm = () => {
     <form onSubmit={handleSubmit}>
       {/* 권역 선택 */}
       <div className="mb-[60px] flex flex-col gap-3">
-        <h3 className="text-gray-95 text-[19px] font-bold">권역선택</h3>
-        <div className="flex gap-6">
+        <h3 className="text-gray-95 text-[15px] font-bold sm:text-[19px]">권역선택</h3>
+        <div className="flex flex-col gap-6 sm:flex-row">
           {Object.entries(AREA_CODES).map(([code, label]) => (
             <label key={code} className="flex cursor-pointer items-center gap-2">
               <input
@@ -140,17 +140,17 @@ const LetterForm = () => {
         </div>
       </div>
 
-      <div className="flex justify-between">
+      <div className="flex flex-col justify-between gap-10 sm:flex-row sm:gap-0">
         {/* 기증자 */}
         <div className="flex flex-col gap-3">
-          <h3 className="text-gray-95 text-[19px] font-bold">기증자</h3>
-          <div className="h-10 max-w-[270px]">
-            <label>
+          <h3 className="text-gray-95 text-[15px] font-bold sm:text-[19px]">기증자</h3>
+          <div className="sm:max-w-[270px]">
+            <label className="flex h-10 w-full justify-between">
               <input
                 type="text"
                 readOnly
                 placeholder="성함을 입력해주세요"
-                className="border-gray-20 mr-2 h-10 rounded-[100px] border p-2 pl-[14px] focus:ring-2 focus:ring-red-500 focus:outline-none"
+                className="border-gray-20 mr-2 h-10 w-full rounded-[100px] border p-2 pl-[14px] focus:ring-2 focus:ring-red-500 focus:outline-none"
                 onClick={() => setModalOpen(true)}
               />
               <button
@@ -172,7 +172,7 @@ const LetterForm = () => {
         {/* 추모자 */}
         <div className="flex flex-col gap-3">
           <div className="flex justify-between">
-            <h3 className="text-gray-95 text-[19px] font-bold">추모자</h3>
+            <h3 className="text-gray-95 text-[15px] font-bold sm:text-[19px]">추모자</h3>
             <label className="flex cursor-pointer items-center gap-2">
               <input
                 type="checkbox"
@@ -209,7 +209,7 @@ const LetterForm = () => {
                 onChange={(e) => {
                   setWriter(e.target.value)
                 }}
-                className="border-gray-20 h-10 w-[240px] rounded-[100px] border p-2 pl-[14px] focus:ring-2 focus:ring-red-500 focus:outline-none"
+                className="border-gray-20 h-10 w-full rounded-[100px] border p-2 pl-[14px] focus:ring-2 focus:ring-red-500 focus:outline-none sm:w-[240px]"
               />
             </label>
             <span className="text-red-40 px-[14px] text-[13px] font-normal">
@@ -220,7 +220,7 @@ const LetterForm = () => {
 
         {/* 비밀번호 */}
         <div className="flex flex-col gap-3">
-          <h3 className="text-gray-95 text-[19px] font-bold">비밀번호</h3>
+          <h3 className="text-gray-95 text-[15px] font-bold sm:text-[19px]">비밀번호</h3>
           <div className="flex flex-col gap-1">
             <label>
               <input
@@ -231,7 +231,7 @@ const LetterForm = () => {
                   setPasscode(value)
                 }}
                 placeholder="새 비밀번호를 입력해주세요"
-                className="border-gray-20 h-10 w-[240px] rounded-[100px] border p-2 pl-[14px] focus:ring-2 focus:ring-red-500 focus:outline-none"
+                className="border-gray-20 h-10 w-full rounded-[100px] border p-2 pl-[14px] focus:ring-2 focus:ring-red-500 focus:outline-none sm:w-[240px]"
               />
             </label>
             <span className="text-red-40 px-[14px] text-[13px] font-normal">
@@ -243,23 +243,27 @@ const LetterForm = () => {
 
       {/* 편지지 */}
       <div
-        className="relative mt-30 mb-[60px] h-[800px] w-[960px] bg-contain bg-bottom bg-no-repeat shadow-md"
+        className="relative mt-15 mb-10 bg-cover bg-right bg-no-repeat shadow-md sm:mt-30 sm:mb-[60px] sm:h-[800px] sm:w-[960px] sm:bg-contain"
         style={{
           backgroundImage: `url(/letter-paper/${paperImages[selectedPaper]})`,
         }}
       >
-        <img src="/letter-paper/clip.svg" alt="" className="absolute top-[-60px] right-16" />
+        <img
+          src="/letter-paper/clip.svg"
+          alt=""
+          className="absolute top-[-35px] right-7 w-[30px] sm:top-[-60px] sm:right-16 sm:w-[49px]"
+        />
 
-        <div className="h-full px-20 py-25">
+        <div className="h-full px-5 py-10 sm:px-20 sm:py-25">
           {/* 제목 */}
-          <div className="mb-[40px]">
+          <div className="mb-10">
             <input
               type="text"
               placeholder="제목을 입력하세요"
               style={{ fontFamily: FONT_OPTIONS[selectedFont].value }}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="text-gray-90 w-[280px] border-b border-dashed border-gray-300 bg-transparent pb-2 text-[24px] leading-[36px] outline-none placeholder:text-gray-50"
+              className="text-gray-90 border-b border-dashed border-gray-300 bg-transparent pb-2 text-[20px] leading-[36px] outline-none placeholder:text-gray-50 sm:w-[280px] sm:text-[24px]"
             />
             <p className="text-red-40 mt-[6px] text-[13px]">(한글/영문/숫자 최대 50글자)</p>
           </div>
@@ -276,17 +280,17 @@ const LetterForm = () => {
               style={{ fontFamily: FONT_OPTIONS[selectedFont].value }}
               value={contents}
               onChange={(e) => setContents(e.target.value)}
-              className="text-gray-90 relative z-10 h-full w-full resize-none bg-transparent text-[17px] leading-[40px] outline-none placeholder:text-gray-50"
+              className="text-gray-90 relative z-10 h-full w-full resize-none bg-transparent text-[16px] leading-[40px] outline-none placeholder:text-gray-50 sm:text-[17px]"
             />
           </div>
         </div>
       </div>
 
       {/* 편지지 선택 */}
-      <div className="flex justify-between">
+      <div className="flex flex-col justify-between gap-10 sm:flex-row sm:gap-0">
         <div className="flex flex-col gap-3">
-          <h3 className="text-gray-95 text-[19px] font-bold">편지지 선택</h3>
-          <div className="flex flex-wrap gap-4">
+          <h3 className="text-gray-95 text-[15px] font-bold sm:text-[19px]">편지지 선택</h3>
+          <div className="flex flex-wrap gap-2 sm:gap-4">
             {paperOptions.map((option) => (
               <label key={option} className="flex cursor-pointer items-center gap-2">
                 <input
@@ -298,7 +302,7 @@ const LetterForm = () => {
                   className="hidden"
                 />
                 <div
-                  className={`flex h-25 w-25 items-center justify-center rounded-full border-2 bg-cover bg-center bg-no-repeat transition ${
+                  className={`flex h-[72px] w-[72px] items-center justify-center rounded-full border-2 bg-cover bg-right bg-no-repeat transition sm:h-25 sm:w-25 ${
                     selectedPaper === option ? 'border-red-40' : 'border-gray-10'
                   }`}
                   style={{ backgroundImage: `url(/letter-paper/${paperImages[option]})` }}
@@ -324,15 +328,15 @@ const LetterForm = () => {
 
         {/* 글꼴 선택 */}
         <div className="flex flex-col gap-3">
-          <h3 className="text-gray-95 text-[19px] font-bold">글꼴 선택</h3>
-          <div className="flex gap-4">
+          <h3 className="text-gray-95 text-[15px] font-bold sm:text-[19px]">글꼴 선택</h3>
+          <div className="flex gap-2">
             {FONT_OPTIONS.map((font) => (
               <button
                 key={font.value}
                 type="button"
                 onClick={() => setSelectedFont(font.index)}
                 style={{ fontFamily: font.value }}
-                className={`rounded-full px-5 py-2 ${
+                className={`rounded-full px-3 py-[6px] text-[14px] sm:px-5 sm:py-2 sm:text-[17px] ${
                   selectedFont === font.index
                     ? 'text-red-40 border-2 border-red-50'
                     : 'text-gray-95 border-gray-20 border-1'
@@ -352,8 +356,9 @@ const LetterForm = () => {
       </div>
       <div className="flex justify-end gap-3 font-bold">
         <button
+          type="button"
           onClick={() => {
-            navigate('/remember/heavenletter')
+            navigate('/remembrance/letter')
           }}
           className="border-gray-40 text-gray-80 rounded-[100px] border-2 px-[18px] py-2"
         >
