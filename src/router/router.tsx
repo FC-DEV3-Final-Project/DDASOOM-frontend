@@ -11,6 +11,8 @@ import HeavenLetterDetail from '@/pages/heaven_letter/HeavenLetterDetail'
 import HeavenLetterWrite from '@/pages/heaven_letter/HeavenLetterWrite'
 import RecipientLetterDetail from '@/pages/recipient_letter/RecipientLetterDetail'
 import RecipientLetterWrite from '@/pages/recipient_letter/RecipientLetterWrite'
+import StoryLetter from '@/pages/story'
+import StoryLetterDetail from '@/pages/story/StoryLetterDetail'
 
 const routes = [
   {
@@ -42,7 +44,13 @@ const routes = [
               { path: 'write', element: <RecipientLetterWrite /> },
             ],
           },
-          { path: 'story', element: <TempPage title="기증 후 스토리" /> },
+          {
+            path: 'story',
+            children: [
+              { index: true, element: <StoryLetter /> },
+              { path: ':letterId', element: <StoryLetterDetail /> },
+            ],
+          },
         ],
       },
 

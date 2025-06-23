@@ -22,7 +22,7 @@ const DEFAULT_HEADER_BUTTONS = [
   { id: 'memory-letter', label: '수혜자 편지', Icon: IdCard, route: '/remembrance/recipient' },
   {
     id: 'donation-story',
-    label: '기증 후 스토리',
+    label: '기증 後 스토리',
     Icon: Mail,
     route: '/remembrance/story',
   },
