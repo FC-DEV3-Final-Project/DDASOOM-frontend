@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/chat.css" />
+    <link rel="icon" href="./img/main-character.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>KODA 조직도 챗봇</title>
+  </head>
+  <body>
+    <header id="intro-name">
+      <img src="./img/main-character.png" alt="KODA_캐릭터" />
+      <h4>KODA 한국장기조직기증원</h4>
+    </header>
+    <nav id="navbar">
+      <a class="home-nav active" href="#"
+        ><img src="./img/icon-home.png" alt="홈 메뉴" />
+        <p>홈</p></a
+      >
+      <a class="chat-nav" href="#"
+        ><img src="./img/icon-chat.png" alt="대화하기" />
+        <p>대화</p></a
+      >
+    </nav>
+    <main>
+      <section id="home-body">
+        <div class="msg">
+          안녕하세요, 한국장기조직기증원입니다. 우리 기관이 하는 일과 관련하여 궁금한 점이 있다면
+          편하게 채팅으로 문의해 주세요!🥰
+          <br /><br /><a id="inquiryBtn" href="#">문의하기</a>
+        </div>
+        <div class="msg other">
+          <p>다른 방법으로 문의하기</p>
+          <p class="sns-messenger">
+            <a
+              id="app-messenger-kakao"
+              href="https://bizmessage.kakao.com/chat/open/@한국장기조직기증원?extra=Bq2rRPjq"
+              ><img src="./img/app-messenger-kakao.png" alt="카카오톡"
+            /></a>
+            <a id="app-messenger-instagram" href="https://ig.me/m/koda1458"
+              ><img src="./img/app-messenger-instagram-messenger.png" alt="인스타그램"
+            /></a>
+            <a id="app-phone-call" href="tel:02-3447-5632"
+              ><img src="./img/icon-phone-call.png" alt="전화걸기"
+            /></a>
+          </p>
+        </div>
+      </section>
+      <section id="chat-body">
+        <div id="chat-input">
+          <input
+            autofocus
+            type="text"
+            name="input-message"
+            placeholder="> 개인정보를 활용한 상담은 지원하지 않습니다."
+          />
+          <button class="sendBtn"><img src="./img/icon-send-button.png" alt="보내기" /></button>
+        </div>
+        <div id="main-chat-intro-name">
+          <img src="./img/chat-character.png" alt="KODA_캐릭터" />
+          <h3>KODA 한국장기조직기증원 조직 안내 챗봇</h3>
+          <h4>
+            <a href="https://www.koda1458.kr/newKoda/groupInfo.do" target="_blank"
+              >전체 조직도 확인하기&nbsp;&nbsp;></a
+            >
+          </h4>
+          <!-- TODO: 조직도 화면 개발 시 참조 링크 변경  -->
+        </div>
+        <div class="chatArea" aria-live="polite">
+          <div class="bot-response">
+            <img src="./img/main-character.png" alt="KODA_캐릭터" />
+            <p class="msg">
+              안녕하세요, 한국장기조직기증원입니다. 우리 기관이 하는 일과 관련하여 궁금한 점이
+              있다면 편하게 채팅으로 문의해 주세요!🥰
+            </p>
+          </div>
+          <!-- 대화 내역 동적 추가 -->
+          <!-- <p class="msg usermsg">안녕하세요</p> -->
+        </div>
+      </section>
+    </main>
+    <script src="./js/chat.js"></script>
+  </body>
+</html>
