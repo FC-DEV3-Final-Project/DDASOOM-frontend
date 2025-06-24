@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { formatDate } from '@/shared/utils/timeUtils'
+import { convertDate } from '@/shared/utils/timeUtils'
 import EditCommentModal from '@/pages/heaven_letter/components/EditCommentModal'
 import DeleteConfirmModal from '@/pages/heaven_letter/components/DeleteConfirmModal'
 
@@ -162,7 +162,7 @@ const CommentContainer = ({ comments, letterSeq, onAddComment }: Props) => {
               {comment.contents}
             </span>
             <div className="flex items-end gap-2">
-              <span className="text-gray-60 text-[13px]">{formatDate(comment.writeTime)}</span>
+              <span className="text-gray-60 text-[13px]">{convertDate(comment.writeTime)}</span>
               <span
                 onClick={() => {
                   setEditTarget(comment)

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { formatDate } from '@/shared/utils/timeUtils'
+import { convertDate } from '@/shared/utils/timeUtils'
 import { areaCodesConvertKR } from '@/shared/utils/areaCodesConvertKR'
 import { useNavigate } from 'react-router-dom'
 import PasswordPromptModal from '@/pages/heaven_letter/components/PasswordPromptModal'
@@ -87,7 +87,7 @@ const Letter = ({ item }: Props) => {
           <div className="flex h-full flex-col gap-10 px-5 py-10 sm:px-20 sm:py-25">
             <div className="flex flex-col gap-6 sm:mb-[60px]">
               {/* 작성일자 */}
-              <div className="text-[19px] font-bold">{formatDate(item.writeTime)}</div>
+              <div className="text-[19px] font-bold">{convertDate(item.writeTime)}</div>
               <div className="text-gray-80 flex flex-col gap-5 text-[15px] sm:flex-row sm:gap-[60px]">
                 {/* 권역 */}
                 <span>
