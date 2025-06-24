@@ -14,6 +14,7 @@ const FONT_OPTIONS = [
   { index: 1, label: 'Cafe24 동동', value: 'Cafe24Dongdong' },
   { index: 2, label: '학교안심 그림일기', value: 'HakgyoansimGeurimilgiTTF-R' },
 ] as const
+
 const AREA_CODES = {
   AREA100: '1권역(수도권, 강원, 제주)',
   AREA200: '2권역(충청, 전라)',
@@ -84,9 +85,8 @@ const LetterForm = () => {
     script.async = true
     script.onload = () => {
       window.turnstileWidgetId = window.turnstile?.render('#turnstile-widget', {
-        sitekey: '0x4AAAAAABh7p6RM-c7LcvIz', // 실제 key로 교체
+        sitekey: '1x00000000000000000000AA', // 실제 key로 교체
         callback: (token: string) => {
-          console.log('✅ Turnstile token received:', token)
           if (isSubmitting) submitLetter(token)
         },
         theme: 'light',
@@ -398,7 +398,7 @@ const LetterForm = () => {
           </div>
         </div>
       </div>
-      <div id="turnstile-widget" />
+      <div id="turnstile-widget" className="pointer-events-none opacity-0" />
       <div className="flex justify-end gap-3 font-bold">
         <button
           type="button"
