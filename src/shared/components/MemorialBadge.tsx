@@ -3,8 +3,10 @@ import { cn } from '@/lib/utils'
 interface MemorialBadgeProps {
   donor: {
     donateName: string
-    donateAge: number
+    donateAge: number | null
     donateGender: string
+    donateDate?: string
+    id?: string | number
   }
   variant: 'small' | 'medium' | 'large'
 }
