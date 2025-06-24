@@ -7,7 +7,7 @@ import FloatingChat from '@/shared/components/FloatingChat'
 export default function Layout() {
   return (
     <>
-      <div className="fixed top-0 z-100 w-full">
+      <div className="fixed top-0 z-50 w-full">
         <Header />
         <NavigationBar />
       </div>

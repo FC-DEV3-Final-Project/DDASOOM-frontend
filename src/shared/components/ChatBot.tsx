@@ -1,5 +1,6 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, type Dispatch, type SetStateAction } from 'react'
 import { formatDate } from '@/shared/utils/timeUtils'
+import { X } from 'lucide-react'
 
 const DEFAULT_ERR_MSG = '데이터를 불러오는 데 실패했습니다. 잠시 후 다시 이용해 주세요.'
 
@@ -12,8 +13,10 @@ const QuickButtons = [
   '협약병원',
   '채용문의',
 ]
-
-const ChatBot = () => {
+interface ChatBotProps {
+  setIsOpen: Dispatch<SetStateAction<boolean>>
+}
+const ChatBot = ({ setIsOpen }: ChatBotProps) => {
   const [input, setInput] = useState('')
   const [chat, setChat] = useState<{ sender: 'user' | 'bot'; message: string }[]>([
     {
@@ -73,12 +76,15 @@ const ChatBot = () => {
   }, [chat])
 
   return (
-    <div className="flex w-[430px] flex-col justify-between overflow-hidden rounded-[12px]">
-      <header className="border-gray-10 flex items-center gap-2 border-b bg-white p-5">
+    <div className="flex flex-col justify-between overflow-hidden rounded-[12px] sm:w-[430px]">
+      <header className="border-gray-10 flex items-center justify-between gap-2 border-b bg-white p-5">
         <h4 className="text-[17px] font-semibold">KODA 한국장기조직기증원</h4>
+        <button onClick={() => setIsOpen(false)}>
+          <X />
+        </button>
       </header>
 
-      <section className="flex h-[400px] flex-col p-5 pb-0">
+      <section className="flex h-[350px] flex-col p-5 pb-0 sm:h-[400px]">
         <div className="mb-4 flex flex-col gap-2 text-center">
           <img src="/KODA_logo.svg" alt="KODA 캐릭터" className="mx-auto" />
           <h3 className="text-[15px] font-bold">
@@ -123,7 +129,7 @@ const ChatBot = () => {
           {QuickButtons.map((button) => (
             <li
               key={button}
-              className={`tracking-0 text-gray-80 cursor-pointer rounded-full bg-white px-3 py-[6px] text-[15px] font-bold hover:bg-orange-100 ${
+              className={`tracking-0 text-gray-80 cursor-pointer rounded-full bg-white px-3 py-[6px] text-[13px] font-bold hover:bg-orange-100 sm:text-[15px] ${
                 loading ? 'pointer-events-none opacity-50' : ''
               }`}
               onClick={() => {
