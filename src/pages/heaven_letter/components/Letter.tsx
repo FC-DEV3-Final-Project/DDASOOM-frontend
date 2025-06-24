@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { formatDate } from '@/shared/utils/timeUtils'
 import { areaCodesConvertKR } from '@/shared/utils/areaCodesConvertKR'
+import { useNavigate } from 'react-router-dom'
+import PasswordPromptModal from '@/pages/heaven_letter/components/PasswordPromptModal'
 
 const FONT_OPTIONS = [
   { index: 0, label: 'Cafe24 고운밤', value: 'Cafe24Oneprettynight' },
@@ -40,6 +42,24 @@ const Letter = ({ item }: Props) => {
   const textRef = useRef<HTMLDivElement>(null)
   const [lineCount, setLineCount] = useState(12)
   const lineHeight = 40
+  const navigate = useNavigate()
+  const [showModal, setShowModal] = useState(false)
+
+  const handleEditClick = () => {
+    setShowModal(true)
+  }
+
+  const handlePasswordConfirm = (inputPassword: string) => {
+    if (inputPassword === item.comments[0]?.commentPasscode) {
+      // 비밀번호 일치 → 수정 페이지로 이동
+      navigate(`/remembrance/letter/${item.letterSeq}/edit`, {
+        state: { letterData: item },
+      })
+    } else {
+      alert('비밀번호가 일치하지 않습니다.')
+    }
+    setShowModal(false)
+  }
 
   useEffect(() => {
     if (textRef.current) {
@@ -49,20 +69,21 @@ const Letter = ({ item }: Props) => {
     }
   }, [item.letterContents])
 
-  const minHeight = lineCount * lineHeight + 300 // + 여백 고려 (제목, padding 등)
-
   return (
     <>
       <div>
         <div
-          className="relative w-[960px] bg-contain bg-bottom bg-no-repeat shadow-md"
+          className="relative mt-15 mb-10 bg-cover bg-right bg-no-repeat shadow-md sm:mt-30 sm:mb-[60px] sm:min-h-[900px] sm:w-[960px] sm:bg-contain"
           style={{
             backgroundImage: `url(/letter-paper/${paperImages[item.letterPaper | 0]})`,
             backgroundSize: '100% auto',
-            minHeight,
           }}
         >
-          <img src="/letter-paper/clip.svg" alt="" className="absolute top-[-60px] right-16" />
+          <img
+            src="/letter-paper/clip.svg"
+            alt=""
+            className="absolute top-[-35px] right-7 w-[30px] sm:top-[-60px] sm:right-16 sm:w-[49px]"
+          />
 
           <div className="px-20 py-25">
             <div className="mb-[60px] flex flex-col gap-6">
@@ -107,7 +128,7 @@ const Letter = ({ item }: Props) => {
                 {item.letterContents}
               </div>
             </div>
-            <div className="mt-[60px] flex justify-between">
+            <div className="absolute bottom-10 left-0 flex w-full justify-between px-20">
               {/* 조회수 */}
               <span className="flex items-center gap-[6px]">
                 <img src="/icon/icon-eye.svg" alt="" />
@@ -122,10 +143,20 @@ const Letter = ({ item }: Props) => {
           </div>
         </div>
         <div className="mt-10 mb-5 flex justify-end gap-3">
-          <button className="border-gray-40 hover:bg-gray-10 flex items-center gap-2 rounded-[100px] border px-[18px] py-1 text-[15px]">
+          <button
+            type="button"
+            onClick={handleEditClick}
+            className="border-gray-40 hover:bg-gray-10 flex items-center gap-2 rounded-[100px] border px-[18px] py-1 text-[15px]"
+          >
             <img src="/icon/edit.svg" alt="" />
             수정
           </button>
+          {showModal && (
+            <PasswordPromptModal
+              onConfirm={handlePasswordConfirm}
+              onCancel={() => setShowModal(false)}
+            />
+          )}
           <button className="border-gray-40 hover:bg-gray-10 flex items-center gap-2 rounded-[100px] border px-[18px] py-1 text-[15px]">
             <img src="/icon/delete.svg" alt="" />
             삭제

@@ -28,7 +28,7 @@ const routes = [
             path: 'letter',
             children: [
               { index: true, element: <HeavenLetter /> },
-              { path: ':letterId', element: <LetterDetail /> },
+              { path: ':letterSeq', element: <LetterDetail /> },
               { path: 'write', element: <LetterWrite /> },
             ],
           },

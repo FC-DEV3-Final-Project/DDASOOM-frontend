@@ -1,7 +1,6 @@
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Turnstile from 'react-cloudflare-turnstile'
-import { useRef, useState } from 'react'
-import DonorSearchModal from '@/pages/heaven_letter/components/DonorSearchModal'
+import { useState } from 'react'
 
 const FONT_OPTIONS = [
   { index: 0, label: 'Cafe24 고운밤', value: 'Cafe24Oneprettynight' },
@@ -21,23 +20,16 @@ const paperImages: Record<string, string> = {
   3: 'letter-paper2.png',
 }
 
-const LetterForm = () => {
-  const [title, setTitle] = useState('')
-  const [contents, setContents] = useState('')
-  const [passcode, setPasscode] = useState('')
-  const [writer, setWriter] = useState('')
-  const [areaCode, setAreaCode] = useState('AREA100')
-  const [selectedPaper, setSelectedPaper] = useState(0)
-  const [isAnonymous, setAnonymous] = useState(false)
-  const [selectedFont, setSelectedFont] = useState<0 | 1 | 2>(0)
-  const [captchaToken, setCaptchaToken] = useState('')
-  const [isModalOpen, setModalOpen] = useState(false)
-  const [donorName, setDonorName] = useState('')
-  const [donorSeq, setDonorSeq] = useState<number>(0)
-
-  const turnstileRef = useRef<{ execute: () => void } | null>(null)
-
+const LetterEditForm = () => {
+  const { state } = useLocation()
   const navigate = useNavigate()
+
+  const letter = state?.letterData
+
+  const [title, setTitle] = useState(letter?.letterTitle || '')
+  const [contents, setContents] = useState(letter?.letterContents || '')
+  const [selectedFont, setSelectedFont] = useState<0 | 1 | 2>(letter?.letterFont || 0)
+  const [selectedPaper, setSelectedPaper] = useState(letter?.letterPaper || 0)
 
   const validateForm = () => {
     const errors: string[] = []
@@ -48,68 +40,28 @@ const LetterForm = () => {
       errors.push('제목은 최대 50자까지 입력할 수 있습니다.')
     }
 
-    if (!writer.trim()) {
-      errors.push('추모자 이름을 입력해주세요.')
-    } else if (!/^[가-힣a-zA-Z]{1,10}$/.test(writer)) {
-      errors.push('추모자 이름은 한글 또는 영문 10자 이내로 입력해주세요.')
-    }
-
-    if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(passcode)) {
-      errors.push('비밀번호는 영문+숫자 조합으로 8자 이상이어야 합니다.')
-    }
-
     return errors
   }
 
-  interface DonationLetterPayload {
-    areaCode: string
-    letterWriter: string
-    letterTitle: string
-    letterContents: string
-    captchaToken: string
-    anonymityFlag: 'Y' | 'N'
-    letterPasscode: string
-    donorName: string
-    donateSeq: number
-    letterPaper: number
-    letterFont: number
-  }
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
-    const errors = validateForm()
-    if (errors.length > 0) {
-      alert(errors.join('\n'))
-      return
-    }
-    turnstileRef.current?.execute()
-
-    const payload: DonationLetterPayload = {
-      areaCode: areaCode,
-      letterWriter: writer,
+    validateForm()
+    const updated = {
       letterTitle: title,
       letterContents: contents,
-      letterPasscode: passcode,
-      captchaToken: captchaToken,
-      anonymityFlag: isAnonymous ? 'Y' : 'N',
-      donorName: donorName,
-      donateSeq: donorSeq,
-      letterPaper: selectedPaper,
       letterFont: selectedFont,
+      letterPaper: selectedPaper,
     }
-    console.log(payload)
-    fetch('/api/heavenletter', {
-      method: 'POST',
+
+    await fetch(`/api/heavenLetters/${letter.letterSeq}`, {
+      method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(updated),
     })
+
+    navigate(`/remembrance/letter/${letter.letterSeq}`)
   }
-  const handleDonorSelect = (donor: { id: number; donateSeq: number }, name: string) => {
-    setDonorName(name)
-    setDonorSeq(donor.donateSeq)
-    setModalOpen(false)
-  }
+
   return (
     <form onSubmit={handleSubmit}>
       {/* 권역 선택 */}
@@ -118,20 +70,13 @@ const LetterForm = () => {
         <div className="flex flex-col gap-6 sm:flex-row">
           {Object.entries(AREA_CODES).map(([code, label]) => (
             <label key={code} className="flex cursor-pointer items-center gap-2">
-              <input
-                type="radio"
-                name="letterOption"
-                value={code}
-                checked={areaCode === code}
-                onChange={() => setAreaCode(code)}
-                className="hidden"
-              />
+              <input type="radio" name="letterOption" value={letter.areaCode} className="hidden" />
               <div
                 className={`flex h-5 w-5 items-center justify-center rounded border transition ${
-                  areaCode === code ? 'border-red-40 bg-red-40' : 'border-gray-300 bg-white'
+                  letter.areaCode === code ? 'border-red-40 bg-red-40' : 'border-gray-300 bg-white'
                 }`}
               >
-                {areaCode === code && (
+                {letter.areaCode === code && (
                   <svg
                     className="h-3 w-3 text-white"
                     fill="none"
@@ -160,22 +105,16 @@ const LetterForm = () => {
                 readOnly
                 placeholder="성함을 입력해주세요"
                 className="border-gray-20 mr-2 h-10 w-full rounded-[100px] border p-2 pl-[14px] focus:ring-2 focus:ring-red-500 focus:outline-none"
-                onClick={() => setModalOpen(true)}
-                value={donorName}
+                value={letter.donorName}
               />
               <button
                 type="button"
-                onClick={() => setModalOpen(true)}
+                disabled
                 className="border-red-30 hover:bg-gray-10 text-red-40 h-full rounded-[100px] border-2 px-[18px] text-[15px] whitespace-nowrap"
               >
                 검색
               </button>
             </label>
-            <DonorSearchModal
-              isOpen={isModalOpen}
-              onClose={() => setModalOpen(false)}
-              onSelect={handleDonorSelect}
-            />
           </div>
         </div>
 
@@ -184,18 +123,13 @@ const LetterForm = () => {
           <div className="flex justify-between">
             <h3 className="text-gray-95 text-[15px] font-bold sm:text-[19px]">추모자</h3>
             <label className="flex cursor-pointer items-center gap-2">
-              <input
-                type="checkbox"
-                checked={isAnonymous}
-                onChange={() => setAnonymous(!isAnonymous)}
-                className="hidden"
-              />
+              <input type="checkbox" checked={letter.anonymityFlag} className="hidden" />
               <div
                 className={`flex h-5 w-5 items-center justify-center rounded border transition ${
-                  isAnonymous ? 'border-red-40 bg-red-40' : 'border-gray-300 bg-white'
+                  letter.anonymityFlag ? 'border-red-40 bg-red-40' : 'border-gray-300 bg-white'
                 }`}
               >
-                {isAnonymous && (
+                {letter.anonymityFlag && (
                   <svg
                     className="h-3 w-3 text-white"
                     fill="none"
@@ -215,10 +149,8 @@ const LetterForm = () => {
               <input
                 type="text"
                 placeholder="성함을 입력해주세요"
-                value={writer}
-                onChange={(e) => {
-                  setWriter(e.target.value)
-                }}
+                value={letter.letterWriter}
+                readOnly
                 className="border-gray-20 h-10 w-full rounded-[100px] border p-2 pl-[14px] focus:ring-2 focus:ring-red-500 focus:outline-none sm:w-[240px]"
               />
             </label>
@@ -235,11 +167,7 @@ const LetterForm = () => {
             <label>
               <input
                 type="password"
-                value={passcode}
-                onChange={(e) => {
-                  const value = e.target.value
-                  setPasscode(value)
-                }}
+                disabled
                 placeholder="새 비밀번호를 입력해주세요"
                 className="border-gray-20 h-10 w-full rounded-[100px] border p-2 pl-[14px] focus:ring-2 focus:ring-red-500 focus:outline-none sm:w-[240px]"
               />
@@ -386,4 +314,4 @@ const LetterForm = () => {
   )
 }
 
-export default LetterForm
+export default LetterEditForm
