@@ -1,7 +1,13 @@
 import { useNavigate } from 'react-router-dom'
-import Turnstile from 'react-cloudflare-turnstile'
-import { useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import DonorSearchModal from '@/pages/heaven_letter/components/DonorSearchModal'
+
+declare global {
+  interface Window {
+    onTurnstileCallback?: (token: string) => void
+    turnstileWidgetId?: string
+  }
+}
 
 const FONT_OPTIONS = [
   { index: 0, label: 'Cafe24 고운밤', value: 'Cafe24Oneprettynight' },
@@ -30,13 +36,9 @@ const LetterForm = () => {
   const [selectedPaper, setSelectedPaper] = useState(0)
   const [isAnonymous, setAnonymous] = useState(false)
   const [selectedFont, setSelectedFont] = useState<0 | 1 | 2>(0)
-  const [captchaToken, setCaptchaToken] = useState('')
   const [isModalOpen, setModalOpen] = useState(false)
   const [donorName, setDonorName] = useState('')
   const [donorSeq, setDonorSeq] = useState<number>(0)
-
-  const turnstileRef = useRef<{ execute: () => void } | null>(null)
-
   const navigate = useNavigate()
 
   const validateForm = () => {
@@ -74,37 +76,75 @@ const LetterForm = () => {
     letterPaper: number
     letterFont: number
   }
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js'
+    script.async = true
+    script.onload = () => {
+      window.turnstileWidgetId = window.turnstile?.render('#turnstile-widget', {
+        sitekey: '0x4AAAAAABh7p6RM-c7LcvIz', // 실제 key로 교체
+        callback: (token: string) => {
+          console.log('✅ Turnstile token received:', token)
+          if (isSubmitting) submitLetter(token)
+        },
+        theme: 'light',
+        size: 'compact',
+        mode: 'test',
+      })
+    }
+    document.body.appendChild(script)
+  }, [isSubmitting])
+
+  const executeTurnstile = () => {
+    if (window.turnstile && window.turnstileWidgetId) {
+      window.turnstile.execute(window.turnstileWidgetId)
+    } else {
+      alert('Turnstile 위젯이 아직 초기화되지 않았습니다.')
+    }
+  }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
     const errors = validateForm()
-    if (errors.length > 0) {
-      alert(errors.join('\n'))
-      return
-    }
-    turnstileRef.current?.execute()
+    if (errors.length > 0) return alert(errors.join('\n'))
 
+    setIsSubmitting(true)
+    executeTurnstile() // invisible 모드 시작
+  }
+
+  const submitLetter = (token: string) => {
     const payload: DonationLetterPayload = {
-      areaCode: areaCode,
+      areaCode,
       letterWriter: writer,
       letterTitle: title,
       letterContents: contents,
       letterPasscode: passcode,
-      captchaToken: captchaToken,
+      captchaToken: token,
       anonymityFlag: isAnonymous ? 'Y' : 'N',
-      donorName: donorName,
+      donorName,
       donateSeq: donorSeq,
       letterPaper: selectedPaper,
       letterFont: selectedFont,
     }
-    console.log(payload)
-    fetch('/api/heavenletter', {
+
+    fetch('/api/heavenLetters', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     })
+      .then((res) => res.json())
+      .then(() => {
+        alert('편지가 등록되었습니다.')
+        navigate('/remembrance/letter')
+      })
+      .catch(() => alert('오류가 발생했습니다.'))
+      .finally(() => {
+        setIsSubmitting(false)
+      })
   }
+
   const handleDonorSelect = (donor: { id: number; donateSeq: number }, name: string) => {
     setDonorName(name)
     setDonorSeq(donor.donateSeq)
@@ -358,12 +398,7 @@ const LetterForm = () => {
           </div>
         </div>
       </div>
-      <div className="pointer-none opacity-0">
-        <Turnstile
-          turnstileSiteKey="1x00000000000000000000AA"
-          callback={(token: string) => setCaptchaToken(token)}
-        />
-      </div>
+      <div id="turnstile-widget" />
       <div className="flex justify-end gap-3 font-bold">
         <button
           type="button"
