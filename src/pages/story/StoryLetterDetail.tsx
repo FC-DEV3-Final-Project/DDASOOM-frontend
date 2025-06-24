@@ -12,7 +12,7 @@ interface Letter {
   areaCode: string
   readCount: number
   letterWriter: string
-  letterSeq: number
+  storySeq: number
   letterFont: number
   letterPaper: number
   comments: {
@@ -62,7 +62,7 @@ const StoryLetterDetail = () => {
         {letterInfo && <Letter item={letterInfo} />}
         {letterInfo && (
           <CommentContainer
-            letterSeq={letterInfo.letterSeq}
+            letterSeq={letterInfo.storySeq}
             comments={letterInfo.comments}
             onAddComment={fetchLetter}
           />

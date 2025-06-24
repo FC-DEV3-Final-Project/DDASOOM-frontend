@@ -23,7 +23,7 @@ interface Props {
     areaCode: string
     readCount: number
     letterWriter: string
-    letterSeq: number
+    storySeq: number
     letterFont: number
     letterPaper: number
     comments: {
