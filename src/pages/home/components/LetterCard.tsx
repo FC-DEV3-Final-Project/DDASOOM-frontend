@@ -43,7 +43,7 @@ const LetterCard = ({ isFocused, letter, onClick }: Props) => {
       ></div>
       <div
         className={cn(
-          'text-gray-60 flex justify-between gap-5 pt-[10px] text-[12px] sm:justify-end sm:gap-7 sm:pt-[14px] sm:text-[15px]',
+          'text-gray-60 flex gap-5 pt-[10px] text-[12px] sm:justify-end sm:gap-7 sm:pt-[14px] sm:text-[15px]',
           isFocused && 'text-gray-90',
         )}
       >

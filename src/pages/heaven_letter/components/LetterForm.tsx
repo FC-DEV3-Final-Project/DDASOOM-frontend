@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 import Turnstile from 'react-cloudflare-turnstile'
-import { useRef, useState } from 'react'
 import DonorSearchModal from '@/pages/heaven_letter/components/DonorSearchModal'
 
 const FONT_OPTIONS = [
@@ -8,6 +8,7 @@ const FONT_OPTIONS = [
   { index: 1, label: 'Cafe24 동동', value: 'Cafe24Dongdong' },
   { index: 2, label: '학교안심 그림일기', value: 'HakgyoansimGeurimilgiTTF-R' },
 ] as const
+
 const AREA_CODES = {
   AREA100: '1권역(수도권, 강원, 제주)',
   AREA200: '2권역(충청, 전라)',
@@ -21,6 +22,20 @@ const paperImages: Record<string, string> = {
   3: 'letter-paper2.png',
 }
 
+interface DonationLetterPayload {
+  areaCode: string
+  letterWriter: string
+  letterTitle: string
+  letterContents: string
+  captchaToken: string
+  anonymityFlag: 'Y' | 'N'
+  letterPasscode: string
+  donorName: string
+  donateSeq: number
+  letterPaper: number
+  letterFont: number
+}
+
 const LetterForm = () => {
   const [title, setTitle] = useState('')
   const [contents, setContents] = useState('')
@@ -30,12 +45,10 @@ const LetterForm = () => {
   const [selectedPaper, setSelectedPaper] = useState(0)
   const [isAnonymous, setAnonymous] = useState(false)
   const [selectedFont, setSelectedFont] = useState<0 | 1 | 2>(0)
-  const [captchaToken, setCaptchaToken] = useState('')
   const [isModalOpen, setModalOpen] = useState(false)
   const [donorName, setDonorName] = useState('')
   const [donorSeq, setDonorSeq] = useState<number>(0)
-
-  const turnstileRef = useRef<{ execute: () => void } | null>(null)
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null)
 
   const navigate = useNavigate()
 
@@ -61,50 +74,52 @@ const LetterForm = () => {
     return errors
   }
 
-  interface DonationLetterPayload {
-    letterWriter: string
-    letterTitle: string
-    letterContents: string
-    captchaToken: string
-    anonymityFlag: boolean
-    letterPasscode: string
-    donorName: string
-    donorSeq: number
-  }
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
     const errors = validateForm()
     if (errors.length > 0) {
       alert(errors.join('\n'))
       return
     }
 
-    turnstileRef.current?.execute()
+    if (!captchaToken) {
+      alert('봇 방지 확인을 완료해주세요.')
+      return
+    }
 
     const payload: DonationLetterPayload = {
+      areaCode,
       letterWriter: writer,
       letterTitle: title,
       letterContents: contents,
       letterPasscode: passcode,
-      captchaToken: captchaToken,
-      anonymityFlag: isAnonymous,
-      donorName: donorName,
-      donorSeq: donorSeq,
+      captchaToken,
+      anonymityFlag: isAnonymous ? 'Y' : 'N',
+      donorName,
+      donateSeq: donorSeq,
+      letterPaper: selectedPaper,
+      letterFont: selectedFont,
     }
 
-    fetch('/api/heavenletter', {
+    fetch('/api/heavenLetters', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     })
+      .then((res) => res.json())
+      .then(() => {
+        alert('편지가 등록되었습니다.')
+        navigate('/remembrance/letter')
+      })
+      .catch(() => alert('오류가 발생했습니다.'))
   }
-  const handleDonorSelect = (donor: { id: number; name: string; donorSeq: number }) => {
-    setDonorName(donor.name)
-    setDonorSeq(donor.donorSeq)
+
+  const handleDonorSelect = (donor: { id: number; donateSeq: number }, name: string) => {
+    setDonorName(name)
+    setDonorSeq(donor.donateSeq)
     setModalOpen(false)
   }
+
   return (
     <form onSubmit={handleSubmit}>
       {/* 권역 선택 */}
@@ -351,15 +366,17 @@ const LetterForm = () => {
               </button>
             ))}
           </div>
+          <div className="mt-5 flex sm:mt-3 sm:justify-end">
+            <Turnstile
+              turnstileSiteKey="1x00000000000000000000AA"
+              callback={(token: string) => setCaptchaToken(token)}
+              theme="light"
+              size="normal"
+            />
+          </div>
         </div>
       </div>
-      <div className="pointer-none opacity-0">
-        <Turnstile
-          turnstileSiteKey="1x00000000000000000000AA"
-          callback={(token: string) => setCaptchaToken(token)}
-        />
-      </div>
-      <div className="flex justify-end gap-3 font-bold">
+      <div className="mt-10 flex justify-end gap-3 font-bold">
         <button
           type="button"
           onClick={() => {

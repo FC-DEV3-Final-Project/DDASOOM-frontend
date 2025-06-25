@@ -1,4 +1,4 @@
-import { formatDate } from '@/shared/utils/timeUtils'
+import { convertDate } from '@/shared/utils/timeUtils'
 
 interface Props {
   item: {
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const LetterCard = ({ item, onClick }: Props) => {
-  const writeTime = formatDate(item.writeTime)
+  const writeTime = convertDate(item.writeTime)
   return (
     <div
       className="border-red-20 flex cursor-pointer flex-col gap-[16px] rounded-[20px] border p-8"
@@ -37,7 +37,7 @@ const LetterCard = ({ item, onClick }: Props) => {
       </div>
       <div className="flex gap-5 text-[13px]">
         <div className="flex gap-[7px]">
-          <span>추모자</span> <span className="font-bold">{item.letterWriter}</span>
+          <span>수혜자</span> <span className="font-bold">{item.letterWriter}</span>
         </div>
       </div>
       <div className="border-gray-20 text-gray-60 flex w-full justify-between border-t-1 pt-[16px] text-[13px]">

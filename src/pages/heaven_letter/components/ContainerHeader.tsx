@@ -34,7 +34,7 @@ const ContainerHeader = ({ handleSearch, totalLetters }: Props) => {
       </section>
       <button
         onClick={handleNavigate}
-        className="bg-red-40 fixed right-5 bottom-6 z-10 h-15 w-15 rounded-full shadow-lg sm:hidden"
+        className="bg-red-40 fixed right-5 bottom-22 z-10 h-15 w-15 rounded-full shadow-lg sm:hidden"
       >
         <img src="/icon/pencil.svg" alt="" className="mx-auto h-6 w-6" />
       </button>

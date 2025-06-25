@@ -3,17 +3,17 @@ import { useEffect, useState } from 'react'
 
 interface Donor {
   id: number
-  name: string
-  donationDate: string // yyyy-mm-dd
-  gender: '남' | '여'
-  age: number
-  donorSeq: number
+  donorName: string
+  donateDate: string // yyyy-mm-dd
+  genderFlag: 'M' | 'F'
+  donateAge: number
+  donateSeq: number
 }
 
 interface Props {
   isOpen: boolean
   onClose: () => void
-  onSelect: (donor: Donor) => void
+  onSelect: (donor: Donor, name: string) => void
 }
 
 const formatDate = (dateStr: string) => {
@@ -35,9 +35,17 @@ const DonorSearchModal = ({ isOpen, onClose, onSelect }: Props) => {
 
     setLoading(true)
     try {
-      const res = await fetch(`/heavenLetters/donorSearch?${params.toString()}`)
+      const res = await fetch(`/api/heavenLetters/donorSearch?${params.toString()}`)
       const data = await res.json()
-      setResults(data)
+      const parsed = data.content.map((item: Donor) => ({
+        id: item.donateSeq,
+        donateSeq: item.donateSeq,
+        donorName: item.donorName,
+        donateDate: item.donateDate,
+        genderFlag: item.genderFlag === 'M' ? '남' : '여',
+        donateAge: item.donateAge,
+      }))
+      setResults(parsed)
     } catch (e) {
       console.error('검색 실패:', e)
       setResults([])
@@ -128,16 +136,15 @@ const DonorSearchModal = ({ isOpen, onClose, onSelect }: Props) => {
                     <tr
                       key={donor.id}
                       onClick={() => {
-                        setName(donor.name)
-                        onSelect(donor)
+                        onSelect(donor, name)
                         onClose()
                       }}
                       className="text-gray-95 hover:bg-gray-10 cursor-pointer text-[15px] font-bold"
                     >
-                      <td className="border-t px-4 py-2">{donor.name}</td>
-                      <td className="border-t px-4 py-2">{donor.donationDate}</td>
-                      <td className="border-t px-4 py-2">{donor.gender}</td>
-                      <td className="border-t px-4 py-2">{donor.age}</td>
+                      <td className="border-t px-4 py-2">{donor.donorName}</td>
+                      <td className="border-t px-4 py-2">{donor.donateDate}</td>
+                      <td className="border-t px-4 py-2">{donor.genderFlag}</td>
+                      <td className="border-t px-4 py-2">{donor.donateAge}</td>
                     </tr>
                   ))}
                 </tbody>

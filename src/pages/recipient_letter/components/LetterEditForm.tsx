@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Turnstile from 'react-cloudflare-turnstile'
 import { useState } from 'react'
 
@@ -46,9 +46,13 @@ interface payload {
   letterFont: number
   organCode: string
   recipientYear: number
+  letterSeq: number
 }
 
 const LetterForm = () => {
+  const { state } = useLocation()
+  const letter = state?.letterData
+
   const [recipientYear, setRecipientYear] = useState(0)
   const [organ, setOrgan] = useState('')
   const [title, setTitle] = useState('')
@@ -106,17 +110,18 @@ const LetterForm = () => {
       letterPaper: selectedPaper,
       letterFont: selectedFont,
       recipientYear,
+      letterSeq: letter.letterSeq,
     }
 
-    fetch('/api/recipientLetters', {
-      method: 'POST',
+    fetch(`/api/recipientLetters/${letter.letterSeq}`, {
+      method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     })
       .then((res) => res.json())
       .then(() => {
-        alert('편지가 등록되었습니다.')
-        navigate('/remembrance/recipient')
+        alert('편지가 수정되었습니다.')
+        navigate(`/remembrance/recipient/${letter.letterSeq}`)
       })
       .catch(() => alert('오류가 발생했습니다.'))
   }
@@ -355,7 +360,7 @@ const LetterForm = () => {
           className="bg-red-40 flex items-center gap-2 rounded-[100px] px-[18px] py-2 text-white hover:bg-red-50"
         >
           <img src="/icon/document-check.svg" alt="" className="h-5 w-5" />
-          편지 보내기
+          편지 수정하기
         </button>
       </div>
     </form>

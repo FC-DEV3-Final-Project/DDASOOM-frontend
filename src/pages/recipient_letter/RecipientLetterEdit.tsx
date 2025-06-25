@@ -1,43 +1,8 @@
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
 import WarningBanner from '@/shared/components/WarningBanner'
-import Letter from '@/pages/recipient_letter/components/Letter'
 import BackToListButton from '@/shared/components/BackToListButton'
-import CommentContainer from '@/pages/recipient_letter/components/CommentContainer'
+import LetterEditForm from '@/pages/recipient_letter/components/LetterEditForm'
 
-interface Letter {
-  letterTitle: string
-  letterContents: string
-  writeTime: string
-  organCode: string
-  readCount: number
-  letterWriter: string
-  letterSeq: number
-  letterFont: number
-  letterPaper: number
-  comments: {
-    commentWriter: string
-    commentPasscode: string
-    contents: string
-    writeTime: string
-    commentSeq: number
-  }[]
-}
-
-const RecipientLetterDetail = () => {
-  const { letterSeq } = useParams<{ letterSeq: string }>()
-  const [letterInfo, setLetterInfo] = useState<Letter | null>(null)
-
-  const fetchLetter = async () => {
-    const res = await fetch(`/api/recipientLetters/${letterSeq}`)
-    const data = await res.json()
-    setLetterInfo(data)
-  }
-
-  useEffect(() => {
-    fetchLetter()
-  }, [letterSeq])
-
+const HeavenLetterEdit = () => {
   return (
     <>
       <BackToListButton to="/remembrance/recipient" label="수혜자 편지" />
@@ -59,16 +24,9 @@ const RecipientLetterDetail = () => {
             </>,
           ]}
         />
-        {letterInfo && <Letter item={letterInfo} />}
-        {letterInfo && (
-          <CommentContainer
-            letterSeq={letterInfo.letterSeq}
-            comments={letterInfo.comments}
-            onAddComment={fetchLetter}
-          />
-        )}
+        <LetterEditForm />
       </section>
     </>
   )
 }
-export default RecipientLetterDetail
+export default HeavenLetterEdit
