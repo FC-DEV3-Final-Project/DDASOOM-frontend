@@ -94,11 +94,11 @@ const HeavenLetterDetail = () => {
             </>,
           ]}
         />
-        {dummyItem && <Letter item={dummyItem} />}
-        {dummyItem && (
+        {letterInfo && <Letter item={letterInfo} />}
+        {letterInfo && (
           <CommentContainer
-            letterSeq={dummyItem.letterSeq}
-            comments={dummyItem.comments}
+            letterSeq={letterInfo.letterSeq}
+            comments={letterInfo.comments}
             onAddComment={fetchLetter}
           />
         )}

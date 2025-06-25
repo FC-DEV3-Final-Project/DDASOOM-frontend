@@ -15,6 +15,7 @@ import HeavenLetterEdit from '@/pages/heaven_letter/HeavenLetterEdit'
 import StoryLetter from '@/pages/story'
 import StoryLetterDetail from '@/pages/story/StoryLetterDetail'
 import RecipientLetterEdit from '@/pages/recipient_letter/RecipientLetterEdit'
+import RemembranceDetailPage from '@/pages/RemembranceDetail/index'
 
 const routes = [
   {
@@ -30,6 +31,7 @@ const routes = [
         children: [
           { index: true, element: <Navigate to="member" replace /> },
           { path: 'member', element: <RemembrancePage /> },
+          { path: ':donateSeq', element: <RemembranceDetailPage /> },
           {
             path: 'letter',
             children: [

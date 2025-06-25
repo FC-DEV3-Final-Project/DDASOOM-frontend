@@ -250,9 +250,13 @@ const LettersContainer = () => {
 
   return (
     <article className="flex flex-col gap-2 sm:gap-20">
-      <ContainerHeader totalLetters={20} handleSearch={handleSearchChange} />
-      <ContainerContent items={dummyStories} />
-      <Pagination totalPages={2} currentPage={1} onPageChange={handlePageChange} />
+      <ContainerHeader totalLetters={totalLetters} handleSearch={handleSearchChange} />
+      <ContainerContent items={letters} />
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
     </article>
   )
 }

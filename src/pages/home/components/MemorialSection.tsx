@@ -57,12 +57,12 @@ const MemorialSection: React.FC = () => {
         description="생명나눔을 실처하신 분들의 고귀한 뜻, 잊지 않겠습니다."
       />
       <div className="grid grid-cols-4 justify-items-center sm:hidden">
-        {dummydonors.slice(0, 4).map((donor, i) => {
+        {donors.slice(0, 4).map((donor, i) => {
           return <MemorialBadge key={i} donor={donor} variant="small" />
         })}
       </div>
       <div className="hidden grid-cols-5 justify-items-center gap-[18px] sm:grid">
-        {dummydonors.map((donor, i) => {
+        {donors.map((donor, i) => {
           return <MemorialBadge key={i} donor={donor} variant="large" />
         })}
       </div>

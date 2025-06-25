@@ -125,13 +125,13 @@ const HeavenLetter = () => {
         className="hidden sm:flex"
         focusedIndex={focusedIndex}
         cardCount={cardCount}
-        letters={dummyletters}
+        letters={letters}
       />
       <LetterCarousel
         className="sm:hidden"
         focusedIndex={focusedIndex}
         cardCount={cardCount}
-        letters={dummyletters}
+        letters={letters}
       />
     </section>
   )
