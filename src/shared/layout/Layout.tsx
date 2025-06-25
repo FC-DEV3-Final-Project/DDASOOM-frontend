@@ -2,11 +2,12 @@ import { Outlet } from 'react-router-dom'
 import Header from '@/shared/components/Header'
 import Footer from '@/shared/components/Footer'
 import NavigationBar from '@/shared/components/NavigationBar'
+import FloatingChat from '@/shared/components/FloatingChat'
 
 export default function Layout() {
   return (
     <>
-      <div className="fixed top-0 z-100 w-full">
+      <div className="fixed top-0 z-50 w-full">
         <Header />
         <NavigationBar />
       </div>
@@ -14,6 +15,7 @@ export default function Layout() {
         <Outlet />
       </main>
       <Footer />
+      <FloatingChat />
     </>
   )
 }

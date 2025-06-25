@@ -14,10 +14,34 @@ const cardWidth = 354 // 카드 하나의 가로 길이 (gap 포함해서 조정
 
 const LetterCarousel = ({ className, focusedIndex, cardCount, letters }: Props) => {
   const navigate = useNavigate()
-  // 카드 리스트를 left로 얼마나 이동할지 계산
-  const offsetX = useMemo(() => {
-    return -focusedIndex * cardWidth
-  }, [focusedIndex])
+  const isMobile = className?.includes('sm:hidden')
+  const offsetX = useMemo(() => -focusedIndex * cardWidth, [focusedIndex])
+
+  if (isMobile) {
+    return (
+      <div
+        className={cn(
+          'scrollbar-hide flex w-full snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth',
+          className,
+        )}
+      >
+        {letters.map((letter, i) => (
+          <div key={i} className="shrink-0 snap-center">
+            <LetterCard
+              key={i}
+              isFocused={true}
+              letter={letter}
+              onClick={() => {
+                navigate(`/remembrance/letter/${letter.letterSeq}`)
+              }}
+            />
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  // 데스크탑 기존 슬라이드 방식 유지
 
   return (
     <section className={cn('relative w-full overflow-hidden', className)}>
@@ -39,10 +63,8 @@ const LetterCarousel = ({ className, focusedIndex, cardCount, letters }: Props) 
           />
         ))}
       </div>
-
       <div className="pointer-events-none absolute top-0 right-0 h-full w-32 bg-gradient-to-l from-white to-transparent" />
     </section>
   )
 }
-
 export default LetterCarousel

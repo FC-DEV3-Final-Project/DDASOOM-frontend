@@ -11,6 +11,7 @@ import HeavenLetterDetail from '@/pages/heaven_letter/HeavenLetterDetail'
 import HeavenLetterWrite from '@/pages/heaven_letter/HeavenLetterWrite'
 import RecipientLetterDetail from '@/pages/recipient_letter/RecipientLetterDetail'
 import RecipientLetterWrite from '@/pages/recipient_letter/RecipientLetterWrite'
+import HeavenLetterEdit from '@/pages/heaven_letter/HeavenLetterEdit'
 
 const routes = [
   {
@@ -30,16 +31,18 @@ const routes = [
             path: 'letter',
             children: [
               { index: true, element: <HeavenLetter /> },
-              { path: ':letterId', element: <HeavenLetterDetail /> },
+              { path: ':letterSeq', element: <HeavenLetterDetail /> },
               { path: 'write', element: <HeavenLetterWrite /> },
+              { path: ':letterSeq/edit', element: <HeavenLetterEdit /> },
             ],
           },
           {
             path: 'recipient',
             children: [
               { index: true, element: <RecipientLetter /> },
-              { path: ':letterId', element: <RecipientLetterDetail /> },
+              { path: ':letterSeq', element: <RecipientLetterDetail /> },
               { path: 'write', element: <RecipientLetterWrite /> },
+              { path: ':letterSeq/edit', element: <HeavenLetterEdit /> },
             ],
           },
           { path: 'story', element: <TempPage title="기증 후 스토리" /> },
