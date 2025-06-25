@@ -12,6 +12,21 @@ const formatDateKorean = (date: Date) => {
   return `${year}년 ${month}월 ${day}일(주간) 기준`
 }
 
+const convertDate = (isoString: string) => {
+  const date = new Date(isoString)
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  return `${year}.${month}.${day}`
+}
+
+const formatDate = (date: Date) => {
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  return `${year}.${month}.${day}`
+}
+
 const getCurrentWeekDates = () => {
   const today = new Date()
   const currentDay = today.getDay()
@@ -25,4 +40,4 @@ const getCurrentWeekDates = () => {
   })
 }
 
-export { getWeekMondayFrom, formatDateKorean, getCurrentWeekDates }
+export { getWeekMondayFrom, formatDateKorean, getCurrentWeekDates, formatDate, convertDate }
