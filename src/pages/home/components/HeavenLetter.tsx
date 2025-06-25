@@ -1,6 +1,68 @@
 import { useEffect, useState } from 'react'
 import LetterCarousel from '@/pages/home/components/LetterCarousel'
 import CarouselButton from '@/shared/components/CarouselButton'
+const dummyletters: Letter[] = [
+  {
+    donorName: '김하늘',
+    letterSeq: 1,
+    letterTitle: '당신의 따뜻한 마음에 감사합니다',
+    letterWriter: '이수민',
+  },
+  {
+    donorName: '박정우',
+    letterSeq: 2,
+    letterTitle: '그대의 삶을 기억하며',
+    letterWriter: '정지혜',
+  },
+  {
+    donorName: '최민수',
+    letterSeq: 3,
+    letterTitle: '고마운 마음을 담아',
+    letterWriter: '김민아',
+  },
+  {
+    donorName: '윤서준',
+    letterSeq: 4,
+    letterTitle: '그대의 숭고한 선택에',
+    letterWriter: '홍지수',
+  },
+  {
+    donorName: '조하늘',
+    letterSeq: 5,
+    letterTitle: '생명을 나눈 당신께',
+    letterWriter: '오세훈',
+  },
+  {
+    donorName: '이소정',
+    letterSeq: 6,
+    letterTitle: '당신을 기억합니다',
+    letterWriter: '배지원',
+  },
+  {
+    donorName: '정민수',
+    letterSeq: 7,
+    letterTitle: '그대를 향한 감사의 글',
+    letterWriter: '박채영',
+  },
+  {
+    donorName: '한지호',
+    letterSeq: 8,
+    letterTitle: '희망을 전해주셔서 감사합니다',
+    letterWriter: '서예진',
+  },
+  {
+    donorName: '강유진',
+    letterSeq: 9,
+    letterTitle: '따뜻한 나눔, 깊은 감동',
+    letterWriter: '이도윤',
+  },
+  {
+    donorName: '백지훈',
+    letterSeq: 10,
+    letterTitle: '빛나는 이름을 기억하며',
+    letterWriter: '김가은',
+  },
+]
 
 interface Letter {
   donorName: string
@@ -63,13 +125,13 @@ const HeavenLetter = () => {
         className="hidden sm:flex"
         focusedIndex={focusedIndex}
         cardCount={cardCount}
-        letters={letters}
+        letters={dummyletters}
       />
       <LetterCarousel
         className="sm:hidden"
         focusedIndex={focusedIndex}
         cardCount={cardCount}
-        letters={letters}
+        letters={dummyletters}
       />
     </section>
   )

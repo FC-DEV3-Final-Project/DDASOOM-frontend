@@ -1,6 +1,33 @@
 import React, { useEffect, useState } from 'react'
 import SectionHeader from '@/pages/home/components/SectionHeader'
 import MemorialBadge from '@/shared/components/MemorialBadge'
+const dummydonors: Donor[] = [
+  {
+    donateName: '김하늘',
+    donateGender: '남',
+    donateAge: 45,
+  },
+  {
+    donateName: '이수민',
+    donateGender: '여',
+    donateAge: 32,
+  },
+  {
+    donateName: '박정우',
+    donateGender: '남',
+    donateAge: 28,
+  },
+  {
+    donateName: '정지혜',
+    donateGender: '여',
+    donateAge: 37,
+  },
+  {
+    donateName: '최민수',
+    donateGender: '남',
+    donateAge: 52,
+  },
+]
 
 interface Donor {
   donateName: string
@@ -30,12 +57,12 @@ const MemorialSection: React.FC = () => {
         description="생명나눔을 실처하신 분들의 고귀한 뜻, 잊지 않겠습니다."
       />
       <div className="grid grid-cols-4 justify-items-center sm:hidden">
-        {donors.slice(0, 4).map((donor, i) => {
+        {dummydonors.slice(0, 4).map((donor, i) => {
           return <MemorialBadge key={i} donor={donor} variant="small" />
         })}
       </div>
       <div className="hidden grid-cols-5 justify-items-center gap-[18px] sm:grid">
-        {donors.map((donor, i) => {
+        {dummydonors.map((donor, i) => {
           return <MemorialBadge key={i} donor={donor} variant="large" />
         })}
       </div>

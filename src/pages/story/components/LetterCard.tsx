@@ -38,10 +38,7 @@ const LetterCard = ({ item, onClick }: Props) => {
       </div>
       <div className="flex gap-5 text-[13px]">
         <div className="flex gap-[7px]">
-          <span>기증자</span> <span className="font-bold">{item.donorName}</span>
-        </div>
-        <div className="flex gap-[7px]">
-          <span>추모자</span> <span className="font-bold">{item.letterWriter}</span>
+          <span>코디네이터</span> <span className="font-bold">{item.letterWriter}</span>
         </div>
       </div>
       <div className="border-gray-20 text-gray-60 flex w-full justify-between border-t-1 pt-[16px] text-[13px]">
