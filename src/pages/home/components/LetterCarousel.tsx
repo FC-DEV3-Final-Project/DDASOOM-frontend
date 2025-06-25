@@ -26,7 +26,7 @@ const LetterCarousel = ({ className, focusedIndex, cardCount, letters }: Props) 
         )}
       >
         {letters.map((letter, i) => (
-          <div className="shrink-0 snap-center">
+          <div key={i} className="shrink-0 snap-center">
             <LetterCard
               key={i}
               isFocused={true}
