@@ -2,6 +2,29 @@
 @import '@krds-ui/core/dist/style.css' layer(base);
 /* @import 'tw-animate-css'; */
 
+@font-face {
+  font-family: 'Cafe24Oneprettynight';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cafe24Dongdong';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Dongdong.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'HakgyoansimGeurimilgiTTF-R';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimGeurimilgiTTF-R.woff2')
+    format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @theme {
   --breakpoint-mobile: 0px;
   --breakpoint-desktop: 430px;
@@ -77,6 +100,7 @@
   --color-point-100: #000000;
 
   /* Red */
+  --color-red-5: #fef5f5;
   --color-red-10: #fcdad9;
   --color-red-20: #f8abaa;
   --color-red-30: #f57c7b;

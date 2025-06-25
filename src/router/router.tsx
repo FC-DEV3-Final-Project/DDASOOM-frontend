@@ -6,6 +6,10 @@ import TempPage from '@/pages/TempPage/TempPage'
 import NotFoundPage from '@/pages/NotFoundPage/NotFoundPage'
 import HomePage from '@/pages/home/index'
 import RemembrancePage from '@/pages/Remembrance/index'
+import HeavenLetter from '@/pages/heaven_letter'
+import LetterDetail from '@/pages/heaven_letter/LetterDetail'
+import LetterWrite from '@/pages/heaven_letter/LetterWrite'
+import LetterEditForm from '@/pages/heaven_letter/components/LetterEditForm'
 
 const routes = [
   {
@@ -21,7 +25,15 @@ const routes = [
         children: [
           { index: true, element: <Navigate to="member" replace /> },
           { path: 'member', element: <RemembrancePage /> },
-          { path: 'letter', element: <TempPage title="하늘나라 편지" /> },
+          {
+            path: 'letter',
+            children: [
+              { index: true, element: <HeavenLetter /> },
+              { path: ':letterSeq', element: <LetterDetail /> },
+              { path: ':letterSeq/edit', element: <LetterEditForm /> },
+              { path: 'write', element: <LetterWrite /> },
+            ],
+          },
           { path: 'recipient', element: <TempPage title="수혜자 편지" /> },
           { path: 'story', element: <TempPage title="기증 후 스토리" /> },
         ],

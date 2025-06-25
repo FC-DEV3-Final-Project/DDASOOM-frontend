@@ -10,7 +10,7 @@ const FloatingChat = () => {
       <button
         onClick={() => setIsOpen((prev) => !prev)}
         aria-label={isOpen ? '채팅 닫기' : '채팅 열기'}
-        className="bg-red-40 fixed right-10 bottom-10 z-50 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg transition hover:scale-105"
+        className="bg-red-40 fixed right-5 bottom-5 z-50 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg transition hover:scale-105 sm:right-10 sm:bottom-10"
       >
         {isOpen ? (
           // 닫기 아이콘
@@ -36,9 +36,9 @@ const FloatingChat = () => {
 
       {/* 챗봇 패널 */}
       <div
-        className={`bg-gray-5 fixed right-10 bottom-28 z-40 max-w-full rounded-2xl shadow-xl transition-all duration-500 ease-in-out ${isOpen ? 'scale-100 opacity-100' : 'pointer-events-none scale-0 opacity-0'} origin-bottom-right`}
+        className={`bg-gray-5 fixed right-0 bottom-0 z-50 max-w-full rounded-2xl shadow-xl transition-all duration-500 ease-in-out sm:right-10 sm:bottom-28 ${isOpen ? 'scale-100 opacity-100' : 'pointer-events-none scale-0 opacity-0'} origin-bottom-right`}
       >
-        <ChatBot />
+        <ChatBot setIsOpen={setIsOpen} />
       </div>
     </>
   )

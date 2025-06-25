@@ -1,9 +1,6 @@
-import { createRoot } from 'react-dom/client'
-import { StrictMode } from 'react'
-import App from '@/App.tsx'
+import ReactDOM from 'react-dom/client'
+import { RouterProvider } from 'react-router-dom'
+import router from '@/router/router' // createBrowserRouter로 만든 라우터
 import '@/shared/styles/globals.css'
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+
+ReactDOM.createRoot(document.getElementById('root')!).render(<RouterProvider router={router} />)
