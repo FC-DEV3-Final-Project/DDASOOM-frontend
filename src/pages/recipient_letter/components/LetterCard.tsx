@@ -3,7 +3,7 @@ import { convertDate } from '@/shared/utils/timeUtils'
 interface Props {
   item: {
     letterSeq: number
-    letterTitle: string
+    storyTitle: string
     letterWriter: string
     readCount: number
     writeTime: string
@@ -32,7 +32,7 @@ const LetterCard = ({ item, onClick }: Props) => {
           <p className="text-red-40 text-[13px]">{item.letterSeq}번째 편지</p>
         </div>
         <h3 className="text-gray-80 overflow-hidden text-[17px] font-bold text-ellipsis whitespace-nowrap">
-          {item.letterTitle}
+          {item.storyTitle}
         </h3>
       </div>
       <div className="flex gap-5 text-[13px]">

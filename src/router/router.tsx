@@ -11,9 +11,10 @@ import HeavenLetterDetail from '@/pages/heaven_letter/HeavenLetterDetail'
 import HeavenLetterWrite from '@/pages/heaven_letter/HeavenLetterWrite'
 import RecipientLetterDetail from '@/pages/recipient_letter/RecipientLetterDetail'
 import RecipientLetterWrite from '@/pages/recipient_letter/RecipientLetterWrite'
+import HeavenLetterEdit from '@/pages/heaven_letter/HeavenLetterEdit'
 import StoryLetter from '@/pages/story'
 import StoryLetterDetail from '@/pages/story/StoryLetterDetail'
-import HeavenLetterEdit from '@/pages/heaven_letter/HeavenLetterEdit'
+import RecipientLetterEdit from '@/pages/recipient_letter/RecipientLetterEdit'
 
 const routes = [
   {
@@ -44,14 +45,14 @@ const routes = [
               { index: true, element: <RecipientLetter /> },
               { path: ':letterSeq', element: <RecipientLetterDetail /> },
               { path: 'write', element: <RecipientLetterWrite /> },
-              { path: ':letterSeq/edit', element: <HeavenLetterEdit /> },
+              { path: ':letterSeq/edit', element: <RecipientLetterEdit /> },
             ],
           },
           {
             path: 'story',
             children: [
               { index: true, element: <StoryLetter /> },
-              { path: ':letterId', element: <StoryLetterDetail /> },
+              { path: ':storySeq', element: <StoryLetterDetail /> },
             ],
           },
         ],

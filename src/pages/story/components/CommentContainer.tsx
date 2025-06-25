@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { formatDate } from '@/shared/utils/timeUtils'
+import { convertDate } from '@/shared/utils/timeUtils'
 import EditCommentModal from '@/pages/heaven_letter/components/EditCommentModal'
 import DeleteConfirmModal from '@/pages/heaven_letter/components/DeleteConfirmModal'
 
@@ -13,11 +13,11 @@ interface Comment {
 
 interface Props {
   comments: Comment[]
-  letterSeq: number
+  storySeq: number
   onAddComment?: () => void
 }
 
-const CommentContainer = ({ comments, letterSeq, onAddComment }: Props) => {
+const CommentContainer = ({ comments, storySeq, onAddComment }: Props) => {
   const [deleteTarget, setDeleteTarget] = useState<Comment | null>(null)
   const [deletePassword, setDeletePassword] = useState('')
   const [showDeleteModal, setShowDeleteModal] = useState(false)
@@ -59,11 +59,11 @@ const CommentContainer = ({ comments, letterSeq, onAddComment }: Props) => {
       commentWriter: name,
       commentPasscode: passcode,
       contents: commentText,
-      letterSeq,
+      storySeq,
     }
 
     try {
-      const res = await fetch(`/api/donationLetters/${letterSeq}/comments`, {
+      const res = await fetch(`/api/heavenLetters/${storySeq}/comments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -83,14 +83,14 @@ const CommentContainer = ({ comments, letterSeq, onAddComment }: Props) => {
   return (
     <div>
       <div className="mb-5">
-        <h3>
-          <span className="mr-1 text-[24px] font-bold">댓글</span>
-          <span className="text-red-40 text-[24px] font-bold">{comments.length}</span>
+        <h3 className="text-[17px] font-bold sm:text-[24px]">
+          <span className="mr-1">댓글</span>
+          <span className="text-red-40">{comments.length}</span>
         </h3>
       </div>
 
       {/* 안내 */}
-      <div className="bg-red-5 text-gray-80 flex w-full items-center gap-4 rounded-[20px] p-4">
+      <div className="bg-red-5 text-gray-80 flex w-full items-center gap-4 rounded-[20px] p-4 text-[13px] sm:text-[19px]">
         <img src="/icon/system-info.svg" alt="" />
         <p>기증자에 대한 추모 분위기를 해치거나 비방의 글은 관리자에 의해 삭제될 수 있습니다.</p>
       </div>
@@ -98,17 +98,17 @@ const CommentContainer = ({ comments, letterSeq, onAddComment }: Props) => {
       {/* 댓글 작성 */}
       <form className="mt-5" onSubmit={handleSubmit}>
         {/* 이름, 비밀번호 */}
-        <div className="flex gap-[60px]">
+        <div className="flex flex-col gap-2 sm:flex-row sm:gap-[60px]">
           {/* 이름 */}
-          <label className="flex gap-[14px]">
-            <h3 className="text-[19px] font-bold">이름</h3>
+          <label className="flex justify-between gap-[14px]">
+            <h3 className="text-[15px] font-bold sm:text-[19px]">이름</h3>
             <div className="flex flex-col gap-1">
               <input
                 placeholder="이름을 입력해주세요"
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="border-gray-20 h-10 w-[240px] rounded-[100px] border p-2 pl-[14px]"
+                className="border-gray-20 h-10 w-[240px] rounded-[100px] border p-2 pl-[14px] text-[15px]"
               />
               <span className="text-red-40 px-[14px] text-[13px] font-normal">
                 (한글/영문 최대 10글자)
@@ -116,15 +116,15 @@ const CommentContainer = ({ comments, letterSeq, onAddComment }: Props) => {
             </div>
           </label>
           {/* 비밀번호 */}
-          <label className="flex gap-[14px]">
-            <h3 className="text-[19px] font-bold">비밀번호</h3>
+          <label className="flex justify-between gap-[14px]">
+            <h3 className="text-[15px] font-bold sm:text-[19px]">비밀번호</h3>
             <div className="flex flex-col gap-1">
               <input
                 placeholder="비밀번호를 입력해주세요"
                 type="password"
                 value={passcode}
                 onChange={(e) => setPasscode(e.target.value)}
-                className="border-gray-20 h-10 w-[240px] rounded-[100px] border p-2 pl-[14px]"
+                className="border-gray-20 h-10 w-[240px] rounded-[100px] border p-2 pl-[14px] text-[15px]"
               />
               <span className="text-red-40 px-[14px] text-[13px] font-normal">
                 (영문+숫자 최소 8자 이상)
@@ -155,14 +155,14 @@ const CommentContainer = ({ comments, letterSeq, onAddComment }: Props) => {
       </form>
 
       {/* 댓글 리스트 */}
-      <ul className="mt-[60px] flex flex-col gap-6">
+      <ul className="mt-10 flex flex-col gap-6 sm:mt-[60px]">
         {comments.map((comment, idx) => (
           <li key={idx} className="flex items-end gap-3">
             <span className="bg-gray-5 text-gray-95 border-gray-10 rounded-[20px] rounded-tl-[4px] px-6 py-5 text-[15px]">
               {comment.contents}
             </span>
             <div className="flex items-end gap-2">
-              <span className="text-gray-60 text-[13px]">{formatDate(comment.writeTime)}</span>
+              <span className="text-gray-60 text-[13px]">{convertDate(comment.writeTime)}</span>
               <span
                 onClick={() => {
                   setEditTarget(comment)
@@ -195,13 +195,13 @@ const CommentContainer = ({ comments, letterSeq, onAddComment }: Props) => {
           onCancel={() => setShowDeleteModal(false)}
           onConfirm={async () => {
             const res = await fetch(
-              `/api/donationLetters/${letterSeq}/comments/${deleteTarget.commentSeq}`,
+              `/api/heavenLetters/${storySeq}/comments/${deleteTarget.commentSeq}`,
               {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                   commentPasscode: deletePassword,
-                  letterSeq: letterSeq,
+                  storySeq: storySeq,
                   commentSeq: deleteTarget.commentSeq,
                 }),
               },
@@ -228,7 +228,7 @@ const CommentContainer = ({ comments, letterSeq, onAddComment }: Props) => {
           onCancel={() => setShowEditModal(false)}
           onConfirm={async () => {
             const res = await fetch(
-              `/api/donationLetters/${letterSeq}/comments/${editTarget.commentSeq}`,
+              `/api/heavenLetters/${storySeq}/comments/${editTarget.commentSeq}`,
               {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
@@ -237,7 +237,7 @@ const CommentContainer = ({ comments, letterSeq, onAddComment }: Props) => {
                   commentPasscode: editPassword,
                   commentWriter: editTarget.commentWriter,
                   commentSeq: editTarget.commentSeq,
-                  letterSeq: letterSeq,
+                  storySeq: storySeq,
                 }),
               },
             )

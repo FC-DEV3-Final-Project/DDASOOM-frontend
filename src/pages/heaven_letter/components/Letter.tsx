@@ -107,9 +107,17 @@ const Letter = ({ item }: Props) => {
     <>
       <div>
         <div
-          className="relative mt-15 mb-10 bg-cover bg-right bg-no-repeat shadow-md sm:mt-30 sm:mb-[60px] sm:h-[800px] sm:w-[960px] sm:bg-contain"
+          className="relative mt-15 mb-10 bg-cover bg-bottom bg-no-repeat shadow-[0_0_10px_rgba(0,0,0,0.25)] sm:mt-30 sm:mb-[60px] sm:w-[960px] sm:bg-contain"
           style={{
             backgroundImage: `url(/letter-paper/${paperImages[item.letterPaper || 0]})`,
+            backgroundColor:
+              item.letterPaper === 1
+                ? '#EEE0DF'
+                : item.letterPaper === 2
+                  ? '#BFCE7E'
+                  : item.letterPaper === 3
+                    ? '#B8CEE5'
+                    : 'transparent',
           }}
         >
           <img
@@ -119,7 +127,7 @@ const Letter = ({ item }: Props) => {
           />
 
           <div className="flex h-full flex-col gap-10 px-5 py-10 sm:px-20 sm:py-25">
-            <div className="flex flex-col gap-6 sm:mb-[60px]">
+            <div className="flex flex-col gap-6">
               <div className="text-[19px] font-bold">{convertDate(item.writeTime)}</div>
               <div className="text-gray-80 flex flex-col gap-5 text-[15px] sm:flex-row sm:gap-[60px]">
                 <span>

@@ -2,7 +2,7 @@ import WarningBanner from '@/shared/components/WarningBanner'
 import BackToListButton from '@/shared/components/BackToListButton'
 import LetterEditForm from '@/pages/recipient_letter/components/LetterEditForm'
 
-const HeavenLetterEdit = () => {
+const RecipientLetterEdit = () => {
   return (
     <>
       <BackToListButton to="/remembrance/recipient" label="수혜자 편지" />
@@ -29,4 +29,4 @@ const HeavenLetterEdit = () => {
     </>
   )
 }
-export default HeavenLetterEdit
+export default RecipientLetterEdit

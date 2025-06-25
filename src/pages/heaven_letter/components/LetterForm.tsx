@@ -106,12 +106,19 @@ const LetterForm = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     })
-      .then((res) => res.json())
-      .then(() => {
+      .then(async (res) => {
+        const data = await res.json()
+        if (!res.ok) {
+          throw new Error(data.message || '서버 오류가 발생했습니다.')
+        }
+
         alert('편지가 등록되었습니다.')
         navigate('/remembrance/letter')
       })
-      .catch(() => alert('오류가 발생했습니다.'))
+      .catch((err) => {
+        console.error('❌ 편지 등록 실패:', err)
+        alert(err.message || '오류가 발생했습니다.')
+      })
   }
 
   const handleDonorSelect = (donor: { id: number; donateSeq: number }, name: string) => {
@@ -263,7 +270,7 @@ const LetterForm = () => {
 
       {/* 편지지 */}
       <div
-        className="relative mt-15 mb-10 bg-cover bg-right bg-no-repeat shadow-md sm:mt-30 sm:mb-[60px] sm:h-[800px] sm:w-[960px] sm:bg-contain"
+        className="relative mt-15 mb-10 bg-cover bg-right bg-no-repeat shadow-[0_0_10px_rgba(0,0,0,0.25)] sm:mt-30 sm:mb-[60px] sm:h-[800px] sm:w-[960px] sm:bg-contain"
         style={{
           backgroundImage: `url(/letter-paper/${paperImages[selectedPaper]})`,
         }}
@@ -368,7 +375,7 @@ const LetterForm = () => {
           </div>
           <div className="mt-5 flex sm:mt-3 sm:justify-end">
             <Turnstile
-              turnstileSiteKey="1x00000000000000000000AA"
+              turnstileSiteKey="0x4AAAAAABh7p6RM-c7LcvIz"
               callback={(token: string) => setCaptchaToken(token)}
               theme="light"
               size="normal"

@@ -113,12 +113,19 @@ const LetterForm = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     })
-      .then((res) => res.json())
-      .then(() => {
+      .then(async (res) => {
+        const data = await res.json()
+        if (!res.ok) {
+          throw new Error(data.message || '서버 오류가 발생했습니다.')
+        }
+
         alert('편지가 등록되었습니다.')
         navigate('/remembrance/recipient')
       })
-      .catch(() => alert('오류가 발생했습니다.'))
+      .catch((err) => {
+        console.error('❌ 편지 등록 실패:', err)
+        alert(err.message || '오류가 발생했습니다.')
+      })
   }
 
   return (
@@ -228,7 +235,7 @@ const LetterForm = () => {
       </div>
       {/* 편지지 */}
       <div
-        className="relative mt-15 mb-10 bg-cover bg-right bg-no-repeat shadow-md sm:mt-30 sm:mb-[60px] sm:h-[800px] sm:w-[960px] sm:bg-contain"
+        className="relative mt-15 mb-10 bg-cover bg-right bg-no-repeat shadow-[0_0_10px_rgba(0,0,0,0.25)] sm:mt-30 sm:mb-[60px] sm:h-[800px] sm:w-[960px] sm:bg-contain"
         style={{
           backgroundImage: `url(/letter-paper/${paperImages[selectedPaper]})`,
         }}

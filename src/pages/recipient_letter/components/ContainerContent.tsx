@@ -3,7 +3,7 @@ import LetterCard from '@/pages/recipient_letter/components/LetterCard'
 
 interface LetterCardItem {
   letterSeq: number
-  letterTitle: string
+  storyTitle: string
   letterWriter: string
   readCount: number
   writeTime: string

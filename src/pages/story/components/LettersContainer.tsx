@@ -6,7 +6,8 @@ import Pagination from '@/shared/components/Pagination'
 export type Field = '전체' | '제목' | '내용'
 
 interface Letter {
-  letterSeq: number
+  donorName: string
+  storySeq: number
   letterTitle: string
   letterWriter: string
   readCount: number

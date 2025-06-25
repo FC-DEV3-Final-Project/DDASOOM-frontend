@@ -1,8 +1,9 @@
-import { formatDate } from '@/shared/utils/timeUtils'
+import { convertDate } from '@/shared/utils/timeUtils'
 
 interface Props {
   item: {
-    letterSeq: number
+    donorName: string
+    storySeq: number
     letterTitle: string
     letterWriter: string
     readCount: number
@@ -13,7 +14,7 @@ interface Props {
 }
 
 const LetterCard = ({ item, onClick }: Props) => {
-  const writeTime = formatDate(item.writeTime)
+  const writeTime = convertDate(item.writeTime)
   return (
     <div
       className="border-red-20 flex cursor-pointer flex-col gap-[16px] rounded-[20px] border p-8"
@@ -29,13 +30,16 @@ const LetterCard = ({ item, onClick }: Props) => {
       <div>
         <div className="mb-[6px] flex items-center gap-[6px]">
           <img src="/icon/mail.svg" alt="" className="h-[20px] w-[20px]" />
-          <p className="text-red-40 text-[13px]">{item.letterSeq}번째 편지</p>
+          <p className="text-red-40 text-[13px]">{item.storySeq}번째 편지</p>
         </div>
         <h3 className="text-gray-80 overflow-hidden text-[17px] font-bold text-ellipsis whitespace-nowrap">
           {item.letterTitle}
         </h3>
       </div>
       <div className="flex gap-5 text-[13px]">
+        <div className="flex gap-[7px]">
+          <span>기증자</span> <span className="font-bold">{item.donorName}</span>
+        </div>
         <div className="flex gap-[7px]">
           <span>추모자</span> <span className="font-bold">{item.letterWriter}</span>
         </div>

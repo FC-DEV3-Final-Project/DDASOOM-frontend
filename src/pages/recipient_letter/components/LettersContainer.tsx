@@ -7,7 +7,7 @@ export type Field = '전체' | '제목' | '내용'
 
 interface Letter {
   letterSeq: number
-  letterTitle: string
+  storyTitle: string
   letterWriter: string
   readCount: number
   writeTime: string
