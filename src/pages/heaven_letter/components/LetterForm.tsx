@@ -1,13 +1,7 @@
 import { useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import Turnstile from 'react-cloudflare-turnstile'
 import DonorSearchModal from '@/pages/heaven_letter/components/DonorSearchModal'
-
-declare global {
-  interface Window {
-    onTurnstileCallback?: (token: string) => void
-    turnstileWidgetId?: string
-  }
-}
 
 const FONT_OPTIONS = [
   { index: 0, label: 'Cafe24 고운밤', value: 'Cafe24Oneprettynight' },
@@ -28,6 +22,20 @@ const paperImages: Record<string, string> = {
   3: 'letter-paper2.png',
 }
 
+interface DonationLetterPayload {
+  areaCode: string
+  letterWriter: string
+  letterTitle: string
+  letterContents: string
+  captchaToken: string
+  anonymityFlag: 'Y' | 'N'
+  letterPasscode: string
+  donorName: string
+  donateSeq: number
+  letterPaper: number
+  letterFont: number
+}
+
 const LetterForm = () => {
   const [title, setTitle] = useState('')
   const [contents, setContents] = useState('')
@@ -40,6 +48,8 @@ const LetterForm = () => {
   const [isModalOpen, setModalOpen] = useState(false)
   const [donorName, setDonorName] = useState('')
   const [donorSeq, setDonorSeq] = useState<number>(0)
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null)
+
   const navigate = useNavigate()
 
   const validateForm = () => {
@@ -64,64 +74,26 @@ const LetterForm = () => {
     return errors
   }
 
-  interface DonationLetterPayload {
-    areaCode: string
-    letterWriter: string
-    letterTitle: string
-    letterContents: string
-    captchaToken: string
-    anonymityFlag: 'Y' | 'N'
-    letterPasscode: string
-    donorName: string
-    donateSeq: number
-    letterPaper: number
-    letterFont: number
-  }
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
-  useEffect(() => {
-    const script = document.createElement('script')
-    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js'
-    script.async = true
-    script.onload = () => {
-      window.turnstileWidgetId = window.turnstile?.render('#turnstile-widget', {
-        sitekey: '1x00000000000000000000AA', // 실제 key로 교체
-        callback: (token: string) => {
-          if (isSubmitting) submitLetter(token)
-        },
-        theme: 'light',
-        size: 'compact',
-        mode: 'test',
-      })
-    }
-    document.body.appendChild(script)
-  }, [isSubmitting])
-
-  const executeTurnstile = () => {
-    if (window.turnstile && window.turnstileWidgetId) {
-      window.turnstile.execute(window.turnstileWidgetId)
-    } else {
-      alert('Turnstile 위젯이 아직 초기화되지 않았습니다.')
-    }
-  }
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const errors = validateForm()
-    if (errors.length > 0) return alert(errors.join('\n'))
+    if (errors.length > 0) {
+      alert(errors.join('\n'))
+      return
+    }
 
-    setIsSubmitting(true)
-    executeTurnstile() // invisible 모드 시작
-  }
+    if (!captchaToken) {
+      alert('봇 방지 확인을 완료해주세요.')
+      return
+    }
 
-  const submitLetter = (token: string) => {
     const payload: DonationLetterPayload = {
       areaCode,
       letterWriter: writer,
       letterTitle: title,
       letterContents: contents,
       letterPasscode: passcode,
-      captchaToken: token,
+      captchaToken,
       anonymityFlag: isAnonymous ? 'Y' : 'N',
       donorName,
       donateSeq: donorSeq,
@@ -140,9 +112,6 @@ const LetterForm = () => {
         navigate('/remembrance/letter')
       })
       .catch(() => alert('오류가 발생했습니다.'))
-      .finally(() => {
-        setIsSubmitting(false)
-      })
   }
 
   const handleDonorSelect = (donor: { id: number; donateSeq: number }, name: string) => {
@@ -150,6 +119,7 @@ const LetterForm = () => {
     setDonorSeq(donor.donateSeq)
     setModalOpen(false)
   }
+
   return (
     <form onSubmit={handleSubmit}>
       {/* 권역 선택 */}
@@ -396,10 +366,17 @@ const LetterForm = () => {
               </button>
             ))}
           </div>
+          <div className="mt-5 flex sm:mt-3 sm:justify-end">
+            <Turnstile
+              turnstileSiteKey="1x00000000000000000000AA"
+              callback={(token: string) => setCaptchaToken(token)}
+              theme="light"
+              size="normal"
+            />
+          </div>
         </div>
       </div>
-      <div id="turnstile-widget" className="pointer-events-none opacity-0" />
-      <div className="flex justify-end gap-3 font-bold">
+      <div className="mt-10 flex justify-end gap-3 font-bold">
         <button
           type="button"
           onClick={() => {

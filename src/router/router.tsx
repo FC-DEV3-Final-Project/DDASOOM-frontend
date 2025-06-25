@@ -9,6 +9,7 @@ import RemembrancePage from '@/pages/Remembrance/index'
 import HeavenLetter from '@/pages/heaven_letter'
 import LetterDetail from '@/pages/heaven_letter/LetterDetail'
 import LetterWrite from '@/pages/heaven_letter/LetterWrite'
+import LetterEditForm from '@/pages/heaven_letter/components/LetterEditForm'
 
 const routes = [
   {
@@ -29,6 +30,7 @@ const routes = [
             children: [
               { index: true, element: <HeavenLetter /> },
               { path: ':letterSeq', element: <LetterDetail /> },
+              { path: ':letterSeq/edit', element: <LetterEditForm /> },
               { path: 'write', element: <LetterWrite /> },
             ],
           },

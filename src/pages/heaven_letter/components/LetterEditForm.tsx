@@ -30,6 +30,8 @@ const LetterEditForm = () => {
   const [contents, setContents] = useState(letter?.letterContents || '')
   const [selectedFont, setSelectedFont] = useState<0 | 1 | 2>(letter?.letterFont || 0)
   const [selectedPaper, setSelectedPaper] = useState(letter?.letterPaper || 0)
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null)
+  const [passcode, setPasscode] = useState('')
 
   const validateForm = () => {
     const errors: string[] = []
@@ -39,7 +41,9 @@ const LetterEditForm = () => {
     } else if (title.length > 50) {
       errors.push('제목은 최대 50자까지 입력할 수 있습니다.')
     }
-
+    if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(passcode)) {
+      errors.push('비밀번호는 영문+숫자 조합으로 8자 이상이어야 합니다.')
+    }
     return errors
   }
 
@@ -51,6 +55,13 @@ const LetterEditForm = () => {
       letterContents: contents,
       letterFont: selectedFont,
       letterPaper: selectedPaper,
+      captchaToken,
+      letterSeq: letter.letterSeq,
+      donorName: letter.donorName,
+      donateSeq: letter.donateSeq,
+      letterPasscode: passcode,
+      areaCode: letter.areaCode,
+      anonymityFlag: letter.anonymityFlag,
     }
 
     await fetch(`/api/heavenLetters/${letter.letterSeq}`, {
@@ -58,7 +69,7 @@ const LetterEditForm = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updated),
     })
-
+    alert('편지가 수정되었습니다.')
     navigate(`/remembrance/letter/${letter.letterSeq}`)
   }
 
@@ -167,8 +178,9 @@ const LetterEditForm = () => {
             <label>
               <input
                 type="password"
-                disabled
                 placeholder="새 비밀번호를 입력해주세요"
+                value={passcode}
+                onChange={(e) => setPasscode(e.target.value)}
                 className="border-gray-20 h-10 w-full rounded-[100px] border p-2 pl-[14px] focus:ring-2 focus:ring-red-500 focus:outline-none sm:w-[240px]"
               />
             </label>
@@ -290,13 +302,15 @@ const LetterEditForm = () => {
         <Turnstile
           turnstileSiteKey="1x00000000000000000000AA"
           callback={(token: string) => setCaptchaToken(token)}
+          theme="light"
+          size="normal"
         />
       </div>
       <div className="flex justify-end gap-3 font-bold">
         <button
           type="button"
           onClick={() => {
-            navigate('/remembrance/letter')
+            navigate(`/remembrance/letter/${letter.letterSeq}`)
           }}
           className="border-gray-40 text-gray-80 rounded-[100px] border-2 px-[18px] py-2"
         >
@@ -307,7 +321,7 @@ const LetterEditForm = () => {
           className="bg-red-40 flex items-center gap-2 rounded-[100px] px-[18px] py-2 text-white hover:bg-red-50"
         >
           <img src="/icon/document-check.svg" alt="" className="h-5 w-5" />
-          편지 보내기
+          편지 수정하기
         </button>
       </div>
     </form>

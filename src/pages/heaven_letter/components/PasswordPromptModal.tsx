@@ -3,9 +3,10 @@ import { useState } from 'react'
 interface Props {
   onConfirm: (inputPassword: string) => void
   onCancel: () => void
+  placeholder: string
 }
 
-const PasswordPromptModal = ({ onConfirm, onCancel }: Props) => {
+const PasswordPromptModal = ({ onConfirm, onCancel, placeholder }: Props) => {
   const [input, setInput] = useState('')
 
   return (
@@ -16,7 +17,7 @@ const PasswordPromptModal = ({ onConfirm, onCancel }: Props) => {
           type="password"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="댓글 비밀번호를 입력해주세요"
+          placeholder={placeholder}
           className="mb-4 w-full rounded border px-3 py-2"
         />
         <div className="flex justify-end gap-2">
