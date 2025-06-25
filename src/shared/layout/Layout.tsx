@@ -11,7 +11,7 @@ export default function Layout() {
         <Header />
         <NavigationBar />
       </div>
-      <main className="mt-10 mb-10 flex w-full flex-col items-center self-stretch sm:mt-33 sm:mb-25">
+      <main className="mt-10 mb-10 flex w-full flex-col items-center self-stretch sm:mt-34 sm:mb-25">
         <Outlet />
       </main>
       <Footer />

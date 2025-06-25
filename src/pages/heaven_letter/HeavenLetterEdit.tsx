@@ -1,44 +1,8 @@
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import LetterEditForm from '@/pages/heaven_letter/components/LetterEditForm'
 import WarningBanner from '@/shared/components/WarningBanner'
-import Letter from '@/pages/heaven_letter/components/Letter'
 import BackToListButton from '@/shared/components/BackToListButton'
-import CommentContainer from '@/pages/heaven_letter/components/CommentContainer'
 
-interface Letter {
-  letterTitle: string
-  letterContents: string
-  writeTime: string
-  areaCode: string
-  donorName: string
-  readCount: number
-  letterWriter: string
-  letterSeq: number
-  letterFont: number
-  letterPaper: number
-  comments: {
-    commentWriter: string
-    commentPasscode: string
-    contents: string
-    writeTime: string
-    commentSeq: number
-  }[]
-}
-
-const LetterDetail = () => {
-  const { letterSeq } = useParams<{ letterSeq: string }>()
-  const [letterInfo, setLetterInfo] = useState<Letter | null>(null)
-
-  const fetchLetter = async () => {
-    const res = await fetch(`/api/heavenLetters/${letterSeq}`)
-    const data = await res.json()
-    setLetterInfo(data)
-  }
-
-  useEffect(() => {
-    fetchLetter()
-  }, [letterSeq])
-
+const HeavenLetterEdit = () => {
   return (
     <>
       <BackToListButton to="/remembrance/letter" label="하늘나라 편지" />
@@ -66,16 +30,9 @@ const LetterDetail = () => {
             </>,
           ]}
         />
-        {letterInfo && <Letter item={letterInfo} />}
-        {letterInfo && (
-          <CommentContainer
-            letterSeq={letterInfo.letterSeq}
-            comments={letterInfo.comments}
-            onAddComment={fetchLetter}
-          />
-        )}
+        <LetterEditForm />
       </section>
     </>
   )
 }
-export default LetterDetail
+export default HeavenLetterEdit

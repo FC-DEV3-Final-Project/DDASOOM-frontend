@@ -1,15 +1,17 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { Navigate } from 'react-router-dom'
-
 import Layout from '@/shared/layout/Layout'
 import TempPage from '@/pages/TempPage/TempPage'
 import NotFoundPage from '@/pages/NotFoundPage/NotFoundPage'
 import HomePage from '@/pages/home/index'
 import RemembrancePage from '@/pages/Remembrance/index'
 import HeavenLetter from '@/pages/heaven_letter'
-import LetterDetail from '@/pages/heaven_letter/LetterDetail'
-import LetterWrite from '@/pages/heaven_letter/LetterWrite'
-import LetterEditForm from '@/pages/heaven_letter/components/LetterEditForm'
+import RecipientLetter from '@/pages/recipient_letter'
+import HeavenLetterDetail from '@/pages/heaven_letter/HeavenLetterDetail'
+import HeavenLetterWrite from '@/pages/heaven_letter/HeavenLetterWrite'
+import RecipientLetterDetail from '@/pages/recipient_letter/RecipientLetterDetail'
+import RecipientLetterWrite from '@/pages/recipient_letter/RecipientLetterWrite'
+import HeavenLetterEdit from '@/pages/heaven_letter/HeavenLetterEdit'
 
 const routes = [
   {
@@ -29,12 +31,20 @@ const routes = [
             path: 'letter',
             children: [
               { index: true, element: <HeavenLetter /> },
-              { path: ':letterSeq', element: <LetterDetail /> },
-              { path: ':letterSeq/edit', element: <LetterEditForm /> },
-              { path: 'write', element: <LetterWrite /> },
+              { path: ':letterSeq', element: <HeavenLetterDetail /> },
+              { path: 'write', element: <HeavenLetterWrite /> },
+              { path: ':letterSeq/edit', element: <HeavenLetterEdit /> },
             ],
           },
-          { path: 'recipient', element: <TempPage title="수혜자 편지" /> },
+          {
+            path: 'recipient',
+            children: [
+              { index: true, element: <RecipientLetter /> },
+              { path: ':letterSeq', element: <RecipientLetterDetail /> },
+              { path: 'write', element: <RecipientLetterWrite /> },
+              { path: ':letterSeq/edit', element: <HeavenLetterEdit /> },
+            ],
+          },
           { path: 'story', element: <TempPage title="기증 후 스토리" /> },
         ],
       },

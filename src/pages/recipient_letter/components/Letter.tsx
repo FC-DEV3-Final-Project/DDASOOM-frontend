@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { convertDate } from '@/shared/utils/timeUtils'
-import { areaCodesConvertKR } from '@/shared/utils/codesConvertKR'
 import { useNavigate } from 'react-router-dom'
 import PasswordPromptModal from '@/pages/heaven_letter/components/PasswordPromptModal'
+import { organCodesConvertKR } from '@/shared/utils/codesConvertKR'
 
 const FONT_OPTIONS = [
   { index: 0, label: 'Cafe24 고운밤', value: 'Cafe24Oneprettynight' },
@@ -22,13 +22,12 @@ interface Props {
     letterTitle: string
     letterContents: string
     writeTime: string
-    areaCode: string
-    donorName: string
     readCount: number
     letterWriter: string
     letterSeq: number
     letterFont: number
     letterPaper: number
+    organCode: string
     comments: {
       commentWriter: string
       commentPasscode: string
@@ -58,7 +57,7 @@ const Letter = ({ item }: Props) => {
 
     if (actionMode === 'edit') {
       try {
-        const res = await fetch(`/api/heavenLetters/${item.letterSeq}/verifyPwd`, {
+        const res = await fetch(`/api/recipientLetters/${item.letterSeq}/verifyPwd`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ letterSeq: item.letterSeq, letterPasscode: inputPassword }),
@@ -68,7 +67,7 @@ const Letter = ({ item }: Props) => {
         const { success } = await res.json()
 
         if (success) {
-          navigate(`/remembrance/letter/${item.letterSeq}/edit`, {
+          navigate(`/remembrance/recipient/${item.letterSeq}/edit`, {
             state: { letterData: item },
           })
         } else {
@@ -81,7 +80,7 @@ const Letter = ({ item }: Props) => {
 
     if (actionMode === 'delete') {
       try {
-        const res = await fetch(`/api/heavenLetters/${item.letterSeq}`, {
+        const res = await fetch(`/api/recipientLetters/${item.letterSeq}`, {
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ letterPasscode: inputPassword, letterSeq: item.letterSeq }),
@@ -89,7 +88,7 @@ const Letter = ({ item }: Props) => {
 
         if (res.ok) {
           alert('편지가 삭제되었습니다.')
-          navigate('/remembrance/letter')
+          navigate('/remembrance/recipient')
         } else {
           const data = await res.json()
           alert(data.message || '비밀번호가 일치하지 않거나 삭제에 실패했습니다.')
@@ -123,12 +122,8 @@ const Letter = ({ item }: Props) => {
               <div className="text-[19px] font-bold">{convertDate(item.writeTime)}</div>
               <div className="text-gray-80 flex flex-col gap-5 text-[15px] sm:flex-row sm:gap-[60px]">
                 <span>
-                  <span className="mr-6">권역</span>
-                  <span className="font-bold">{areaCodesConvertKR(item.areaCode)}</span>
-                </span>
-                <span>
-                  <span className="mr-6">기증자</span>
-                  <span className="font-bold">{item.donorName}</span>
+                  <span className="mr-6">장기</span>
+                  <span className="font-bold">{organCodesConvertKR(item.organCode)}</span>
                 </span>
               </div>
             </div>
@@ -142,6 +137,7 @@ const Letter = ({ item }: Props) => {
               </div>
             </div>
 
+            {/* 본문 */}
             <div className="relative w-full">
               <div className="pointer-events-none absolute inset-0 z-0">
                 {Array.from({ length: lineCount }).map((_, i) => (
@@ -162,8 +158,9 @@ const Letter = ({ item }: Props) => {
                 <img src="/icon/icon-eye.svg" alt="" />
                 {item.readCount}
               </span>
+              {/* 수혜자 */}
               <span>
-                <span className="mr-6">추모자</span>
+                <span className="mr-6">수혜자</span>
                 <span className="font-bold">{item.letterWriter}</span>
               </span>
             </div>
