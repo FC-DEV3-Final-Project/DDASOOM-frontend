@@ -8,6 +8,7 @@ const StoryLetter = () => {
       <div className="w-full bg-[#F4F5F6]">
         <header className="mx-auto w-full max-w-[1300px] px-[20px]">
           <SectionHeader
+            image="/donationletter.png"
             title="기증 後 스토리"
             description={`영원히 기억될 기증자의 숭고한 나눔의 순간과 아름다운 이야기.`}
           />
