@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { convertDate } from '@/shared/utils/timeUtils'
-import { areaCodesConvertKR } from '@/shared/utils/areaCodesConvertKR'
+import { areaCodesConvertKR } from '@/shared/utils/codesConvertKR'
 import { useNavigate } from 'react-router-dom'
 import PasswordPromptModal from '@/pages/heaven_letter/components/PasswordPromptModal'
 
@@ -58,7 +58,7 @@ const Letter = ({ item }: Props) => {
 
     if (actionMode === 'edit') {
       try {
-        const res = await fetch(`/heavenLetters/${item.letterSeq}/verifyPwd`, {
+        const res = await fetch(`/api/heavenLetters/${item.letterSeq}/verifyPwd`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ letterSeq: item.letterSeq, letterPasscode: inputPassword }),
@@ -81,7 +81,7 @@ const Letter = ({ item }: Props) => {
 
     if (actionMode === 'delete') {
       try {
-        const res = await fetch(`/heavenLetters/${item.letterSeq}`, {
+        const res = await fetch(`/api/heavenLetters/${item.letterSeq}`, {
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ letterPasscode: inputPassword, letterSeq: item.letterSeq }),

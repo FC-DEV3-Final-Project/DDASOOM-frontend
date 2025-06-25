@@ -22,7 +22,7 @@ const ContainerContent = <T extends LetterCardItem>({ items }: Props<T>) => {
           key={index}
           item={item}
           onClick={() => {
-            navigate(`/remembrance/letter/${item.letterSeq}`)
+            navigate(`/remembrance/recipient/${item.letterSeq}`)
           }}
         />
       ))}

@@ -50,6 +50,10 @@ const LetterEditForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     validateForm()
+    if (!captchaToken) {
+      alert('봇 방지 확인을 완료해주세요.')
+      return
+    }
     const updated = {
       letterTitle: title,
       letterContents: contents,
