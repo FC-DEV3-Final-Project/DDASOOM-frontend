@@ -4,8 +4,8 @@ import LetterCard from '@/pages/story/components/LetterCard'
 interface LetterCardItem {
   donorName: string
   storySeq: number
-  letterTitle: string
-  letterWriter: string
+  storyTitle: string
+  storyWriter: string
   readCount: number
   writeTime: string
   commentCount: number

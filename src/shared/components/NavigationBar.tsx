@@ -43,10 +43,10 @@ export const links: MenuItem[] = [
     text: '추모공간',
     hasDropdown: true,
     dropdownItems: {
-      '기증자 추모관': '/remembrance/member',
-      '하늘나라 편지': '/remembrance/letter',
-      '수혜자 편지': '/remembrance/recipient',
-      '기증 後 스토리': '/remembrance/story',
+      '기증자 추모관': '/#/remembrance/member',
+      '하늘나라 편지': '/#/remembrance/letter',
+      '수혜자 편지': '/#/remembrance/recipient',
+      '기증 後 스토리': '/#/remembrance/story',
     },
   },
   {

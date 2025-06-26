@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import { convertDate } from '@/shared/utils/timeUtils'
-import { areaCodesConvertKR } from '@/shared/utils/codesConvertKR'
 import { useNavigate } from 'react-router-dom'
 import PasswordPromptModal from '@/pages/heaven_letter/components/PasswordPromptModal'
 
@@ -19,13 +18,13 @@ const paperImages: Record<string, string> = {
 
 interface Props {
   item: {
-    letterTitle: string
-    letterContents: string
+    storyTitle: string
+    storyContents: string
     writeTime: string
     areaCode: string
     donorName: string
     readCount: number
-    letterWriter: string
+    storyWriter: string
     storySeq: number
     letterFont: number
     letterPaper: number
@@ -51,7 +50,7 @@ const Letter = ({ item }: Props) => {
       const height = textRef.current.offsetHeight
       setLineCount(Math.max(Math.ceil(height / lineHeight), 1))
     }
-  }, [item.letterContents])
+  }, [item.storyContents])
 
   const handlePasswordConfirm = async (inputPassword: string) => {
     if (!actionMode) return
@@ -129,16 +128,6 @@ const Letter = ({ item }: Props) => {
           <div className="flex h-full flex-col gap-10 px-5 py-10 sm:px-20 sm:py-25">
             <div className="flex flex-col gap-6">
               <div className="text-[19px] font-bold">{convertDate(item.writeTime)}</div>
-              <div className="text-gray-80 flex flex-col gap-5 text-[15px] sm:flex-row sm:gap-[60px]">
-                <span>
-                  <span className="mr-6">권역</span>
-                  <span className="font-bold">{areaCodesConvertKR(item.areaCode)}</span>
-                </span>
-                <span>
-                  <span className="mr-6">기증자</span>
-                  <span className="font-bold">{item.donorName}</span>
-                </span>
-              </div>
             </div>
 
             <div>
@@ -146,7 +135,7 @@ const Letter = ({ item }: Props) => {
                 style={{ fontFamily: FONT_OPTIONS[item.letterFont || 0].value }}
                 className="text-gray-90 w-[280px] border-b border-dashed border-gray-300 bg-transparent pb-2 text-[20px] leading-[36px] sm:text-[24px]"
               >
-                {item.letterTitle}
+                {item.storyTitle}
               </div>
             </div>
 
@@ -161,7 +150,7 @@ const Letter = ({ item }: Props) => {
                 className="text-gray-90 relative z-10 w-full bg-transparent text-[16px] leading-[40px] whitespace-pre-wrap sm:text-[17px]"
                 style={{ fontFamily: FONT_OPTIONS[item.letterFont || 0].value }}
               >
-                {item.letterContents}
+                {item.storyContents}
               </div>
             </div>
 
@@ -171,8 +160,8 @@ const Letter = ({ item }: Props) => {
                 {item.readCount}
               </span>
               <span>
-                <span className="mr-6">추모자</span>
-                <span className="font-bold">{item.letterWriter}</span>
+                <span className="mr-6">코디네이터</span>
+                <span className="font-bold">{item.storyWriter}</span>
               </span>
             </div>
           </div>

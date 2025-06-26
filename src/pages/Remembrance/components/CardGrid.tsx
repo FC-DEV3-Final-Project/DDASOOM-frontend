@@ -23,7 +23,7 @@ const CardGrid = ({ donors }: CardGridProps) => {
         <li
           key={donor.id}
           className="flex cursor-pointer flex-col items-center"
-          onClick={() => navigate(`/remembrance/letter/${donor.id}`)}
+          onClick={() => navigate(`/remembrance/${donor.id}`)}
         >
           <MemorialBadge donor={donor} variant="medium" />
           <div className="mt-3 text-[15px] text-[#33363D]">
@@ -33,7 +33,7 @@ const CardGrid = ({ donors }: CardGridProps) => {
             className="mt-2 flex items-center gap-2 rounded-full border border-[#CDD1D5] bg-white px-[14px] py-2 text-[15px] font-bold text-[#33363D] transition hover:bg-[#34A354] hover:text-white"
             onClick={(e) => {
               e.stopPropagation()
-              navigate(`/remembrance/letter?to=${donor.id}`)
+              navigate(`/remembrance/${donor.id}`)
             }}
             aria-label={`${donor.donateName}님께 추모편지 쓰기`}
           >

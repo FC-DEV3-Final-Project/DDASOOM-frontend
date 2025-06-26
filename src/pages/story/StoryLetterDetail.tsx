@@ -6,13 +6,13 @@ import BackToListButton from '@/shared/components/BackToListButton'
 import CommentContainer from '@/pages/story/components/CommentContainer'
 
 interface Letter {
-  letterTitle: string
-  letterContents: string
+  storyTitle: string
+  storyContents: string
   writeTime: string
   areaCode: string
   donorName: string
   readCount: number
-  letterWriter: string
+  storyWriter: string
   storySeq: number
   letterFont: number
   letterPaper: number

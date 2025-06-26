@@ -4,8 +4,8 @@ interface Props {
   item: {
     donorName: string
     storySeq: number
-    letterTitle: string
-    letterWriter: string
+    storyTitle: string
+    storyWriter: string
     readCount: number
     writeTime: string
     commentCount: number
@@ -33,12 +33,12 @@ const LetterCard = ({ item, onClick }: Props) => {
           <p className="text-red-40 text-[13px]">{item.storySeq}번째 편지</p>
         </div>
         <h3 className="text-gray-80 overflow-hidden text-[17px] font-bold text-ellipsis whitespace-nowrap">
-          {item.letterTitle}
+          {item.storyTitle}
         </h3>
       </div>
       <div className="flex gap-5 text-[13px]">
         <div className="flex gap-[7px]">
-          <span>코디네이터</span> <span className="font-bold">{item.letterWriter}</span>
+          <span>코디네이터</span> <span className="font-bold">{item.storyWriter}</span>
         </div>
       </div>
       <div className="border-gray-20 text-gray-60 flex w-full justify-between border-t-1 pt-[16px] text-[13px]">
