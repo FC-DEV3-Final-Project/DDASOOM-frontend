@@ -51,7 +51,7 @@ export interface GetDonorsResponse {
 export type GetDonors = (params: GetDonorsParams) => Promise<GetDonorsResponse>
 
 // 목 데이터 사용 여부를 결정하는 플래그
-const USE_MOCK_DATA = true // 이 값을 false로 바꾸면 실제 API를 호출합니다.
+const USE_MOCK_DATA = false // 이 값을 false로 바꾸면 실제 API를 호출합니다.
 
 /**
  * 기증자 정보를 가져오는 API 서비스
