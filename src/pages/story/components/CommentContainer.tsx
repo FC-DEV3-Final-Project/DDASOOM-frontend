@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { convertDate } from '@/shared/utils/timeUtils'
 import EditCommentModal from '@/pages/heaven_letter/components/EditCommentModal'
 import DeleteConfirmModal from '@/pages/heaven_letter/components/DeleteConfirmModal'
+import Turnstile from 'react-cloudflare-turnstile'
 
 interface Comment {
   commentWriter: string
@@ -21,6 +22,7 @@ const CommentContainer = ({ comments, storySeq, onAddComment }: Props) => {
   const [deleteTarget, setDeleteTarget] = useState<Comment | null>(null)
   const [deletePassword, setDeletePassword] = useState('')
   const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const [captchaToken, setCaptchaToken] = useState('')
 
   const [editTarget, setEditTarget] = useState<Comment | null>(null)
   const [editText, setEditText] = useState('')
@@ -54,12 +56,15 @@ const CommentContainer = ({ comments, storySeq, onAddComment }: Props) => {
       alert(errors.join('\n'))
       return
     }
-
+    if (!captchaToken) {
+      errors.push('캡챠 인증을 완료해주세요.')
+    }
     const payload = {
       commentWriter: name,
       commentPasscode: passcode,
       contents: commentText,
       storySeq,
+      captchaToken,
     }
 
     try {
@@ -151,6 +156,14 @@ const CommentContainer = ({ comments, storySeq, onAddComment }: Props) => {
               <img src="/icon/btn-shortcut.svg" alt="" />
             </button>
           </div>
+        </div>
+        <div className="mt-5 flex justify-end">
+          <Turnstile
+            turnstileSiteKey="0x4AAAAAABh7p6RM-c7LcvIz"
+            callback={(token: string) => setCaptchaToken(token)}
+            theme="light"
+            size="normal"
+          />
         </div>
       </form>
 
