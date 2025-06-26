@@ -6,8 +6,6 @@ import { MoveUp } from 'lucide-react'
 interface CommentSectionProps {
   comments: Comment[]
   reactions: Reaction[]
-  myReaction: string | null
-  onReaction: (name: string) => void
   comment: string
   password: string
   onCommentChange: (v: string) => void
@@ -20,8 +18,6 @@ interface CommentSectionProps {
 const CommentSection = ({
   comments,
   reactions,
-  myReaction,
-  onReaction,
   comment,
   password,
   onCommentChange,
@@ -48,7 +44,7 @@ const CommentSection = ({
         </div>
         {/* 리액션 버튼 영역 */}
         <div className="grid min-h-[70px] w-[380px] grid-cols-3 gap-x-[6px] gap-y-[6px] p-0">
-          <ReactionButtons reactions={reactions} myReaction={myReaction} onReaction={onReaction} />
+          <ReactionButtons reactions={reactions} />
         </div>
         <div>
           {/* 비밀번호 입력 (Figma 스타일) */}

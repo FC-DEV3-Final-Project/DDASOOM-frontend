@@ -1,33 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import SectionHeader from '@/pages/home/components/SectionHeader'
 import MemorialBadge from '@/shared/components/MemorialBadge'
-const dummydonors: Donor[] = [
-  {
-    donateName: '김하늘',
-    donateGender: '남',
-    donateAge: 45,
-  },
-  {
-    donateName: '이수민',
-    donateGender: '여',
-    donateAge: 32,
-  },
-  {
-    donateName: '박정우',
-    donateGender: '남',
-    donateAge: 28,
-  },
-  {
-    donateName: '정지혜',
-    donateGender: '여',
-    donateAge: 37,
-  },
-  {
-    donateName: '최민수',
-    donateGender: '남',
-    donateAge: 52,
-  },
-]
 
 interface Donor {
   donateName: string
