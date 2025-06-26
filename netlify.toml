@@ -24,12 +24,6 @@
     Access-Control-Allow-Origin = "*"
 
 [[redirects]]
-  from = "/remembrance/*"
-  to = "http://koda2.elementsoft.biz:8081/remembrance/:splat"
-  status = 200
-  force = true
-
-[[redirects]]
   from = "/api/*"
   to = "http://koda2.elementsoft.biz:8081/:splat"
   status = 200
