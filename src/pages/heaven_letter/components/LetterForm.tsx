@@ -101,7 +101,7 @@ const LetterForm = () => {
       letterFont: selectedFont,
     }
 
-    fetch('/api/heavenLetters', {
+    fetch('http://koda2.elementsoft.biz:8081/heavenLetters', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
