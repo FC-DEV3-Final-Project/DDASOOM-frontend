@@ -3,7 +3,7 @@ import { ApiError } from '@/shared/lib/apiError'
 
 export const apiClient = axios.create({
   baseURL: '',
-  timeout: 10000,
+  timeout: 50000,
 })
 
 // response 인터셉터로 에러 일원화

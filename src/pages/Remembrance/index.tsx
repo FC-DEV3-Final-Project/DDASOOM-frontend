@@ -1,9 +1,27 @@
 import RemembranceContents from '@/pages/Remembrance/components/RemembranceContents'
-import { Suspense } from 'react'
+import { Suspense, useEffect } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import LoadingSpinner from '@/shared/components/LoadingSpinner'
+import { remembranceService } from './services/remembranceService'
 
 const RemembrancePage = () => {
+  useEffect(() => {
+    // 테스트용 API 호출
+    remembranceService
+      .getDonors({
+        page: 0,
+        size: 10,
+        sortField: 'donateDate',
+        direction: 'Desc',
+      })
+      .then((res) => {
+        console.log('API 응답:', res)
+      })
+      .catch((err) => {
+        console.error('API 에러:', err)
+      })
+  }, [])
+
   return (
     <ErrorBoundary
       fallbackRender={({ error, resetErrorBoundary }) => (
