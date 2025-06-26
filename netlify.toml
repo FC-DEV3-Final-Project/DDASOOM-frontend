@@ -23,3 +23,8 @@
   to = "http://koda2.elementsoft.biz:8081/:splat"
   status = 200
   force = true
+
+  [[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200 
