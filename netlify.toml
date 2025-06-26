@@ -22,3 +22,9 @@
     [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
     Access-Control-Allow-Origin = "*"
+
+[[redirects]]
+  from = "/remembrance/*"
+  to = "http://koda2.elementsoft.biz:8081/remembrance/:splat"
+  status = 200
+  force = true
