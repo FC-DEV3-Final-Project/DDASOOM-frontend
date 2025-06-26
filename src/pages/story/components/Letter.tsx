@@ -58,7 +58,7 @@ const Letter = ({ item }: Props) => {
 
     if (actionMode === 'edit') {
       try {
-        const res = await fetch(`/api/heavenLetters/${item.storySeq}/verifyPwd`, {
+        const res = await fetch(`/api/donationLetters/${item.storySeq}/verifyPwd`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ storySeq: item.storySeq, letterPasscode: inputPassword }),
@@ -68,7 +68,7 @@ const Letter = ({ item }: Props) => {
         const { success } = await res.json()
 
         if (success) {
-          navigate(`/remembrance/letter/${item.storySeq}/edit`, {
+          navigate(`/remembrance/story/${item.storySeq}/edit`, {
             state: { letterData: item },
           })
         } else {
@@ -81,7 +81,7 @@ const Letter = ({ item }: Props) => {
 
     if (actionMode === 'delete') {
       try {
-        const res = await fetch(`/api/heavenLetters/${item.storySeq}`, {
+        const res = await fetch(`/api/donationLetters/${item.storySeq}`, {
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ letterPasscode: inputPassword, storySeq: item.storySeq }),
@@ -89,7 +89,7 @@ const Letter = ({ item }: Props) => {
 
         if (res.ok) {
           alert('편지가 삭제되었습니다.')
-          navigate('/remembrance/letter')
+          navigate('/remembrance/story')
         } else {
           const data = await res.json()
           alert(data.message || '비밀번호가 일치하지 않거나 삭제에 실패했습니다.')

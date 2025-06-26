@@ -10,7 +10,7 @@ interface Props {
 const ContainerHeader = ({ handleSearch, totalLetters }: Props) => {
   const navigate = useNavigate()
   const handleNavigate = () => {
-    navigate('/remembrance/letter/write')
+    navigate('/remembrance/story/write')
   }
   return (
     <>

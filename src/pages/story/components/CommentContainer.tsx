@@ -63,7 +63,7 @@ const CommentContainer = ({ comments, storySeq, onAddComment }: Props) => {
     }
 
     try {
-      const res = await fetch(`/api/heavenLetters/${storySeq}/comments`, {
+      const res = await fetch(`/api/donationLetters/${storySeq}/comments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -195,7 +195,7 @@ const CommentContainer = ({ comments, storySeq, onAddComment }: Props) => {
           onCancel={() => setShowDeleteModal(false)}
           onConfirm={async () => {
             const res = await fetch(
-              `/api/heavenLetters/${storySeq}/comments/${deleteTarget.commentSeq}`,
+              `/api/donationLetters/${storySeq}/comments/${deleteTarget.commentSeq}`,
               {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' },
@@ -228,7 +228,7 @@ const CommentContainer = ({ comments, storySeq, onAddComment }: Props) => {
           onCancel={() => setShowEditModal(false)}
           onConfirm={async () => {
             const res = await fetch(
-              `/api/heavenLetters/${storySeq}/comments/${editTarget.commentSeq}`,
+              `/api/donationLetters/${storySeq}/comments/${editTarget.commentSeq}`,
               {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
