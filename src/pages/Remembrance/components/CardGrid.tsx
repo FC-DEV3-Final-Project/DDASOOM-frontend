@@ -24,7 +24,6 @@ const CardGrid = ({ donors }: CardGridProps) => {
           key={donor.id}
           className="flex cursor-pointer flex-col items-center"
           onClick={() => navigate(`/remembrance/${donor.id}`)}
-          onClick={() => navigate(`/remembrance/${donor.id}`)}
         >
           <MemorialBadge donor={donor} variant="medium" />
           <div className="mt-3 text-[15px] text-[#33363D]">

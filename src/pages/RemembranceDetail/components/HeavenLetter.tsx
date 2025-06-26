@@ -9,9 +9,9 @@ interface Letter {
   letterSeq: number
   letterTitle: string
   letterWriter: string
-  readCount: number
-  writeTime: string
-  commentCount: number
+  readCount?: number
+  writeTime?: string
+  commentCount?: number
 }
 
 interface HeavenLetterProps {

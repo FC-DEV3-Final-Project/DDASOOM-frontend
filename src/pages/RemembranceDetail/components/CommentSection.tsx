@@ -6,6 +6,8 @@ import { MoveUp } from 'lucide-react'
 interface CommentSectionProps {
   comments: Comment[]
   reactions: Reaction[]
+  myReaction?: string | null
+  onReaction?: (name: string) => void
   comment: string
   password: string
   onCommentChange: (v: string) => void

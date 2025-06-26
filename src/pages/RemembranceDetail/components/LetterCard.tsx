@@ -6,15 +6,15 @@ interface Props {
     letterSeq: number
     letterTitle: string
     letterWriter: string
-    readCount: number
-    writeTime: string
-    commentCount: number
+    readCount?: number
+    writeTime?: string
+    commentCount?: number
   }
   onClick?: () => void // onClick 선택적 프로퍼티 추가
 }
 
 const LetterCard = ({ item, onClick }: Props) => {
-  const writeTime = convertDate(item.writeTime)
+  const writeTime = convertDate(item.writeTime ?? '')
   return (
     <div
       className="border-red-20 flex cursor-pointer flex-col gap-[16px] rounded-[20px] border p-8"
