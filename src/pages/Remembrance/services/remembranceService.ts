@@ -72,7 +72,7 @@ export const remembranceService: {
 
     // 실제 API 호출
     return await safeAxios<GetDonorsResponse>({
-      url: `/remembrance`,
+      url: `/api/remembrance`,
       method: 'GET',
       params: {
         ...params,
