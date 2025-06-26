@@ -1,5 +1,5 @@
-import { createBrowserRouter } from 'react-router-dom'
-import { Navigate } from 'react-router-dom'
+// AppRouter.tsx
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Layout from '@/shared/layout/Layout'
 import TempPage from '@/pages/TempPage/TempPage'
 import NotFoundPage from '@/pages/NotFoundPage/NotFoundPage'
@@ -12,69 +12,65 @@ import HeavenLetterWrite from '@/pages/heaven_letter/HeavenLetterWrite'
 import RecipientLetterDetail from '@/pages/recipient_letter/RecipientLetterDetail'
 import RecipientLetterWrite from '@/pages/recipient_letter/RecipientLetterWrite'
 import HeavenLetterEdit from '@/pages/heaven_letter/HeavenLetterEdit'
+import StoryLetter from '@/pages/story'
+import StoryLetterDetail from '@/pages/story/StoryLetterDetail'
+import RecipientLetterEdit from '@/pages/recipient_letter/RecipientLetterEdit'
 import RemembranceDetailPage from '@/pages/RemembranceDetail/index'
 
-const routes = [
-  {
-    path: '/',
-    element: <Layout />,
-    errorElement: <NotFoundPage />,
-    children: [
-      { index: true, element: <HomePage /> },
+const AppRouter = () => {
+  return (
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
 
-      // 추모공간
-      {
-        path: 'remembrance',
-        children: [
-          { index: true, element: <Navigate to="member" replace /> },
-          { path: 'member', element: <RemembrancePage /> },
-          { path: 'letter/:donateSeq', element: <RemembranceDetailPage /> },
-          { path: 'recipient', element: <TempPage title="수혜자 편지" /> },
-          {
-            path: 'letter',
-            children: [
-              { index: true, element: <HeavenLetter /> },
-              { path: ':letterSeq', element: <HeavenLetterDetail /> },
-              { path: 'write', element: <HeavenLetterWrite /> },
-              { path: ':letterSeq/edit', element: <HeavenLetterEdit /> },
-            ],
-          },
-          {
-            path: 'recipient',
-            children: [
-              { index: true, element: <RecipientLetter /> },
-              { path: ':letterSeq', element: <RecipientLetterDetail /> },
-              { path: 'write', element: <RecipientLetterWrite /> },
-              { path: ':letterSeq/edit', element: <HeavenLetterEdit /> },
-            ],
-          },
-          { path: 'story', element: <TempPage title="기증 후 스토리" /> },
-        ],
-      },
+          {/* 추모공간 */}
+          <Route path="remembrance">
+            <Route index element={<Navigate to="member" replace />} />
+            <Route path="member" index element={<RemembrancePage />} />
+            <Route path=":donateSeq" element={<RemembranceDetailPage />} />
 
-      // 장기 조직 기능
-      {
-        path: 'organ',
-        children: [
-          { index: true, element: <TempPage title="장기 조직 기능" /> },
-          { path: 'familyManagement', element: <TempPage title="기증자/유가족 지원" /> },
-          { path: 'administrativeProcedure', element: <TempPage title="사후 행정 절차" /> },
-        ],
-      },
+            <Route path="letter">
+              <Route index element={<HeavenLetter />} />
+              <Route path=":letterSeq" element={<HeavenLetterDetail />} />
+              <Route path="write" element={<HeavenLetterWrite />} />
+              <Route path=":letterSeq/edit" element={<HeavenLetterEdit />} />
+            </Route>
 
-      // 정보마당
-      {
-        path: 'info',
-        children: [
-          { index: true, element: <TempPage title="기증 통계" /> },
-          { path: 'donor', element: <TempPage title="기증 통계(기증자)" /> },
-          { path: 'comparison', element: <TempPage title="5년간 기증통계 비교" /> },
-          { path: 'trend', element: <TempPage title="연도별 기증 추이" /> },
-        ],
-      },
-    ],
-  },
-]
+            <Route path="recipient">
+              <Route index element={<RecipientLetter />} />
+              <Route path=":letterSeq" element={<RecipientLetterDetail />} />
+              <Route path="write" element={<RecipientLetterWrite />} />
+              <Route path=":letterSeq/edit" element={<RecipientLetterEdit />} />
+            </Route>
 
-const router = createBrowserRouter(routes)
-export default router
+            <Route path="story">
+              <Route index element={<StoryLetter />} />
+              <Route path=":storySeq" element={<StoryLetterDetail />} />
+            </Route>
+          </Route>
+
+          {/* 장기 조직 기능 */}
+          <Route path="organ">
+            <Route index element={<TempPage title="장기 조직 기능" />} />
+            <Route path="familyManagement" element={<TempPage title="기증자/유가족 지원" />} />
+            <Route path="administrativeProcedure" element={<TempPage title="사후 행정 절차" />} />
+          </Route>
+
+          {/* 정보마당 */}
+          <Route path="info">
+            <Route index element={<TempPage title="기증 통계" />} />
+            <Route path="donor" element={<TempPage title="기증 통계(기증자)" />} />
+            <Route path="comparison" element={<TempPage title="5년간 기증통계 비교" />} />
+            <Route path="trend" element={<TempPage title="연도별 기증 추이" />} />
+          </Route>
+        </Route>
+
+        {/* 404 */}
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </HashRouter>
+  )
+}
+
+export default AppRouter

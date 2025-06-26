@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom'
-import LetterCard from '@/pages/recipient_letter/components/LetterCard'
+import LetterCard from '@/pages/story/components/LetterCard'
 
 interface LetterCardItem {
-  letterSeq: number
+  donorName: string
+  storySeq: number
   storyTitle: string
-  letterWriter: string
+  storyWriter: string
   readCount: number
   writeTime: string
   commentCount: number
@@ -22,7 +23,7 @@ const ContainerContent = <T extends LetterCardItem>({ items }: Props<T>) => {
           key={index}
           item={item}
           onClick={() => {
-            navigate(`/remembrance/recipient/${item.letterSeq}`)
+            navigate(`/remembrance/story/${item.storySeq}`)
           }}
         />
       ))}

@@ -26,7 +26,7 @@ const fetchEvents = async (): Promise<EventItem[]> => {
     },
     {
       date: '2025-06-26',
-      title: 'dlfwjd',
+      title: '장기기증자 추모식',
     },
   ]
 }

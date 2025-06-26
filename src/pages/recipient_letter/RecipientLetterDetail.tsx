@@ -6,7 +6,7 @@ import BackToListButton from '@/shared/components/BackToListButton'
 import CommentContainer from '@/pages/recipient_letter/components/CommentContainer'
 
 interface Letter {
-  letterTitle: string
+  storyTitle: string
   letterContents: string
   writeTime: string
   organCode: string

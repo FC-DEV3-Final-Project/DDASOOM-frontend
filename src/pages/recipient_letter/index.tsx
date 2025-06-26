@@ -7,7 +7,11 @@ const RecipientLetter = () => {
     <>
       <div className="w-full bg-[#F4F5F6]">
         <header className="mx-auto w-full max-w-[1300px] px-[20px]">
-          <SectionHeader title="수혜자 편지" description={`감사합니다`} />
+          <SectionHeader
+            image="/recipientletter.png"
+            title="수혜자 편지"
+            description={`감사합니다`}
+          />
         </header>
       </div>
       <section className="mx-auto flex w-full max-w-[1300px] flex-col gap-6 p-5 sm:gap-[80px]">
