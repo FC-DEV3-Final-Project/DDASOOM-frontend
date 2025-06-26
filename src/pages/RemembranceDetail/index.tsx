@@ -6,6 +6,7 @@ import { useGetRemembranceDetail } from '@/pages/RemembranceDetail/queries/useGe
 import { useParams } from 'react-router-dom'
 import { formatKoreanDate } from '@/pages/RemembranceDetail/utils/dateUtils'
 import { usePostEmoji } from '@/pages/RemembranceDetail/queries/usePostEmoji'
+import HeavenLetter from '@/pages/RemembranceDetail/components/HeavenLetter'
 
 const MAX_COMMENT_LENGTH = 1000
 
@@ -160,75 +161,12 @@ const RemembranceDetailPage = () => {
           </section>
 
           {/* Letters to Heaven Section */}
-          <section className="flex flex-col gap-6">
-            <div className="mb-2 flex items-end justify-between">
-              <div className="flex items-center gap-2">
-                <h2 className="text-2xl font-bold">홍*동 님에게 도착한 하늘나라 편지</h2>
-                <button className="text-gray-600 hover:text-gray-800">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </button>
-              </div>
-              <div className="flex gap-2">
-                <button className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-500 opacity-40 hover:bg-gray-100">
-                  &lt;
-                </button>
-                <button className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-500 hover:bg-gray-100">
-                  &gt;
-                </button>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {Array.from({ length: 3 }).map((_, idx) => (
-                <div
-                  key={idx}
-                  className="flex flex-col gap-4 rounded-2xl border border-red-200 bg-white p-6 shadow-md"
-                >
-                  <div className="flex items-center gap-2 text-sm text-red-500">
-                    <span>💌</span>
-                    <span>12539번째 편지</span>
-                  </div>
-                  <p className="text-gray-800">
-                    잘 지내는지 궁금하네. 하루하루가 참 낯설고 많이 허전해 어디 있든 잘 지내
-                  </p>
-                  <hr className="border-gray-200" />
-                  <div className="flex justify-between text-sm">
-                    <div className="text-gray-700">
-                      <span className="font-semibold">To.</span> 기증자 홍*동
-                    </div>
-                    <div className="text-gray-700">
-                      <span className="font-semibold">From.</span> 추모자 김*수
-                    </div>
-                  </div>
-                  <div className="mt-2 flex justify-between text-xs text-gray-500">
-                    <span>2025. 06. 04.</span>
-                    <div className="flex gap-4">
-                      <span className="flex items-center gap-1">👁️ 123</span>
-                      <span className="flex items-center gap-1">💬 456</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
+          <HeavenLetter title={`${data?.donorName} 님에게 도착한 하늘나라 편지`} />
         </div>
         {/* 우측 댓글 */}
         <CommentSection
           comments={comments}
           reactions={reactions}
-          myReaction={myReaction}
           onReaction={handleReaction}
           comment={comment}
           password={password}

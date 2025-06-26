@@ -17,7 +17,7 @@ const MOCK_DONORS: DonorApiResponseItem[] = Array.from({ length: 360 }, (_, i) =
 
   return {
     donateSeq: seq,
-    donorName: `김기증${seq}`,
+    donorName: `홍*동${seq}`,
     donateAge: age,
     genderFlag: gender,
     donateDate: donateDate,
