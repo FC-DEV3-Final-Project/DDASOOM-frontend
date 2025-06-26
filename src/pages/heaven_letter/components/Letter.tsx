@@ -58,11 +58,14 @@ const Letter = ({ item }: Props) => {
 
     if (actionMode === 'edit') {
       try {
-        const res = await fetch(`/api/heavenLetters/${item.letterSeq}/verifyPwd`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ letterSeq: item.letterSeq, letterPasscode: inputPassword }),
-        })
+        const res = await fetch(
+          `http://koda2.elementsoft.biz:8081/heavenLetters/${item.letterSeq}/verifyPwd`,
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ letterSeq: item.letterSeq, letterPasscode: inputPassword }),
+          },
+        )
 
         if (!res.ok) throw new Error()
         const { success } = await res.json()
@@ -81,11 +84,14 @@ const Letter = ({ item }: Props) => {
 
     if (actionMode === 'delete') {
       try {
-        const res = await fetch(`/api/heavenLetters/${item.letterSeq}`, {
-          method: 'DELETE',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ letterPasscode: inputPassword, letterSeq: item.letterSeq }),
-        })
+        const res = await fetch(
+          `http://koda2.elementsoft.biz:8081/heavenLetters/${item.letterSeq}`,
+          {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ letterPasscode: inputPassword, letterSeq: item.letterSeq }),
+          },
+        )
 
         if (res.ok) {
           alert('편지가 삭제되었습니다.')

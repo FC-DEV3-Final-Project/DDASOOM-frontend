@@ -70,7 +70,7 @@ const HeavenLetter = ({
           <h2 className="text-gray-95 font-bold sm:text-2xl">{title}</h2>
           <a href="/remembrance/letter" className="flex items-center">
             <img
-              src="/public/icon/Arrow.svg"
+              src="/icon/Arrow.svg"
               alt="이동"
               className="h-[14px] w-[14px] sm:h-[24px] sm:w-[24px]"
             />

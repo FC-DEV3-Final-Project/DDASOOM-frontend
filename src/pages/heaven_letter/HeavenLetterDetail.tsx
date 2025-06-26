@@ -30,7 +30,7 @@ const HeavenLetterDetail = () => {
   const [letterInfo, setLetterInfo] = useState<Letter | null>(null)
 
   const fetchLetter = async () => {
-    const res = await fetch(`/api/heavenLetters/${letterSeq}`)
+    const res = await fetch(`http://koda2.elementsoft.biz:8081/heavenLetters/${letterSeq}`)
     const data = await res.json()
     setLetterInfo(data)
   }

@@ -21,9 +21,9 @@ const LetterCard = ({ isFocused, letter, onClick }: Props) => {
     >
       <div className="mb-1 flex">
         {isFocused ? (
-          <img src="/public/icon/mail.svg" alt="" className="mr-2 inline w-3 sm:w-5" />
+          <img src="/icon/mail.svg" alt="" className="mr-2 inline w-3 sm:w-5" />
         ) : (
-          <img src="/public/icon/mail-g.svg" alt="" className="mr-2 inline w-3 sm:w-5" />
+          <img src="/icon/mail-g.svg" alt="" className="mr-2 inline w-3 sm:w-5" />
         )}
         <span className={cn('text-gray-40 text-[10px] sm:text-base', isFocused && 'text-red-40')}>
           {letter.letterSeq}번째 편지

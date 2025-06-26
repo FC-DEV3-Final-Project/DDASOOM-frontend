@@ -29,7 +29,7 @@ const RecipientLetterDetail = () => {
   const [letterInfo, setLetterInfo] = useState<Letter | null>(null)
 
   const fetchLetter = async () => {
-    const res = await fetch(`/api/recipientLetters/${letterSeq}`)
+    const res = await fetch(`http://koda2.elementsoft.biz:8081/recipientLetters/${letterSeq}`)
     const data = await res.json()
     setLetterInfo(data)
   }

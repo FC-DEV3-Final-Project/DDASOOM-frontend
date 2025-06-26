@@ -35,7 +35,9 @@ const DonorSearchModal = ({ isOpen, onClose, onSelect }: Props) => {
 
     setLoading(true)
     try {
-      const res = await fetch(`/api/heavenLetters/donorSearch?${params.toString()}`)
+      const res = await fetch(
+        `http://koda2.elementsoft.biz:8081/heavenLetters/donorSearch?${params.toString()}`,
+      )
       const data = await res.json()
       const parsed = data.content.map((item: Donor) => ({
         id: item.donateSeq,

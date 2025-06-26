@@ -30,7 +30,7 @@ const StoryLetterDetail = () => {
   const [storyInfo, setStoryInfo] = useState<Letter | null>(null)
 
   const fetchLetter = async () => {
-    const res = await fetch(`/api/donationLetters/${storySeq}`)
+    const res = await fetch(`http://koda2.elementsoft.biz:8081/donationLetters/${storySeq}`)
     const data = await res.json()
     setStoryInfo(data)
   }

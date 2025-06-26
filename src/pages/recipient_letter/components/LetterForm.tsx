@@ -108,7 +108,7 @@ const LetterForm = () => {
       recipientYear,
     }
 
-    fetch('/api/recipientLetters', {
+    fetch('http://koda2.elementsoft.biz:8081/recipientLetters', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),

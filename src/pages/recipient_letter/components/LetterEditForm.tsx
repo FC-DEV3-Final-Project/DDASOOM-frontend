@@ -113,7 +113,7 @@ const LetterForm = () => {
       letterSeq: letter.letterSeq,
     }
 
-    fetch(`/api/recipientLetters/${letter.letterSeq}`, {
+    fetch(`http://koda2.elementsoft.biz:8081/recipientLetters/${letter.letterSeq}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),

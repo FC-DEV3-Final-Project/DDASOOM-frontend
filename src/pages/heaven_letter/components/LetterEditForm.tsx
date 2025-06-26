@@ -68,7 +68,7 @@ const LetterEditForm = () => {
       anonymityFlag: letter.anonymityFlag,
     }
 
-    await fetch(`/api/heavenLetters/${letter.letterSeq}`, {
+    await fetch(`http://koda2.elementsoft.biz:8081/heavenLetters/${letter.letterSeq}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updated),

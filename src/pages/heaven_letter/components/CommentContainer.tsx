@@ -67,11 +67,14 @@ const CommentContainer = ({ comments, letterSeq, onAddComment }: Props) => {
     }
 
     try {
-      const res = await fetch(`/api/heavenLetters/${letterSeq}/comments`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      })
+      const res = await fetch(
+        `http://koda2.elementsoft.biz:8081/heavenLetters/${letterSeq}/comments`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        },
+      )
       if (!res.ok) throw new Error()
 
       alert('댓글이 등록되었습니다.')
@@ -207,7 +210,7 @@ const CommentContainer = ({ comments, letterSeq, onAddComment }: Props) => {
           onCancel={() => setShowDeleteModal(false)}
           onConfirm={async () => {
             const res = await fetch(
-              `/api/heavenLetters/${letterSeq}/comments/${deleteTarget.commentSeq}`,
+              `http://koda2.elementsoft.biz:8081/heavenLetters/${letterSeq}/comments/${deleteTarget.commentSeq}`,
               {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' },
@@ -240,7 +243,7 @@ const CommentContainer = ({ comments, letterSeq, onAddComment }: Props) => {
           onCancel={() => setShowEditModal(false)}
           onConfirm={async () => {
             const res = await fetch(
-              `/api/heavenLetters/${letterSeq}/comments/${editTarget.commentSeq}`,
+              `http://koda2.elementsoft.biz:8081/heavenLetters/${letterSeq}/comments/${editTarget.commentSeq}`,
               {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },

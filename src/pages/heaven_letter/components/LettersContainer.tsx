@@ -37,9 +37,9 @@ const LettersContainer = () => {
         const typeParam = searchField === '내용' ? '내용' : searchField
         params.append('type', typeParam)
         params.append('keyword', searchQuery)
-        url = `/api/heavenLetters/search?${params.toString()}`
+        url = `http://koda2.elementsoft.biz:8081/heavenLetters/search?${params.toString()}`
       } else {
-        url = `/api/heavenLetters?${params.toString()}`
+        url = `http://koda2.elementsoft.biz:8081/heavenLetters?${params.toString()}`
       }
 
       try {

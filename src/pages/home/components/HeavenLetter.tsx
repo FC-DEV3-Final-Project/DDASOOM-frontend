@@ -25,7 +25,7 @@ const HeavenLetter = () => {
   const [letters, setLetters] = useState<Letter[]>([])
 
   useEffect(() => {
-    fetch('/api/main')
+    fetch('http://koda2.elementsoft.biz:8081/main')
       .then((res) => res.json())
       .then((data) => {
         setLetters(data.heavenLetterMainDtoList)
@@ -40,11 +40,7 @@ const HeavenLetter = () => {
       {/* 설명에 버튼이 들어가야 하기 때문에 SectionHeader 컴포넌트 미사용 */}
       <a className="mb-1 flex cursor-pointer items-center gap-3" href="/remembrance/letter">
         <h2 className="text-gray-95 inline font-bold sm:text-2xl">하늘나라 편지</h2>
-        <img
-          src="/public/icon/Arrow.svg"
-          alt=""
-          className="h-[14px] w-[14px] sm:h-[24px] sm:w-[24px]"
-        />
+        <img src="/icon/Arrow.svg" alt="" className="h-[14px] w-[14px] sm:h-[24px] sm:w-[24px]" />
       </a>
       <div className="flex justify-between">
         <p className="text-gray-60 mb-3 text-[13px] font-normal sm:mb-[28px] sm:text-[19px]">

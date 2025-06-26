@@ -43,7 +43,7 @@ const ChatBot = ({ setIsOpen }: ChatBotProps) => {
     scrollToBottom()
 
     try {
-      const response = await fetch(`/api/chat`, {
+      const response = await fetch(`http://koda2.elementsoft.biz:8081/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ question: message }),
