@@ -20,7 +20,7 @@
 
 [[redirects]]
   from = "/api/*"
-  to = "http://koda2.elementsoft.biz:8080/api/:splat"
+  to = "http://koda2.elementsoft.biz:8081/api/:splat"
   status = 200
   force = true
 
