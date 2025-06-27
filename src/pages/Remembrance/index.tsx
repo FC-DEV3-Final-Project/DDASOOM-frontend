@@ -2,7 +2,7 @@ import RemembranceContents from '@/pages/Remembrance/components/RemembranceConte
 import { Suspense, useEffect } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import LoadingSpinner from '@/shared/components/LoadingSpinner'
-import { remembranceService } from './services/remembranceService'
+import { remembranceService } from '@/pages/Remembrance/services/remembranceService'
 
 const RemembrancePage = () => {
   useEffect(() => {
