@@ -32,7 +32,7 @@ const EditCommentModal = ({
           placeholder="비밀번호를 입력해주세요"
           className="mt-3 w-full rounded border p-2"
         />
-        <div className="mt-4 flex justify-end gap-2">
+        <div className="mt-4 flex justify-end gap-5">
           <button onClick={onCancel} className="text-gray-500 hover:underline">
             취소
           </button>
