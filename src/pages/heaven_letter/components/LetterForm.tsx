@@ -375,7 +375,7 @@ const LetterForm = () => {
           </div>
           <div className="mt-5 flex sm:mt-3 sm:justify-end">
             <Turnstile
-              turnstileSiteKey="0x4AAAAAABh7p6RM-c7LcvIz"
+              turnstileSiteKey="1x00000000000000000000AA"
               callback={(token: string) => setCaptchaToken(token)}
               theme="light"
               size="normal"

@@ -12,7 +12,7 @@ const MemorialSection: React.FC = () => {
   const [donors, setDonors] = useState<Donor[]>([])
 
   useEffect(() => {
-    fetch('/api/main')
+    fetch('http://koda2.elementsoft.biz:8081/main')
       .then((res) => res.json())
       .then((data) => {
         setDonors(data.rememberanceMainDtoList)
