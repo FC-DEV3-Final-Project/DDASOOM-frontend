@@ -1,10 +1,5 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './shared/styles/globals.css'
-import App from './App.tsx'
+import ReactDOM from 'react-dom/client'
+import App from '@/App' // App 컴포넌트 내부에서 <HashRouter> 포함됨
+import '@/shared/styles/globals.css'
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+ReactDOM.createRoot(document.getElementById('root')!).render(<App />)

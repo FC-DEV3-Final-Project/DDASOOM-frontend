@@ -1,120 +1,469 @@
 @import 'tailwindcss';
-@import 'tw-animate-css';
+@import '@krds-ui/core/dist/style.css' layer(base);
+/* @import 'tw-animate-css'; */
 
-@custom-variant dark (&:is(.dark *));
-
-@theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+@font-face {
+  font-family: 'Cafe24Oneprettynight';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
-:root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+@font-face {
+  font-family: 'Cafe24Dongdong';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Dongdong.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+@font-face {
+  font-family: 'HakgyoansimGeurimilgiTTF-R';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimGeurimilgiTTF-R.woff2')
+    format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+@theme {
+  --breakpoint-mobile: 0px;
+  --breakpoint-desktop: 430px;
+
+  --color-primary: #246beb;
+  --color-primary-0: #ffffff;
+  --color-primary-5: #eff5ff;
+  --color-primary-10: #d3e1fb;
+  --color-primary-20: #a7c4f7;
+  --color-primary-30: #7ca6f3;
+  --color-primary-40: #5089ef;
+  --color-primary-50: #246beb;
+  --color-primary-60: #1d56bc;
+  --color-primary-70: #16408d;
+  --color-primary-80: #0e2b5e;
+  --color-primary-90: #07152f;
+  --color-primary-100: #000000;
+
+  /* Secondary */
+  --color-secondary: #003675;
+  --color-secondary-0: #ffffff;
+  --color-secondary-5: #edf1f5;
+  --color-secondary-10: #cdd7e4;
+  --color-secondary-20: #b4c4d6;
+  --color-secondary-30: #99b0cb;
+  --color-secondary-40: #2a5c96;
+  --color-secondary-50: #003675;
+  --color-secondary-60: #002b5e;
+  --color-secondary-70: #002046;
+  --color-secondary-80: #00162f;
+  --color-secondary-90: #000b17;
+  --color-secondary-100: #000000;
+
+  /* Gray */
+  --color-gray-0: #ffffff;
+  --color-gray-5: #f4f5f6;
+  --color-gray-10: #e6e8ea;
+  --color-gray-20: #cdd1d5;
+  --color-gray-30: #b1b8be;
+  --color-gray-40: #8a949e;
+  --color-gray-50: #6d7882;
+  --color-gray-60: #58616a;
+  --color-gray-70: #464c53;
+  --color-gray-80: #33363d;
+  --color-gray-90: #1e2124;
+  --color-gray-95: #131416;
+  --color-gray-100: #000000;
+
+  /* Green */
+  --color-green-10: #e0f5e6;
+  --color-green-20: #b9e9c7;
+  --color-green-30: #93dca8;
+  --color-green-40: #6cd089;
+  --color-green-50: #45c46a;
+  --color-green-60: #34a354;
+  --color-green-70: #277c40;
+  --color-green-80: #1b552c;
+  --color-green-90: #0f2e18;
+
+  /* Point */
+  --color-point: #e71825;
+  --color-point-0: #ffffff;
+  --color-point-5: #fdf2f3;
+  --color-point-10: #fbd6d8;
+  --color-point-20: #f5a3a8;
+  --color-point-30: #f1747c;
+  --color-point-40: #ec4651;
+  --color-point-50: #e71825;
+  --color-point-60: #b9131e;
+  --color-point-70: #8b0e16;
+  --color-point-80: #5c0a0f;
+  --color-point-90: #2e0507;
+  --color-point-100: #000000;
+
+  /* Red */
+  --color-red-5: #fef5f5;
+  --color-red-10: #fcdad9;
+  --color-red-20: #f8abaa;
+  --color-red-30: #f57c7b;
+  --color-red-40: #f14f4d;
+  --color-red-50: #ed1f1c;
+  --color-red-60: #c71210;
+  --color-red-70: #970e0c;
+  --color-red-80: #680908;
+  --color-red-90: #390504;
+
+  /* Danger */
+  --color-danger: #eb003b;
+  --color-danger-5: #feecf0;
+  --color-danger-10: #fcd4de;
+  --color-danger-20: #f799b1;
+  --color-danger-30: #f36689;
+  --color-danger-40: #ef3e5e;
+  --color-danger-50: #eb003b;
+  --color-danger-60: #d50136;
+  --color-danger-70: #8d0023;
+  --color-danger-80: #5e0018;
+  --color-danger-90: #2f000c;
+
+  /* Warning */
+  --color-warning: #ffb724;
+  --color-warning-5: #fff8e9;
+  --color-warning-10: #ffeac1;
+  --color-warning-20: #ffe2a7;
+  --color-warning-30: #ffd47c;
+  --color-warning-40: #ffc550;
+  --color-warning-50: #ffb724;
+  --color-warning-60: #98690a;
+  --color-warning-70: #66490e;
+  --color-warning-80: #4d370b;
+  --color-warning-90: #332507;
+
+  /* Success */
+  --color-success: #008a1e;
+  --color-success-5: #eef7f0;
+  --color-success-10: #cee9d4;
+  --color-success-20: #b2dcbb;
+  --color-success-30: #8cca99;
+  --color-success-40: #33a14b;
+  --color-success-50: #008a1e;
+  --color-success-60: #006e18;
+  --color-success-70: #005312;
+  --color-success-80: #00370c;
+  --color-success-90: #002207;
+
+  /* Info */
+  --color-info: #2768ff;
+  --color-info-5: #e9f0ff;
+  --color-info-10: #d4e1ff;
+  --color-info-20: #a9c3ff;
+  --color-info-30: #7da4ff;
+  --color-info-40: #5286ff;
+  --color-info-50: #2768ff;
+  --color-info-60: #1f53cc;
+  --color-info-70: #173e99;
+  --color-info-80: #0c1f4d;
+  --color-info-90: #040a1a;
+}
+
+/* Display */
+@utility text-display-l {
+  font-size: 66px;
+  line-height: 150%;
+  letter-spacing: 1px;
+}
+
+@utility text-display-m {
+  font-size: 50px;
+  line-height: 150%;
+  letter-spacing: 1px;
+}
+
+@utility text-display-s {
+  font-size: 40px;
+  line-height: 150%;
+  letter-spacing: 1px;
+}
+
+@utility text-display-l-mobile {
+  font-size: 40px;
+  line-height: 150%;
+  letter-spacing: 1px;
+}
+
+@utility text-display-m-mobile {
+  font-size: 32px;
+  line-height: 150%;
+  letter-spacing: 1px;
+}
+
+@utility text-display-s-mobile {
+  font-size: 25px;
+  line-height: 150%;
+  letter-spacing: 1px;
+}
+
+/* Heading */
+@utility text-heading-l {
+  font-size: 50px;
+  line-height: 150%;
+  letter-spacing: 1px;
+}
+
+@utility text-heading-m {
+  font-size: 40px;
+  line-height: 150%;
+  letter-spacing: 1px;
+}
+
+@utility text-heading-s {
+  font-size: 32px;
+  line-height: 150%;
+  letter-spacing: 1px;
+}
+
+@utility text-heading-l-mobile {
+  font-size: 40px;
+  line-height: 150%;
+  letter-spacing: 1px;
+}
+
+@utility text-heading-m-mobile {
+  font-size: 32px;
+  line-height: 150%;
+  letter-spacing: 1px;
+}
+
+@utility text-heading-s-mobile {
+  font-size: 25px;
+  line-height: 150%;
+  letter-spacing: 1px;
+}
+
+/* Title */
+@utility text-title-xxl {
+  font-size: 32px;
+  line-height: 150%;
+  letter-spacing: 1px;
+}
+
+@utility text-title-xl {
+  font-size: 25px;
+  line-height: 150%;
+}
+
+@utility text-title-l {
+  font-size: 21px;
+  line-height: 150%;
+}
+
+@utility text-title-m {
+  font-size: 19px;
+  line-height: 150%;
+}
+
+@utility text-title-s {
+  font-size: 17px;
+  line-height: 150%;
+}
+
+@utility text-title-xs {
+  font-size: 15px;
+  line-height: 150%;
+}
+
+@utility text-title-xxl-mobile {
+  font-size: 25px;
+  line-height: 150%;
+  letter-spacing: 1px;
+}
+
+@utility text-title-xl-mobile {
+  font-size: 25px;
+  line-height: 150%;
+}
+
+@utility text-title-l-mobile {
+  font-size: 21px;
+  line-height: 150%;
+}
+
+@utility text-title-m-mobile {
+  font-size: 19px;
+  line-height: 150%;
+}
+
+@utility text-title-s-mobile {
+  font-size: 17px;
+  line-height: 150%;
+}
+
+@utility text-title-xs-mobile {
+  font-size: 15px;
+  line-height: 150%;
+}
+
+/* Body */
+@utility text-body-l {
+  font-size: 19px;
+  line-height: 150%;
+}
+
+@utility text-body-m {
+  font-size: 17px;
+  line-height: 150%;
+}
+
+@utility text-body-s {
+  font-size: 15px;
+  line-height: 150%;
+}
+
+@utility text-body-l-mobile {
+  font-size: 19px;
+  line-height: 150%;
+}
+
+@utility text-body-m-mobile {
+  font-size: 17px;
+  line-height: 150%;
+}
+
+@utility text-body-s-mobile {
+  font-size: 15px;
+  line-height: 150%;
+}
+
+/* Detail */
+@utility text-detail-l {
+  font-size: 17px;
+  line-height: 150%;
+}
+
+@utility text-detail-m {
+  font-size: 15px;
+  line-height: 150%;
+}
+
+@utility text-detail-s {
+  font-size: 13px;
+  line-height: 150%;
+}
+
+@utility text-detail-l-mobile {
+  font-size: 17px;
+  line-height: 150%;
+}
+
+@utility text-detail-m-mobile {
+  font-size: 15px;
+  line-height: 150%;
+}
+
+@utility text-detail-s-mobile {
+  font-size: 13px;
+  line-height: 150%;
+}
+
+/* Label */
+@utility text-label-l {
+  font-size: 19px;
+  line-height: 150%;
+}
+
+@utility text-label-m {
+  font-size: 17px;
+  line-height: 150%;
+}
+
+@utility text-label-s {
+  font-size: 15px;
+  line-height: 150%;
+}
+
+@utility text-label-xs {
+  font-size: 13px;
+  line-height: 150%;
+}
+
+@utility text-label-l-mobile {
+  font-size: 19px;
+  line-height: 150%;
+}
+
+@utility text-label-m-mobile {
+  font-size: 17px;
+  line-height: 150%;
+}
+
+@utility text-label-s-mobile {
+  font-size: 15px;
+  line-height: 150%;
+}
+
+@utility text-label-xs-mobile {
+  font-size: 13px;
+  line-height: 150%;
+}
+
+/* Link */
+@utility text-link-l {
+  font-size: 19px;
+  line-height: 150%;
+}
+
+@utility text-link-m {
+  font-size: 17px;
+  line-height: 150%;
+}
+
+@utility text-link-s {
+  font-size: 15px;
+  line-height: 150%;
+}
+
+@utility text-link-l-mobile {
+  font-size: 19px;
+  line-height: 150%;
+}
+
+@utility text-link-m-mobile {
+  font-size: 17px;
+  line-height: 150%;
+}
+
+@utility text-link-s-mobile {
+  font-size: 15px;
+  line-height: 150%;
+}
+
+body {
+  overflow-x: hidden;
+}
+.multi-line-ellipsis {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 줄 수 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ===== [추가] input[type="date"]의 기본 캘린더 아이콘 숨김 ===== */
+/* 크롬, 사파리, 엣지 등 Webkit 기반 브라우저에서 동작 */
+input[type='date']::-webkit-calendar-picker-indicator {
+  opacity: 0; /* 아이콘을 투명하게 처리 */
+  position: absolute; /* 위치 보정 (레이아웃 영향 최소화) */
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer; /* 클릭 영역은 유지 (달력 picker는 정상 동작) */
+}
+
+/* ===== [추가] 파이어폭스에서 기본 date 아이콘 숨기기 ===== */
+input[type='date'] {
+  -moz-appearance: textfield; /* 파이어폭스에서 기본 아이콘 제거 */
+  background: transparent;
+  position: relative;
+  z-index: 2;
+}
+
+* {
+  box-sizing: border-box;
 }
